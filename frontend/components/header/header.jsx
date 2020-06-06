@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
-let Header = ({ currentUser, logout, user }) => {
+let Header = ({ currentUser, logout }) => {
     const links = () => (
         <div>
             <Link to='/login'>Login</Link>
@@ -13,7 +13,7 @@ let Header = ({ currentUser, logout, user }) => {
 
     const greeting = () => (
         <div>
-            <div>Hello {user.username}</div>
+            <div>Hello {currentUser.username}</div>
             <button onClick={logout}>Logout</button>
         </div>
     );
@@ -23,8 +23,7 @@ let Header = ({ currentUser, logout, user }) => {
 
 const msp = (state) => {
     return {
-        currentUser: state.session.id,
-        user: state.entities.users[state.session.id]
+        currentUser: state.entities.users[state.session.id]
     }
 };
 
