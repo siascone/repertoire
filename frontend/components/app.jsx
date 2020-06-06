@@ -1,12 +1,9 @@
 import React from 'react';
 import { Route, Link, Redirect, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import LoginFormContainer from './session_form/login_form_container';
-import SignupFormContainer from './session_form/signup_from_container';
-import HeaderContainer from '../components/header/header_container';
+import SessionForm from './session_form/session_form';
+import Header from '../components/header/header';
 import Splash from './splash/splash';
-// import Footer from './footer/footer';
-
 
 const App = () => (
 
@@ -14,13 +11,13 @@ const App = () => (
         <div>
             <div className='header'>
                 <div className='nav-links'>
-                    <Link to='/' className='haeader-link'><i className='fa fa-home fa-lg'></i></Link>
+                    <Link to='/' className='header-link'><i className='fa fa-home fa-lg'></i></Link>
                 </div>
-                <HeaderContainer />
+                <Header />
             </div>
             <Switch>
-                <AuthRoute path='/login' component={LoginFormContainer} />
-                <AuthRoute path='/signup' component={SignupFormContainer} />
+                <AuthRoute path='/login' component={SessionForm} />
+                <AuthRoute path='/signup' component={SessionForm} />
                 <Route exact path='/' component={Splash} />
                 <Redirect to='/' />
             </Switch>
