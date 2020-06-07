@@ -225,32 +225,50 @@ var Header = function Header(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout,
       match = _ref.match;
-  var home = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "header-link home",
-    onClick: function onClick(e) {
-      return match.path == '/' ? location.reload() : null;
-    },
-    to: "/"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "header-logo-outer-circle"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "header-eighth-note"
-  }, "\u266A")), " Repertoire");
+
+  var home = function home() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      className: "header-link home",
+      onClick: function onClick(e) {
+        return match.path == '/' ? location.reload() : null;
+      },
+      to: "/"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "header-logo-outer-circle"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "header-eighth-note"
+    }, "\u266A")), " Repertoire");
+  };
+
+  var menuButton = function menuButton() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "header-menu-button"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "menu-button-line"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "menu-button-line"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "menu-button-line"
+    }));
+  };
 
   var loggedInNav = function loggedInNav() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "nav"
-    }, home, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Hello ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "header-nav"
+    }, home(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: logout
-    }, "Logout"));
+    }, "Logout"), menuButton());
   };
 
-  var loggedOutNav = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "nav"
-  }, home);
+  var loggedOutNav = function loggedOutNav() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "header-nav"
+    }, home(), menuButton());
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "header"
-  }, currentUser ? loggedInNav() : loggedOutNav);
+  }, currentUser ? loggedInNav() : loggedOutNav());
 };
 
 var msp = function msp(state) {
