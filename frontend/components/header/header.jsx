@@ -5,21 +5,23 @@ import { logout } from '../../actions/session_actions';
 
 let Header = ({ currentUser, logout }) => {
 
-    const loggedInHeader = () => (
-        <div className="header">
-            <Link to='/' className='header-link home'>Repertoire<i className='fa fa-home fa-lg'></i></Link>
+    const home = <Link to='/' className='header-link home'>♪ Repertoire<i className='fa fa-home fa-lg'></i></Link>
+
+    const loggedInNav = () => (
+        <div className="nav">
+            {home}
             <div>Hello {currentUser.username}</div>
             <button onClick={logout}>Logout</button>
         </div>
     );
 
-    const loggedOutHeader = () => (
-        <div className="header">
-            <Link to='/' className='header-link home'>Repertoire<i className='fa fa-home fa-lg'></i></Link>
+    const loggedOutNav = (
+        <div className="nav">
+            {home}
         </div>
     );
 
-    return currentUser ? loggedInHeader() : loggedOutHeader();
+    return <div className="header">{currentUser ? loggedInNav() : loggedOutNav}</div>
 }
 
 const msp = (state) => {

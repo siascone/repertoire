@@ -57,6 +57,7 @@ class SessionForm extends React.Component {
             <div className="session-form-container">
                 <form className='session-form'>
                     <div className="session-form-type">{formType}</div>
+                    {this.rendersErrors()}
                     <input 
                         type='text'
                         placeholder='username'
@@ -75,7 +76,6 @@ class SessionForm extends React.Component {
                     <button className='demo' onClick={this.handleDemo}>
                         Demo
                     </button>
-                    {this.rendersErrors()}
                 </form>
             </div>
         )

@@ -1,0 +1,21 @@
+.header {
+    position: fixed;
+    width: 100vw;
+    background-color: black;
+    padding: 20px;
+    z-index: 1;
+    opacity: 0.9;
+}
+
+.header-link.home {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 600;
+    border: none;
+    outline: 0;
+}
+
+.header-link.home:hover {
+    cursor: pointer;
+}
