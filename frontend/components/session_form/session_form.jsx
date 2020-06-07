@@ -13,9 +13,6 @@ class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDemo = this.handleDemo.bind(this);
         this.update = this.update.bind(this);
-
-        this.formType = props.match.url == '/login' ? 'Login' : 'Sign Up'
-
     }
 
     update(type) {
@@ -26,10 +23,10 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { login, signup } = this.props;
+        const { login, signup, formType } = this.props;
 
         const user = Object.assign({}, this.state);
-        if (this.formType == 'Login') {
+        if (formType == 'Login') {
             login(user)
         } else {
             signup(user)
@@ -56,7 +53,7 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        const { loginDemoUser, match } = this.props;
+        const { formType } = this.props;
         const { username, password } = this.state;
         
         let message;
@@ -93,7 +90,7 @@ class SessionForm extends React.Component {
                     </div>
                     <br />
                     <button className='login-submit' onClick={this.handleSubmit}>
-                        {this.formType}
+                        {formType}
                     </button>
                     <button className='demo' onClick={this.handleDemo}>
                         Demo Login

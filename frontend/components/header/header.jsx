@@ -4,21 +4,14 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
 let Header = ({ currentUser, logout }) => {
-    const links = () => (
+    const loggedInHeader = () => (
         <div>
-            <Link to='/login'>Login</Link>
-            <Link to='/signup'>Sign Up</Link>
-        </div>
-    );
-
-    const greeting = () => (
-        <div>
+            <Link to='/' className='header-link'>Home<i className='fa fa-home fa-lg'></i></Link>
             <div>Hello {currentUser.username}</div>
             <button onClick={logout}>Logout</button>
         </div>
     );
-
-    return currentUser ? greeting() : links();
+    return currentUser ? loggedInHeader() : null;
 }
 
 const msp = (state) => {

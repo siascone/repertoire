@@ -189,28 +189,13 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "nav-links"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/",
-    className: "header-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fa fa-home fa-lg"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_header__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
-    path: "/login",
-    component: _session_form_session_form__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
-    path: "/signup",
-    component: _session_form_session_form__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_header__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     exact: true,
     path: "/",
     component: _splash_splash__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
     to: "/"
-  }))));
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -240,21 +225,18 @@ var Header = function Header(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout;
 
-  var links = function links() {
+  var loggedInHeader = function loggedInHeader() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/login"
-    }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/signup"
-    }, "Sign Up"));
-  };
-
-  var greeting = function greeting() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Hello ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      to: "/",
+      className: "header-link"
+    }, "Home", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fa fa-home fa-lg"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Hello ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: logout
     }, "Logout"));
   };
 
-  return currentUser ? greeting() : links();
+  return currentUser ? loggedInHeader() : null;
 };
 
 var msp = function msp(state) {
@@ -367,7 +349,6 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDemo = _this.handleDemo.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
-    _this.formType = props.match.url == '/login' ? 'Login' : 'Sign Up';
     return _this;
   }
 
@@ -386,10 +367,11 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var _this$props = this.props,
           login = _this$props.login,
-          signup = _this$props.signup;
+          signup = _this$props.signup,
+          formType = _this$props.formType;
       var user = Object.assign({}, this.state);
 
-      if (this.formType == 'Login') {
+      if (formType == 'Login') {
         login(user);
       } else {
         signup(user);
@@ -420,9 +402,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          loginDemoUser = _this$props2.loginDemoUser,
-          match = _this$props2.match;
+      var formType = this.props.formType;
       var _this$state = this.state,
           username = _this$state.username,
           password = _this$state.password;
@@ -464,7 +444,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "login-submit",
         onClick: this.handleSubmit
-      }, this.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "demo",
         onClick: this.handleDemo
       }, "Demo Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -519,6 +499,8 @@ SessionForm = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"]
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_ui_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/ui_util */ "./frontend/util/ui_util.js");
+/* harmony import */ var _session_form_session_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../session_form/session_form */ "./frontend/components/session_form/session_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -543,23 +525,61 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var Splash = /*#__PURE__*/function (_React$Component) {
   _inherits(Splash, _React$Component);
 
   var _super = _createSuper(Splash);
 
   function Splash(props) {
+    var _this;
+
     _classCallCheck(this, Splash);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      formType: ''
+    };
+    return _this;
   }
 
   _createClass(Splash, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var formType = this.state.formType;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-page-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, formType ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-modal-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-modal-background",
+        onClick: function onClick(e) {
+          return _this2.setState({
+            formType: ''
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form_session_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        formType: formType
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-links"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-link login",
+        onClick: function onClick(e) {
+          return _this2.setState({
+            formType: 'Login'
+          });
+        }
+      }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-link",
+        onClick: function onClick(e) {
+          return _this2.setState({
+            formType: "Signup"
+          });
+        }
+      }, "Signup")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         id: "splash-background",
         src: "/assets/splash-background.jpg",
         alt: ""
@@ -570,35 +590,11 @@ var Splash = /*#__PURE__*/function (_React$Component) {
   return Splash;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-var resizeBackground = function resizeBackground() {
-  var splashBackground = document.getElementById('splash-background');
-  if (!splashBackground) return null;
-  var windowWidth = window.innerWidth;
-  var windowHeight = window.innerHeight;
-  var imageWidth = splashBackground.width;
-  var imageHeight = splashBackground.height;
-
-  if (windowHeight > imageHeight) {
-    splashBackground.style.height = "100vh";
-    splashBackground.style.width = "auto";
-    return null;
-  }
-
-  if (windowWidth > imageWidth) {
-    splashBackground.style.width = "100vw";
-    splashBackground.style.height = "auto";
-    return null;
-  }
-};
-
 setTimeout(function () {
-  return resizeBackground();
+  return Object(_util_ui_util__WEBPACK_IMPORTED_MODULE_1__["resizeBackground"])();
 }, 100);
 window.addEventListener('resize', function () {
-  return resizeBackground();
-});
-window.addEventListener('DOMContentLoaded', function () {
-  return resizeBackground();
+  return Object(_util_ui_util__WEBPACK_IMPORTED_MODULE_1__["resizeBackground"])();
 });
 /* harmony default export */ __webpack_exports__["default"] = (Splash);
 
@@ -967,6 +963,39 @@ var logout = function logout() {
     url: 'api/session',
     method: 'DELETE'
   });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/ui_util.js":
+/*!**********************************!*\
+  !*** ./frontend/util/ui_util.js ***!
+  \**********************************/
+/*! exports provided: resizeBackground */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resizeBackground", function() { return resizeBackground; });
+var resizeBackground = function resizeBackground() {
+  var splashBackground = document.getElementById('splash-background');
+  if (!splashBackground) return null;
+  var windowWidth = window.innerWidth;
+  var windowHeight = window.innerHeight;
+  var imageWidth = splashBackground.width;
+  var imageHeight = splashBackground.height;
+
+  if (windowHeight > imageHeight) {
+    splashBackground.style.height = "100vh";
+    splashBackground.style.width = "auto";
+    return null;
+  }
+
+  if (windowWidth > imageWidth) {
+    splashBackground.style.width = "100vw";
+    splashBackground.style.height = "auto";
+    return null;
+  }
 };
 
 /***/ }),

@@ -1,40 +1,46 @@
 import React from 'react';
+import { resizeBackground } from '../../util/ui_util'
+import SessionForm from '../session_form/session_form';
 
 class Splash extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            formType: ''
+        }
     }
 
     render(){
+        const { formType } = this.state;
         return (
-        <div className="splash-page-container">
-            <img id="splash-background" src="/assets/splash-background.jpg" alt=""/>
-        </div>
+            <div className="splash-page-container">
+                {formType ? 
+                <div className="session-form-modal-container">
+                    <div 
+                        className="session-form-modal-background"
+                        onClick={e => this.setState({ formType: '' })}
+                    ></div>
+                    <SessionForm formType={formType} />
+                </div>
+                :
+                <div className="session-links">
+                    <div 
+                        className="session-link login"
+                        onClick={e => this.setState({ formType: 'Login' })}
+                    >Login</div>
+                    <div 
+                        className="session-link"
+                        onClick={e => this.setState({ formType: "Signup" })}
+                    >Signup</div>
+                </div>
+                }
+                <img id="splash-background" src="/assets/splash-background.jpg" alt=""/>
+            </div>
         );
     }
 }
 
-const resizeBackground = () => {
-    const splashBackground = document.getElementById('splash-background');
-    if (!splashBackground) return null;
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const imageWidth = splashBackground.width;
-    const imageHeight = splashBackground.height;
-    if (windowHeight > imageHeight) {
-        splashBackground.style.height = `100vh`;
-        splashBackground.style.width = `auto`;
-        return null;
-    }
-    if (windowWidth > imageWidth) {
-        splashBackground.style.width = `100vw`;
-        splashBackground.style.height = `auto`;
-        return null;
-    } 
-};
 setTimeout(() => resizeBackground(), 100)
-
 window.addEventListener('resize', () => resizeBackground());
-window.addEventListener('DOMContentLoaded', () => resizeBackground());
 
 export default Splash;
