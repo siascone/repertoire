@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
-let Header = ({ currentUser, logout }) => {
+let Header = ({ currentUser, logout, match }) => {
 
-    const home = <Link to='/' className='header-link home'>♪ Repertoire<i className='fa fa-home fa-lg'></i></Link>
+    const home = (
+        <Link 
+            className='header-link home'
+            onClick={e => match.path == '/' ? location.reload() : null} 
+            to='/'
+        > 
+            <span className="header-logo-outer-circle">
+                <span className="header-eighth-note">♪</span>
+            </span> Repertoire
+        </Link>
+    );
 
     const loggedInNav = () => (
         <div className="nav">
@@ -34,6 +44,6 @@ const mdp = dispatch => ({
     logout: () => dispatch(logout())
 });
 
-Header = connect(msp, mdp)(Header);
+Header =  withRouter(connect(msp, mdp)(Header));
 
 export default Header;

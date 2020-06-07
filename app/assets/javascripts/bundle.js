@@ -223,13 +223,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var Header = function Header(_ref) {
   var currentUser = _ref.currentUser,
-      logout = _ref.logout;
+      logout = _ref.logout,
+      match = _ref.match;
   var home = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/",
-    className: "header-link home"
-  }, "\u266A Repertoire", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fa fa-home fa-lg"
-  }));
+    className: "header-link home",
+    onClick: function onClick(e) {
+      return match.path == '/' ? location.reload() : null;
+    },
+    to: "/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "header-logo-outer-circle"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "header-eighth-note"
+  }, "\u266A")), " Repertoire");
 
   var loggedInNav = function loggedInNav() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -261,7 +267,7 @@ var mdp = function mdp(dispatch) {
   };
 };
 
-Header = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(msp, mdp)(Header);
+Header = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(msp, mdp)(Header));
 /* harmony default export */ __webpack_exports__["default"] = (Header);
 
 /***/ }),
@@ -581,7 +587,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
 
 setTimeout(function () {
   return Object(_util_ui_util__WEBPACK_IMPORTED_MODULE_1__["resizeBackground"])();
-}, 100);
+}, 200);
 window.addEventListener('resize', function () {
   return Object(_util_ui_util__WEBPACK_IMPORTED_MODULE_1__["resizeBackground"])();
 });

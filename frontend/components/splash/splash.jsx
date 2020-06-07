@@ -40,7 +40,7 @@ class Splash extends React.Component{
     }
 }
 
-setTimeout(() => resizeBackground(), 100)
+setTimeout(() => resizeBackground(), 200)
 window.addEventListener('resize', () => resizeBackground());
 
 export default Splash;

@@ -14,6 +14,29 @@
     font-weight: 600;
     border: none;
     outline: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header-eighth-note {
+    min-width: 30px;
+    min-height: 30px;
+    text-align: center;
+    font-size: 30px;
+    border: 1px solid white;
+    border-radius: 100%;
+}
+
+.header-logo-outer-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
+    border: 2px solid white;
+    border-radius: 100%;
+    text-align: center;
+    margin-right: 10px;
 }
 
 .header-link.home:hover {
