@@ -42,7 +42,7 @@ class SessionForm extends React.Component {
         return (
             <div className='errors'>
                 {this.props.errors.map((error, i) => (
-                    <li key={`error ${i}`}>{error}</li>
+                    <div key={`error ${i}`}>{error}</div>
                 ))}
             </div>
         );
@@ -55,20 +55,10 @@ class SessionForm extends React.Component {
     render() {
         const { formType } = this.props;
         const { username, password } = this.state;
-        
-        let message;
-        let wrapper;
-        if (this.formType === 'Login') {
-            message = <div>New to Repertoire?<Link to="/signup">Signup</Link></div>;
-            wrapper = 'wrapper-signup';
-        } else {
-            message = <div>Already a Member?<Link to="/login">Login</Link></div>;
-            wrapper = 'wrapper-login';
-        }
 
         return (
-            <div className={wrapper}>
-                <form className='login-form'>
+            <div className="session-form-container">
+                <form className='session-form'>
                     <div className='login-input-fields'>
                         <label className='username'>
                             <input 
@@ -96,8 +86,9 @@ class SessionForm extends React.Component {
                         Demo Login
                     </button>
                     <br />
-                    <div className='message'>{message}</div>
-                    {this.rendersErrors()}
+                    <div className="session-errors">
+                        {this.rendersErrors()}
+                    </div>
                 </form>
             </div>
         )

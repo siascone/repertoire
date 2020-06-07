@@ -389,7 +389,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "errors"
       }, this.props.errors.map(function (error, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: "error ".concat(i)
         }, error);
       }));
@@ -406,25 +406,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           username = _this$state.username,
           password = _this$state.password;
-      var message;
-      var wrapper;
-
-      if (this.formType === 'Login') {
-        message = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "New to Repertoire?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/signup"
-        }, "Signup"));
-        wrapper = 'wrapper-signup';
-      } else {
-        message = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already a Member?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/login"
-        }, "Login"));
-        wrapper = 'wrapper-login';
-      }
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: wrapper
+        className: "session-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "login-form"
+        className: "session-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-input-fields"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -448,8 +433,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         className: "demo",
         onClick: this.handleDemo
       }, "Demo Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "message"
-      }, message), this.rendersErrors()));
+        className: "session-errors"
+      }, this.rendersErrors())));
     }
   }]);
 
