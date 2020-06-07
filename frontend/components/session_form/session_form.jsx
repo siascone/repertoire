@@ -37,9 +37,9 @@ class SessionForm extends React.Component {
 
     rendersErrors() {
         return (
-            <div className='errors'>
+            <div className='session-errors'>
                 {this.props.errors.map((error, i) => (
-                    <div key={`error ${i}`}>{error}</div>
+                    <li key={`error ${i}`}>{error}</li>
                 ))}
             </div>
         );
@@ -56,32 +56,26 @@ class SessionForm extends React.Component {
         return (
             <div className="session-form-container">
                 <form className='session-form'>
-                <div className="form-type">{formType}</div>
-                    <div className='login-input-fields'>
-                        <div className='username label'></div>
-                        <input 
-                            type='text'
-                            placeholder='username'
-                            value={username}
-                            onChange={this.update('username')}
-                        />
-                        <div className='password label'></div>
-                        <input
-                            type='password'
-                            placeholder='password'
-                            value={password}
-                            onChange={this.update('password')}
-                        />
-                    </div>
+                    <div className="session-form-type">{formType}</div>
+                    <input 
+                        type='text'
+                        placeholder='username'
+                        value={username}
+                        onChange={this.update('username')}
+                    />
+                    <input
+                        type='password'
+                        placeholder='password'
+                        value={password}
+                        onChange={this.update('password')}
+                    />
                     <button className='login-submit' onClick={this.handleSubmit}>
                         {formType}
                     </button>
                     <button className='demo' onClick={this.handleDemo}>
                         Demo
                     </button>
-                    <div className="session-errors">
-                        {this.rendersErrors()}
-                    </div>
+                    {this.rendersErrors()}
                 </form>
             </div>
         )

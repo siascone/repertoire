@@ -365,3 +365,26 @@ textarea {
     color: #000;
     padding: 0.2em 0;
 }
+
+input {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+.body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+// comment-in for wireframe
+// * {
+//     border: 1px solid red !important;
+// }

@@ -4,6 +4,21 @@
     border-radius: 5px;
 }
 
+.session-form-type {
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}
+
 .session-errors {
     color: white;
+}
+
+.session-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.session-form * {
+    margin: 5px;
 }

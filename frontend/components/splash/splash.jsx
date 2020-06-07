@@ -14,6 +14,7 @@ class Splash extends React.Component{
         const { formType } = this.state;
         return (
             <div className="splash-page-container">
+                <div className="splash-intro">The collaboration platform for performing artists.</div>
                 <img id="splash-background" src="/assets/splash-background.jpg" alt="" />
                 {formType ? 
                 <div className="session-form-modal-container">
