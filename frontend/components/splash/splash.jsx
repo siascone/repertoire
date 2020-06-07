@@ -14,6 +14,7 @@ class Splash extends React.Component{
         const { formType } = this.state;
         return (
             <div className="splash-page-container">
+                <img id="splash-background" src="/assets/splash-background.jpg" alt="" />
                 {formType ? 
                 <div className="session-form-modal-container">
                     <div 
@@ -32,9 +33,7 @@ class Splash extends React.Component{
                         className="session-link"
                         onClick={e => this.setState({ formType: "Signup" })}
                     >Signup</div>
-                </div>
-                }
-                <img id="splash-background" src="/assets/splash-background.jpg" alt=""/>
+                </div>}
             </div>
         );
     }

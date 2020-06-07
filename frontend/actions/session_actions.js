@@ -25,17 +25,20 @@ export const clearErrors = () => ({
 
 export const signup = (user) => dispatch => {
     return SessionAPIUtil.signup(user)
-        .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
-        errors => dispatch(receiveErrors(errors)));
+        .then(
+            res => dispatch(receiveCurrentUser(res)),
+            res => dispatch(receiveErrors(res.responseJSON))
+        );
 };
 
 export const login = (user) => dispatch => {
     return SessionAPIUtil.login(user)
-        .then(currentUser => dispatch(receiveCurrentUser(currentUser)), 
-        errors => dispatch(receiveErrors(errors)));
+        .then(
+            res => dispatch(receiveCurrentUser(res)), 
+            res => dispatch(receiveErrors(res.responseJSON))
+        );
 };
 
 export const logout = () => dispatch => SessionAPIUtil.logout()
-    .then(res => {
-        dispatch(logoutCurrentUser());
-});
+    .then(res => dispatch(logoutCurrentUser())
+);

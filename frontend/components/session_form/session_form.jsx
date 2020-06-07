@@ -16,20 +16,17 @@ class SessionForm extends React.Component {
     }
 
     update(type) {
-        return (e) => this.setState({
-            [type]: e.currentTarget.value
-        });
+        return (e) => this.setState({ [type]: e.currentTarget.value });
     }
 
     handleSubmit(e) {
         e.preventDefault();
         const { login, signup, formType } = this.props;
-
-        const user = Object.assign({}, this.state);
+        const user = this.state;
         if (formType == 'Login') {
-            login(user)
+            login(user);
         } else {
-            signup(user)
+            signup(user);
         }
     }
 
@@ -59,33 +56,29 @@ class SessionForm extends React.Component {
         return (
             <div className="session-form-container">
                 <form className='session-form'>
+                <div className="form-type">{formType}</div>
                     <div className='login-input-fields'>
-                        <label className='username'>
-                            <input 
-                                type='text'
-                                placeholder='username'
-                                value={username}
-                                onChange={this.update('username')}
-                            />
-                        </label>
-                        <br />
-                        <label className='password'>
-                            <input
-                                type='password'
-                                placeholder='password'
-                                value={password}
-                                onChange={this.update('password')}
-                            />
-                        </label>
+                        <div className='username label'></div>
+                        <input 
+                            type='text'
+                            placeholder='username'
+                            value={username}
+                            onChange={this.update('username')}
+                        />
+                        <div className='password label'></div>
+                        <input
+                            type='password'
+                            placeholder='password'
+                            value={password}
+                            onChange={this.update('password')}
+                        />
                     </div>
-                    <br />
                     <button className='login-submit' onClick={this.handleSubmit}>
                         {formType}
                     </button>
                     <button className='demo' onClick={this.handleDemo}>
-                        Demo Login
+                        Demo
                     </button>
-                    <br />
                     <div className="session-errors">
                         {this.rendersErrors()}
                     </div>
@@ -95,20 +88,16 @@ class SessionForm extends React.Component {
     }
 }
 
-const msp = ({ errors }) => {
-    return {
-        errors: Object.values(errors.session),
-    };
-};
+const msp = ({ errors }) => ({
+    errors: Object.values(errors.session),
+});
 
-const mdp = dispatch => {
-    return {
-        login: user => dispatch(login(user)),
-        signup: user => dispatch(signup(user)),
-        loginDemoUser: () => dispatch(login({ username: "demo", password: 'password' })),
-        clearErrors: () => dispatch(clearErrors())
-    };
-};
+const mdp = dispatch => ({
+    login: user => dispatch(login(user)),
+    signup: user => dispatch(signup(user)),
+    loginDemoUser: () => dispatch(login({ username: "demo", password: 'password' })),
+    clearErrors: () => dispatch(clearErrors())
+});
 
 SessionForm = withRouter(connect(msp, mdp)(SessionForm));
 
