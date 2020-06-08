@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
-let Header = ({ currentUser, logout, match }) => {
+let Header = ({ currentUser, logout, match, menu, toggleMenu }) => {
 
     const home = () => (
         <Link 
@@ -18,29 +18,25 @@ let Header = ({ currentUser, logout, match }) => {
     );
 
     const menuButton = () => (
-        <div className="header-menu-button">
-            <div className="menu-button-line"></div>
-            <div className="menu-button-line"></div>
-            <div className="menu-button-line"></div>
+        <div className="header-menu-button" onClick={e => toggleMenu()}>
+            {menu ? 
+            <div className="header-menu-button">X</div>
+            :
+            <div className="header-menu-button">
+                <div className="menu-button-line"></div>
+                <div className="menu-button-line"></div>
+                <div className="menu-button-line"></div>
+            </div>}
         </div>
     );
 
-    const loggedInNav = () => (
-        <div className="header-nav">
-            {home()}
-            <button onClick={logout}>Logout</button>
-            {menuButton()}
-        </div>
-    );
-
-    const loggedOutNav = () => (
-        <div className="header-nav">
+    return (
+        <div className="header">
+            <div className="header-nav">
             {home()}
             {menuButton()}
-        </div>
+        </div></div>
     );
-
-    return <div className="header">{currentUser ? loggedInNav() : loggedOutNav()}</div>
 }
 
 const msp = (state) => {
