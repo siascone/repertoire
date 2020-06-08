@@ -8,6 +8,11 @@ class Splash extends React.Component{
         this.state = {
             formType: ''
         }
+        this.close = this.close.bind(this)
+    }
+
+    close(e) {
+        this.setState({ formType: '' });
     }
 
     render(){
@@ -20,9 +25,9 @@ class Splash extends React.Component{
                 <div className="session-form-modal-container">
                     <div 
                         className="session-form-modal-background"
-                        onClick={e => this.setState({ formType: '' })}
+                        onClick={e => this.close()}
                     ></div>
-                    <SessionForm formType={formType} />
+                    <SessionForm formType={formType} close={this.close} />
                 </div>
                 :
                 <div className="session-links">

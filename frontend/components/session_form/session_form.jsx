@@ -50,11 +50,12 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        const { formType } = this.props;
+        const { formType, close } = this.props;
         const { username, password } = this.state;
 
         return (
             <div className="session-form-container">
+                <div className="close-session-form" onClick={e => close()}><i>X</i></div>
                 <form className='session-form'>
                     <div className="session-form-type">{formType}</div>
                     {this.rendersErrors()}
@@ -70,10 +71,10 @@ class SessionForm extends React.Component {
                         value={password}
                         onChange={this.update('password')}
                     />
-                    <button className='login-submit' onClick={this.handleSubmit}>
+                    <button className='session-form-button login' onClick={this.handleSubmit}>
                         {formType}
                     </button>
-                    <button className='demo' onClick={this.handleDemo}>
+                    <button className='session-form-button' onClick={this.handleDemo}>
                         Demo
                     </button>
                 </form>

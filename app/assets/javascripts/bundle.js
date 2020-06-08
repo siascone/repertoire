@@ -434,13 +434,20 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var formType = this.props.formType;
+      var _this$props2 = this.props,
+          formType = _this$props2.formType,
+          close = _this$props2.close;
       var _this$state = this.state,
           username = _this$state.username,
           password = _this$state.password;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "close-session-form",
+        onClick: function onClick(e) {
+          return close();
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", null, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-type"
@@ -455,10 +462,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         value: password,
         onChange: this.update('password')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "login-submit",
+        className: "session-form-button login",
         onClick: this.handleSubmit
       }, formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "demo",
+        className: "session-form-button",
         onClick: this.handleDemo
       }, "Demo")));
     }
@@ -552,10 +559,18 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       formType: ''
     };
+    _this.close = _this.close.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Splash, [{
+    key: "close",
+    value: function close(e) {
+      this.setState({
+        formType: ''
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -574,12 +589,11 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-modal-background",
         onClick: function onClick(e) {
-          return _this2.setState({
-            formType: ''
-          });
+          return _this2.close();
         }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form_session_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        formType: formType
+        formType: formType,
+        close: this.close
       })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

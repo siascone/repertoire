@@ -4,6 +4,8 @@
     border-radius: 5px;
     position: absolute;
     max-height: 60vh;
+    left: 20vw;
+    right: 20vw;
     top: 25vh;
     overflow-y: scroll;
 }
@@ -22,11 +24,49 @@
     color: white;
 }
 
+.close-session-form {
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    font-weight: 600;
+    border-radius: 100%;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    min-height: 20px;
+    text-align: center;
+    line-height: 140%;
+    opacity: 0.8;
+}
+
+.close-session-form:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
 .session-form {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .session-form * {
     margin: 5px;
+}
+
+.session-form-button.login {
+    margin-top: 10px;
+}
+
+.session-form-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+}
+
+.session-form-button:hover {
+    background-color: rgb(49, 49, 49);
 }
