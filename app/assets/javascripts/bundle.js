@@ -717,8 +717,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           login = _this$props.login,
           signup = _this$props.signup,
-          formType = _this$props.formType;
+          formType = _this$props.formType,
+          clearErrors = _this$props.clearErrors;
       var user = this.state;
+      clearErrors();
 
       if (formType == 'Login') {
         login(user);
