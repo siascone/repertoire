@@ -44,8 +44,7 @@ class Menu extends React.Component {
                 : 
                 <div>
                     <div className="main-menu-item">About</div>
-                </div>
-}
+                </div>}
             </div>
         );
     }

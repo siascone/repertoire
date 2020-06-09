@@ -16,7 +16,8 @@ class App extends React.Component {
         this.toggleMenu = this.toggleMenu.bind(this);
     }
 
-    toggleMenu() {
+    toggleMenu(str) {
+        if (str === 'off') return this.setState ({ menu: false });
         this.setState({ menu: !this.state.menu });
     }
 

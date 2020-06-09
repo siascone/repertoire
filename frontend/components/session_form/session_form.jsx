@@ -57,26 +57,30 @@ class SessionForm extends React.Component {
             <div className="session-form-container">
                 <div className="close-session-form" onClick={e => close()}><i>X</i></div>
                 <form className='session-form'>
-                    <div className="session-form-type">{formType}</div>
-                    {this.rendersErrors()}
-                    <input 
-                        type='text'
-                        placeholder='username'
-                        value={username}
-                        onChange={this.update('username')}
-                    />
-                    <input
-                        type='password'
-                        placeholder='password'
-                        value={password}
-                        onChange={this.update('password')}
-                    />
-                    <button className='session-form-button login' onClick={this.handleSubmit}>
-                        {formType}
-                    </button>
-                    <button className='session-form-button' onClick={this.handleDemo}>
-                        Demo
-                    </button>
+                    <div className="session-form-inputs">
+                        <div className="session-form-type">{formType}</div>
+                        {this.rendersErrors()}
+                        <input 
+                            type='text'
+                            placeholder='username'
+                            value={username}
+                            onChange={this.update('username')}
+                        />
+                        <input
+                            type='password'
+                            placeholder='password'
+                            value={password}
+                            onChange={this.update('password')}
+                        />
+                    </div>
+                    <div className="session-form-buttons">
+                        <button className='session-form-button login' onClick={this.handleSubmit}>
+                            {formType}
+                        </button>
+                        <button className='session-form-button' onClick={this.handleDemo}>
+                            Demo
+                        </button>
+                    </div>
                 </form>
             </div>
         )

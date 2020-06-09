@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
 let Header = ({ location, history, menu, toggleMenu }) => {
+    const goHome = (e) => {
+        location.pathname === "/" ? window.location.reload(false) : history.push('/')
+        toggleMenu('off');
+    };
+    
     const home = () => (
         <div 
             className='header-link home'
-            onClick={e => location.pathname === "/" ? window.location.reload(false) : history.push('/')} 
+            onClick={e => goHome(e)} 
         > 
             <span className="header-logo-outer-circle">
                 <span className="header-eighth-note">♪</span>

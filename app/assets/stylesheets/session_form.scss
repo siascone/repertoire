@@ -2,12 +2,13 @@
     background-color: black;
     padding: 20px;
     border-radius: 5px;
-    position: absolute;
-    max-height: 60vh;
+    position: fixed;
     left: 20vw;
     right: 20vw;
-    top: 5vh;
+    top: 20vh;
+    bottom: 20vh;
     overflow-y: scroll;
+    border: 0.5px solid white;
 }
 
 .session-form-container::-webkit-scrollbar {
@@ -37,6 +38,8 @@
     text-align: center;
     line-height: 140%;
     opacity: 0.8;
+    left: 21vw;
+    top: 22vh;
 }
 
 .close-session-form:hover {
@@ -45,17 +48,26 @@
 }
 
 .session-form {
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.session-form-inputs {
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
 .session-form * {
     margin: 5px;
 }
 
+.session-form-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
 .session-form-button.login {
-    margin-top: 10px;
+    margin-top: 5vh;
 }
 
 .session-form-button {

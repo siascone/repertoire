@@ -232,7 +232,10 @@ var App = /*#__PURE__*/function (_React$Component) {
 
   _createClass(App, [{
     key: "toggleMenu",
-    value: function toggleMenu() {
+    value: function toggleMenu(str) {
+      if (str === 'off') return this.setState({
+        menu: false
+      });
       this.setState({
         menu: !this.state.menu
       });
@@ -302,11 +305,16 @@ var Header = function Header(_ref) {
       menu = _ref.menu,
       toggleMenu = _ref.toggleMenu;
 
+  var goHome = function goHome(e) {
+    location.pathname === "/" ? window.location.reload(false) : history.push('/');
+    toggleMenu('off');
+  };
+
   var home = function home() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header-link home",
       onClick: function onClick(e) {
-        return location.pathname === "/" ? window.location.reload(false) : history.push('/');
+        return goHome(e);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "header-logo-outer-circle"
@@ -759,6 +767,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", null, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-inputs"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-type"
       }, formType), this.rendersErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -770,13 +780,15 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "password",
         value: password,
         onChange: this.update('password')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "session-form-button login",
         onClick: this.handleSubmit
       }, formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "session-form-button",
         onClick: this.handleDemo
-      }, "Demo")));
+      }, "Demo"))));
     }
   }]);
 
