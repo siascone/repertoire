@@ -3,18 +3,16 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
-let Header = ({ currentUser, logout, match, menu, toggleMenu }) => {
-
+let Header = ({ location, history, menu, toggleMenu }) => {
     const home = () => (
-        <Link 
+        <div 
             className='header-link home'
-            onClick={e => match.path == '/' ? location.reload() : null} 
-            to='/'
+            onClick={e => location.pathname === "/" ? window.location.reload(false) : history.push('/')} 
         > 
             <span className="header-logo-outer-circle">
                 <span className="header-eighth-note">♪</span>
             </span> Repertoire
-        </Link>
+        </div>
     );
 
     const menuButton = () => (

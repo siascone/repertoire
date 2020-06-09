@@ -7,6 +7,12 @@
     bottom: 0;
     top: 84px;
     z-index: 1;
+    overflow-y: scroll;
+    padding-bottom: 100px;
+}
+
+.main-menu::-webkit-scrollbar {
+    display: none;
 }
 
 .main-menu-item {

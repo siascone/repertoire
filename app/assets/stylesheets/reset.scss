@@ -373,11 +373,6 @@ input {
     padding-bottom: 5px;
 }
 
-html {
-    width: 100vw;
-    height: 100vh;
-}
-
 .body {
     width: 100vw;
     height: 100vh;
@@ -387,6 +382,11 @@ html {
 a {
     outline: 0;
 }
+
+.page {
+    padding-top: 84px;
+}
+
 
 // comment-in for wireframe
 // * {

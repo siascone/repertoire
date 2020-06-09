@@ -5,6 +5,7 @@ import SessionForm from './session_form/session_form';
 import Header from '../components/header/header';
 import Splash from './splash/splash';
 import Menu from './menu/menu';
+import Profile from './profile/profile';
 
 class App extends React.Component {
     constructor(props) {
@@ -25,12 +26,15 @@ class App extends React.Component {
             <div className="main">
                 <Header menu={menu} toggleMenu={this.toggleMenu} />
                 {menu ? <Menu toggleMenu={this.toggleMenu} /> : null}
+                <div className="page" onClick={ e => this.setState({ menu: false })}>
                 <Switch>
                     {/* <AuthRoute path='/login' component={SessionForm} /> */}
                     {/* <AuthRoute path='/signup' component={SessionForm} /> */}
                     <AuthRoute exact path='/' component={Splash} />
+                    <Route path='/users/:userId' component={Profile} />
                     <Redirect to='/' />
                 </Switch>
+                </div>
             </div>
         );
     }
