@@ -383,12 +383,21 @@ input {
     display: none;
 }
 
+#root {
+    height: 100%;
+}
+
+.main {
+    height: 100%;
+}
+
 a {
     outline: 0;
 }
 
 .page {
     padding-top: 84px;
+    height: -webkit-fill-available;
 }
 
 

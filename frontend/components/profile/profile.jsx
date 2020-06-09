@@ -15,7 +15,14 @@ class Profile extends React.Component {
         const { user, currentUser } = this.props;
         if (!user) return null;
         return(
-            <ProfilePhoto url={user.profilePhoto} />
+            <div className="user-profile-container">
+                <div className="user-profile-content">
+                    <div className="user-profile-photo-container">
+                        <ProfilePhoto url={user.profilePhoto} />
+                    </div>
+                    <div className="user-profile-username">{user.username}</div>
+                </div>
+            </div>
         );
     }
 }

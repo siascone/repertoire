@@ -6,6 +6,8 @@ import Header from '../components/header/header';
 import Splash from './splash/splash';
 import Menu from './menu/menu';
 import Profile from './profile/profile';
+import { formatImagesToSquareContainer } from '../util/ui_util';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -14,6 +16,7 @@ class App extends React.Component {
             menu: false,
         }
         this.toggleMenu = this.toggleMenu.bind(this);
+        formatImagesToSquareContainer();
     }
 
     toggleMenu(str) {

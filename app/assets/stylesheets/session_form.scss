@@ -55,6 +55,10 @@
     overflow-y: scroll;
 }
 
+.session-form::-webkit-scrollbar {
+    display: none;
+}
+
 .session-form-inputs {
     display: flex;
     flex-direction: column;

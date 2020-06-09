@@ -181,6 +181,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_splash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./splash/splash */ "./frontend/components/splash/splash.jsx");
 /* harmony import */ var _menu_menu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./menu/menu */ "./frontend/components/menu/menu.jsx");
 /* harmony import */ var _profile_profile__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile/profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var _util_ui_util__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/ui_util */ "./frontend/util/ui_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -212,6 +213,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -227,6 +229,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       menu: false
     };
     _this.toggleMenu = _this.toggleMenu.bind(_assertThisInitialized(_this));
+    Object(_util_ui_util__WEBPACK_IMPORTED_MODULE_8__["formatImagesToSquareContainer"])();
     return _this;
   }
 
@@ -555,9 +558,17 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           user = _this$props.user,
           currentUser = _this$props.currentUser;
       if (!user) return null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_photo__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-profile-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-profile-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-profile-photo-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_photo__WEBPACK_IMPORTED_MODULE_1__["default"], {
         url: user.profilePhoto
-      });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-profile-username"
+      }, user.username)));
     }
   }]);
 
