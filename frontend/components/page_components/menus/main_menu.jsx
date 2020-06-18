@@ -3,8 +3,17 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { logout } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
 
-let MainMenu = ({currentUser, logout, history}) => {
-    const leave = () => logout().then(e => history.push('/'))
+let MainMenu = ({currentUser, logout, history, setMenu}) => {
+    
+    const leave = () => {
+        logout().then(e => navigateTo('/'))
+    };
+
+    const navigateTo = path => {
+        history.push(path);
+        setMenu(false);
+    };
+
     return (
         <View style={styles.view}>
             <TouchableOpacity>
@@ -13,6 +22,13 @@ let MainMenu = ({currentUser, logout, history}) => {
                     style={styles.text}
                     onPress={e => leave()}
                 >Logout</Text> : null}
+            </TouchableOpacity>
+            <TouchableOpacity>
+                {currentUser ?
+                <Text 
+                    style={styles.text}
+                    onPress={e => navigateTo(`/users/${currentUser.id}`)}
+                >{currentUser.username}</Text> : null}
             </TouchableOpacity>
         </View>
     );

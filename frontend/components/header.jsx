@@ -1,19 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const Header = ({history}) => {
+const Header = ({history, setMenu, menu}) => {
     const path = history.location.pathname;
+
+    const navigateTo = path => {
+        history.push(path);
+        setMenu(false);
+    };
+    
     return(
         <View style={styles.container}>
             <TouchableOpacity>
                 <Text 
                     style={styles.text} 
-                    onPress={e => history.push('/')} 
+                    onPress={e => navigateTo('/')} 
                 >Repertoire</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.menuContainer}
-                onPress={e => history.push(path === '/menu' ? '/' : '/menu')}
+                onPress={e => setMenu(!menu)}
             >
                 <View style={styles.menuLine}/>
                 <View style={styles.menuLine}/>
