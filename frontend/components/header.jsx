@@ -1,30 +1,34 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { withRouter } from 'react-router-dom';
 
-const Header = ({history}) => (
-    <View style={styles.container}>
-        <Text 
-            style={styles.text} 
-            onPress={e => history.push('/')} 
-        >Repertoire</Text>
-        <TouchableOpacity
-            style={styles.menuContainer}
-            onPress={e => history.push('/menu')}
-        >
-            <View style={styles.menuLine}/>
-            <View style={styles.menuLine}/>
-            <View style={styles.menuLine}/>
-        </TouchableOpacity>
-    </View>
-);
+const Header = ({history}) => {
+    const path = history.location.pathname;
+    return(
+        <View style={styles.container}>
+            <TouchableOpacity>
+                <Text 
+                    style={styles.text} 
+                    onPress={e => history.push('/')} 
+                >Repertoire</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.menuContainer}
+                onPress={e => history.push(path === '/menu' ? '/' : '/menu')}
+            >
+                <View style={styles.menuLine}/>
+                <View style={styles.menuLine}/>
+                <View style={styles.menuLine}/>
+            </TouchableOpacity>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 0.1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         backgroundColor: 'black',
     },
     text: {
@@ -45,4 +49,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withRouter(Header);
+export default Header;

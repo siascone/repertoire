@@ -38,6 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   AppRegistry.registerComponent('Main', (store) => Main);
   AppRegistry.runApplication('Main', { rootTag: document.getElementById('root') });
-})
+});
 
 serviceWorker.unregister();
