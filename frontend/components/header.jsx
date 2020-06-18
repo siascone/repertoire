@@ -6,7 +6,7 @@ const Header = ({history}) => (
     <View style={styles.container}>
         <Text 
             style={styles.text} 
-            onPress={e => history.push('/home')} 
+            onPress={e => history.push('/')} 
         >Repertoire</Text>
         <TouchableOpacity
             style={styles.menuContainer}
