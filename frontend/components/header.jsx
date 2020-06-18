@@ -2,13 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const Header = ({history, setMenu, menu}) => {
-    const path = history.location.pathname;
 
     const navigateTo = path => {
         history.push(path);
         setMenu(false);
     };
-    
+
     return(
         <View style={styles.container}>
             <TouchableOpacity>
@@ -18,12 +17,17 @@ const Header = ({history, setMenu, menu}) => {
                 >Repertoire</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                style={styles.menuContainer}
+                style={styles.menuButtonContainer}
                 onPress={e => setMenu(!menu)}
             >
-                <View style={styles.menuLine}/>
-                <View style={styles.menuLine}/>
-                <View style={styles.menuLine}/>
+                {menu ?
+                <Text style={styles.menuText}>X</Text>
+                :
+                <View>
+                    <View style={styles.menuLine}/>
+                    <View style={styles.menuLine}/>
+                    <View style={styles.menuLine}/>
+                </View>}
             </TouchableOpacity>
         </View>
     );
@@ -34,7 +38,7 @@ const styles = StyleSheet.create({
         flex: 0.1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         backgroundColor: 'black',
     },
     text: {
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 10,
     },
-    menuContainer: {
+    menuButtonContainer: {
         padding: 10,
     },
     menuLine: {
@@ -52,6 +56,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         margin: 2,
         borderRadius: 2,
+    },
+    menuText: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontSize: 30,
+        padding: 10,
+        fontWeight: 300
     }
 });
 

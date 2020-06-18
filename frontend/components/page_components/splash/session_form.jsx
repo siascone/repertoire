@@ -38,10 +38,10 @@ let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
                 onChange={e => setPassword(e.currentTarget.value)}
                 onSubmitEditing={e => handleSubmit()}
             />
+            <br/>
             <Button
                 title={type}
                 onPress={e => handleSubmit()}
-                style={styles.button}
                 color='black'
             />
         </View>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         padding: 20,
-        marginTop: 100,
+        marginTop: 50,
         width: 'fit-content',
         border: '1px solid white',
         borderRadius: 3
@@ -66,9 +66,6 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         margin: 5,
     },
-    button: {
-        margin: 100,
-    }
 });
 
 export default SessionForm;

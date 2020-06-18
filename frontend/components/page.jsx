@@ -6,7 +6,6 @@ import Splash from './page_components/splash/splash';
 import MainMenu from './page_components/menus/main_menu';
 import Error404 from './page_components/errors/error404';
 import Profile from './page_components/profile/profile';
-import { useState } from 'react';
 
 let Page = ({ currentUser, history, menu, setMenu }) => {
     return(

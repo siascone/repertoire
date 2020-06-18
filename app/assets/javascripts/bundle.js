@@ -251,7 +251,6 @@ var Header = function Header(_ref) {
   var history = _ref.history,
       setMenu = _ref.setMenu,
       menu = _ref.menu;
-  var path = history.location.pathname;
 
   var navigateTo = function navigateTo(path) {
     history.push(path);
@@ -266,17 +265,19 @@ var Header = function Header(_ref) {
       return navigateTo('/');
     }
   }, "Repertoire")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.menuContainer,
+    style: styles.menuButtonContainer,
     onPress: function onPress(e) {
       return setMenu(!menu);
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+  }, menu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.menuText
+  }, "X") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuLine
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuLine
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuLine
-  })));
+  }))));
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -284,7 +285,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     backgroundColor: 'black'
   },
   text: {
@@ -293,7 +294,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     fontSize: 20,
     padding: 10
   },
-  menuContainer: {
+  menuButtonContainer: {
     padding: 10
   },
   menuLine: {
@@ -302,6 +303,14 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     backgroundColor: 'white',
     margin: 2,
     borderRadius: 2
+  },
+  menuText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'white',
+    fontSize: 30,
+    padding: 10,
+    fontWeight: 300
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (Header);
@@ -325,7 +334,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _page_components_menus_main_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./page_components/menus/main_menu */ "./frontend/components/page_components/menus/main_menu.jsx");
 /* harmony import */ var _page_components_errors_error404__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./page_components/errors/error404 */ "./frontend/components/page_components/errors/error404.jsx");
 /* harmony import */ var _page_components_profile_profile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./page_components/profile/profile */ "./frontend/components/page_components/profile/profile.jsx");
-
 
 
 
@@ -626,12 +634,11 @@ var SessionForm = function SessionForm(_ref) {
     onSubmitEditing: function onSubmitEditing(e) {
       return handleSubmit();
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     title: type,
     onPress: function onPress(e) {
       return handleSubmit();
     },
-    style: styles.button,
     color: "black"
   }));
 };
@@ -640,7 +647,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
     alignItems: 'center',
     padding: 20,
-    marginTop: 100,
+    marginTop: 50,
     width: 'fit-content',
     border: '1px solid white',
     borderRadius: 3
@@ -653,9 +660,6 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     padding: 10,
     borderRadius: 3,
     margin: 5
-  },
-  button: {
-    margin: 100
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (SessionForm);
@@ -750,6 +754,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   },
   buttonsContainer: {
     marginTop: 20,
+    width: 100,
     justifyContent: "space-between",
     height: 100
   }
