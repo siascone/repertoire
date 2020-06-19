@@ -1,7 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { logout } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
+
+const photo = require('../../../../app/assets/images/photo.png')
+
+import Avitar from '../profile/avitar';
 
 let MainMenu = ({currentUser, logout, history, setMenu}) => {
     
@@ -18,17 +22,20 @@ let MainMenu = ({currentUser, logout, history, setMenu}) => {
         <View style={styles.view}>
             <TouchableOpacity>
                 {currentUser ?
+                <View style={styles.menuItem}>
+                    <Avitar url={photo} size={30} />
+                    <Text
+                        style={styles.text}
+                        onPress={e => navigateTo(`/users/${currentUser.id}`)}
+                    >{currentUser.username}</Text>
+                </View> : null}
+            </TouchableOpacity>
+            <TouchableOpacity >
+                {currentUser ?
                 <Text 
                     style={styles.text}
                     onPress={e => leave()}
                 >Logout</Text> : null}
-            </TouchableOpacity>
-            <TouchableOpacity>
-                {currentUser ?
-                <Text 
-                    style={styles.text}
-                    onPress={e => navigateTo(`/users/${currentUser.id}`)}
-                >{currentUser.username}</Text> : null}
             </TouchableOpacity>
         </View>
     );
@@ -44,6 +51,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'white',
         padding: 10,
+    },
+    menuItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
     }
 });
 

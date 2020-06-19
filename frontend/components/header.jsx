@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     },
     menuButtonContainer: {
         padding: 10,
-        width: 50
+        width: 50,
+        alignItems: 'center'
     },
     menuLine: {
         width: 30,
