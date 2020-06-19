@@ -39,9 +39,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 50,
         alignItems: 'center',
-        backgroundColor: 'black',
-        borderTopColor: 'white',
-        borderTopWidth: 1,
     },
     text: {
         fontSize: 20,

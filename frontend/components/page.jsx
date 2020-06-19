@@ -42,7 +42,7 @@ let Page = ({ currentUser, history, menu, setMenu }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 0.9,
-        backgroundColor: 'slategrey',
+        backgroundColor: 'black',
         overflow: 'scroll'
     }
 });

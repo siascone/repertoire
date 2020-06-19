@@ -297,7 +297,9 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    borderBottomColor: 'white',
+    borderBottomWidth: 1
   },
   text: {
     color: 'white',
@@ -306,7 +308,8 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     padding: 10
   },
   menuButtonContainer: {
-    padding: 10
+    padding: 10,
+    width: 50
   },
   menuLine: {
     width: 30,
@@ -393,7 +396,7 @@ var Page = function Page(_ref) {
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
     flex: 0.9,
-    backgroundColor: 'slategrey',
+    backgroundColor: 'black',
     overflow: 'scroll'
   }
 });
@@ -495,10 +498,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   view: {
     flex: 1,
     padding: 50,
-    alignItems: 'center',
-    backgroundColor: 'black',
-    borderTopColor: 'white',
-    borderTopWidth: 1
+    alignItems: 'center'
   },
   text: {
     fontSize: 20,
