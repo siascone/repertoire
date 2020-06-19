@@ -37,6 +37,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'space-around',
         width: '100%',
+        borderTopWidth: 1,
+        borderTopColor: 'white',
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
+        marginTop: 10,
     },
     text: {
         color: 'white',
@@ -48,7 +53,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 5,
     },
     selectedTab: {
-        borderBottomColor: 'white',
+        borderBottomColor: 'skyblue',
         borderBottomWidth: 5,
     }
 })

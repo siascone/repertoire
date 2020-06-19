@@ -770,7 +770,12 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
     flexDirection: "row",
     justifyContent: 'space-around',
-    width: '100%'
+    width: '100%',
+    borderTopWidth: 1,
+    borderTopColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: 'white',
+    marginTop: 10
   },
   text: {
     color: 'white',
@@ -782,7 +787,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     borderBottomWidth: 5
   },
   selectedTab: {
-    borderBottomColor: 'white',
+    borderBottomColor: 'skyblue',
     borderBottomWidth: 5
   }
 });
