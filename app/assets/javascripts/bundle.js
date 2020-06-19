@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./app/assets/images/photo.png":
+/*!*************************************!*\
+  !*** ./app/assets/images/photo.png ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/photo.png";
+
+/***/ }),
+
 /***/ "./frontend/App.jsx":
 /*!**************************!*\
   !*** ./frontend/App.jsx ***!
@@ -509,6 +520,48 @@ MainMenu = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, mdp
 
 /***/ }),
 
+/***/ "./frontend/components/page_components/profile/avitar.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/page_components/profile/avitar.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+
+
+
+var Avitar = function Avitar(_ref) {
+  var url = _ref.url,
+      size = _ref.size;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: {
+      width: size,
+      height: size,
+      borderRadius: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["ImageBackground"], {
+    source: "assets/".concat(url),
+    style: styles.image
+  }));
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (Avitar);
+
+/***/ }),
+
 /***/ "./frontend/components/page_components/profile/profile.jsx":
 /*!*****************************************************************!*\
   !*** ./frontend/components/page_components/profile/profile.jsx ***!
@@ -523,17 +576,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _errors_error404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../errors/error404 */ "./frontend/components/page_components/errors/error404.jsx");
+/* harmony import */ var _avitar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./avitar */ "./frontend/components/page_components/profile/avitar.jsx");
 
 
 
 
+
+
+
+var photo = __webpack_require__(/*! ../../../../app/assets/images/photo.png */ "./app/assets/images/photo.png");
 
 var Profile = function Profile(_ref) {
   var currentUser = _ref.currentUser,
       user = _ref.user;
+  if (!user) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_errors_error404__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   var ownProfile = currentUser.username === user.username;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, user.username));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_avitar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    url: photo,
+    size: 100
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.usernameText
+  }, user.username));
 };
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 20
+  },
+  usernameText: {
+    color: 'white',
+    fontSize: 20,
+    padding: 10
+  }
+});
 
 var msp = function msp(state, ownProps) {
   var userId = ownProps.match.params.userId;
