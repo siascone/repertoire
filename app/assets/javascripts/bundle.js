@@ -748,7 +748,9 @@ var SessionForm = function SessionForm(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, errors.map(function (error) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, error);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text
+    }, error);
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
     placeholder: "email",
     style: styles.input,
@@ -773,7 +775,7 @@ var SessionForm = function SessionForm(_ref) {
     onPress: function onPress(e) {
       return handleSubmit();
     },
-    color: "black"
+    color: "grey"
   }));
 };
 
@@ -794,6 +796,9 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     padding: 10,
     borderRadius: 3,
     margin: 5
+  },
+  text: {
+    color: 'white'
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (SessionForm);
@@ -871,9 +876,9 @@ var Splash = function Splash(_ref) {
     onPress: function onPress(e) {
       return switchForm();
     },
-    color: "black"
+    color: "grey"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    color: "black",
+    color: "grey",
     title: "Demo",
     onPress: function onPress(e) {
       return login(demoUser);

@@ -33,10 +33,10 @@ let Splash = ({errors, clearSessionErrors, login, signup}) => {
                 <Button 
                     title={otherType}
                     onPress={e => switchForm()} 
-                    color='black' 
+                    color='grey' 
                 />
                 <Button 
-                    color='black' 
+                    color='grey' 
                     title='Demo'
                     onPress={e => login(demoUser)}
                 />

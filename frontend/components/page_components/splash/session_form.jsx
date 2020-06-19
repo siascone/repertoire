@@ -22,7 +22,7 @@ let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
         <View style={styles.container}>
             <View>
             {errors.map(error => 
-                <Text>{error}</Text>
+                <Text style={styles.text}>{error}</Text>
             )}
             </View>
             <TextInput
@@ -42,7 +42,7 @@ let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
             <Button
                 title={type}
                 onPress={e => handleSubmit()}
-                color='black'
+                color='grey'
             />
         </View>
     );
@@ -66,6 +66,9 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         margin: 5,
     },
+    text: {
+        color: 'white'
+    }
 });
 
 export default SessionForm;
