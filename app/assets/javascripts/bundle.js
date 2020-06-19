@@ -632,6 +632,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _errors_error404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../errors/error404 */ "./frontend/components/page_components/errors/error404.jsx");
 /* harmony import */ var _avitar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./avitar */ "./frontend/components/page_components/profile/avitar.jsx");
+/* harmony import */ var _profile_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile_tabs */ "./frontend/components/page_components/profile/profile_tabs.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -646,14 +661,23 @@ var Profile = function Profile(_ref) {
       user = _ref.user;
   if (!user) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_errors_error404__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   var ownProfile = currentUser.username === user.username;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Info'),
+      _useState2 = _slicedToArray(_useState, 2),
+      tab = _useState2[0],
+      setTab = _useState2[1];
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_avitar__WEBPACK_IMPORTED_MODULE_5__["default"], {
     url: photo,
     size: 100
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.usernameText
-  }, user.username));
+    style: styles.text
+  }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    tab: tab,
+    setTab: setTab
+  }));
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -662,10 +686,19 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     alignItems: 'center',
     padding: 20
   },
-  usernameText: {
+  text: {
     color: 'white',
     fontSize: 20,
     padding: 10
+  },
+  tabsContainer: {
+    flexDirection: "row",
+    justifyContent: 'space-around',
+    width: '100%'
+  },
+  tab: {
+    borderBottomColor: 'none',
+    borderBottomWidth: 5
   }
 });
 
@@ -679,6 +712,81 @@ var msp = function msp(state, ownProps) {
 
 Profile = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(msp, null)(Profile));
 /* harmony default export */ __webpack_exports__["default"] = (Profile);
+
+/***/ }),
+
+/***/ "./frontend/components/page_components/profile/profile_tabs.jsx":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/page_components/profile/profile_tabs.jsx ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+
+
+
+var ProfileTabs = function ProfileTabs(_ref) {
+  var tab = _ref.tab,
+      setTab = _ref.setTab;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    onPress: function onPress(e) {
+      return setTab('Info');
+    },
+    style: tab === 'Info' ? styles.selectedTab : styles.tab
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Info")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    onPress: function onPress(e) {
+      return setTab('Repertoire');
+    },
+    style: tab === 'Repertoire' ? styles.selectedTab : styles.tab
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Repertoire")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    onPress: function onPress(e) {
+      return setTab('Follows');
+    },
+    style: tab === 'Follows' ? styles.selectedTab : styles.tab
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Follows")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    onPress: function onPress(e) {
+      return setTab('Tracks');
+    },
+    style: tab === 'Tracks' ? styles.selectedTab : styles.tab
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Tracks")));
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  container: {
+    flexDirection: "row",
+    justifyContent: 'space-around',
+    width: '100%'
+  },
+  text: {
+    color: 'white',
+    fontSize: 20,
+    padding: 10
+  },
+  tab: {
+    borderBottomColor: 'none',
+    borderBottomWidth: 5
+  },
+  selectedTab: {
+    borderBottomColor: 'white',
+    borderBottomWidth: 5
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (ProfileTabs);
 
 /***/ }),
 
