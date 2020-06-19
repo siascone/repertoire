@@ -6,6 +6,7 @@ import Splash from './page_components/splash/splash';
 import MainMenu from './page_components/menus/main_menu';
 import Error404 from './page_components/errors/error404';
 import Profile from './page_components/profile/profile';
+import Feed from './page_components/feed/feed';
 
 let Page = ({ currentUser, history, menu, setMenu }) => {
     return(
@@ -21,7 +22,7 @@ let Page = ({ currentUser, history, menu, setMenu }) => {
                 <Route 
                     exact path='/' 
                     component={currentUser ? 
-                        null : Splash
+                        Feed : Splash
                     }
                 />
                 <Route 

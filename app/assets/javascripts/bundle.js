@@ -348,6 +348,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _page_components_menus_main_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./page_components/menus/main_menu */ "./frontend/components/page_components/menus/main_menu.jsx");
 /* harmony import */ var _page_components_errors_error404__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./page_components/errors/error404 */ "./frontend/components/page_components/errors/error404.jsx");
 /* harmony import */ var _page_components_profile_profile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./page_components/profile/profile */ "./frontend/components/page_components/profile/profile.jsx");
+/* harmony import */ var _page_components_feed_feed__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./page_components/feed/feed */ "./frontend/components/page_components/feed/feed.jsx");
+
 
 
 
@@ -370,7 +372,7 @@ var Page = function Page(_ref) {
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
-    component: currentUser ? null : _page_components_splash_splash__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: currentUser ? _page_components_feed_feed__WEBPACK_IMPORTED_MODULE_7__["default"] : _page_components_splash_splash__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/menu",
@@ -440,6 +442,43 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (Error404);
+
+/***/ }),
+
+/***/ "./frontend/components/page_components/feed/feed.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/page_components/feed/feed.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+
+
+
+var Feed = function Feed() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "FEED"));
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 20
+  },
+  text: {
+    color: 'white'
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (Feed);
 
 /***/ }),
 
