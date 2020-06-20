@@ -1,21 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import UploadTrack from '../../modular_components/upload_track';
 
 let ProfileTracks = ({ user, ownProfile }) => {
-    const [modal, setModal] = useState(false);
-
     return(
         <View style={styles.container}>
             <Text style={styles.text}>Tracks</Text>
-            {ownProfile ?
-                modal?
-                <View><Text style={styles.text}>Modal</Text></View>
-                :
-                <TouchableOpacity style={styles.touch} onPress={e => setModal(true)}>
-                    <Text style={styles.add}>+</Text>
-                </TouchableOpacity>
-            : 
-            null}
+            {ownProfile ? <UploadTrack user={user} /> : null}
         </View>
     );
 };

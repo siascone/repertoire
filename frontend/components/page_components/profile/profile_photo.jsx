@@ -8,12 +8,12 @@ const photo = require('../../../../app/assets/images/photo.png')
 let ProfilePhoto = ({ ownProfile, user }) => {
     return (
         <View style={styles.container}>
-            <Avitar url={photo} size={100} />
+            <Avitar url={user.profilePhoto || photo} size={100} />
             {ownProfile?
             <TouchableOpacity style={styles.touch}>
-                <Text style={styles.text}>✎</Text>
+                <Text style={styles.pencil}>✎</Text>
                 <input 
-                    style={{opacity: 0, zIndex: 1, position: "absolute", cursor: 'pointer', height: '200%', width: '200%'}} 
+                    style={{opacity: 0, zIndex: 1, position: "absolute", cursor: 'pointer', height: '300%', width: '300%'}} 
                     type="file" name="" id=""
                 />
             </TouchableOpacity> : null}
@@ -23,13 +23,14 @@ let ProfilePhoto = ({ ownProfile, user }) => {
 
 const styles = StyleSheet.create({
     container: {
-        position: 'relative'
+        position: 'relative',
     },
-    text: {
+    pencil: {
         color: 'black',
         fontSize: 20,
     },
     touch: {
+        cursor: 'pointer',
         backgroundColor: 'white',
         borderRadius: '100%',
         border: '1px solid black',

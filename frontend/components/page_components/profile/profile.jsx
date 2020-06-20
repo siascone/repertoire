@@ -19,11 +19,11 @@ let Profile = ({ currentUser, user }) => {
     if (!user) return <Error404/>
     const ownProfile = currentUser.username === user.username;
 
-    const [tab, setTab] = useState('Info');
+    const [tab, setTab] = useState('Tracks');
 
     return(
         <View style={styles.container}>
-            <ProfilePhoto ownProfile={ownProfile}/>
+            <ProfilePhoto user={user} ownProfile={ownProfile}/>
             <Text style={styles.text}>{user.username}</Text>
             <ProfileTabs tab={tab} setTab={setTab}/>
             {tab === "Info" ? <ProfileInfo user={user} /> : null}
