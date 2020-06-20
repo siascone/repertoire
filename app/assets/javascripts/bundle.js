@@ -332,6 +332,48 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
 
 /***/ }),
 
+/***/ "./frontend/components/modular_components/avitar.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/modular_components/avitar.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+
+
+
+var Avitar = function Avitar(_ref) {
+  var url = _ref.url,
+      size = _ref.size;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: {
+      width: size,
+      height: size,
+      borderRadius: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["ImageBackground"], {
+    source: "assets/".concat(url),
+    style: styles.image
+  }));
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (Avitar);
+
+/***/ }),
+
 /***/ "./frontend/components/page.jsx":
 /*!**************************************!*\
   !*** ./frontend/components/page.jsx ***!
@@ -497,15 +539,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _profile_avitar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/avitar */ "./frontend/components/page_components/profile/avitar.jsx");
+/* harmony import */ var _modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../modular_components/avitar */ "./frontend/components/modular_components/avitar.jsx");
+
 
 
 
 
 
 var photo = __webpack_require__(/*! ../../../../app/assets/images/photo.png */ "./app/assets/images/photo.png");
-
-
 
 var MainMenu = function MainMenu(_ref) {
   var currentUser = _ref.currentUser,
@@ -528,7 +569,7 @@ var MainMenu = function MainMenu(_ref) {
     style: styles.view
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], null, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuItem
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
     url: photo,
     size: 30
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
@@ -574,48 +615,6 @@ MainMenu = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, mdp
 
 /***/ }),
 
-/***/ "./frontend/components/page_components/profile/avitar.jsx":
-/*!****************************************************************!*\
-  !*** ./frontend/components/page_components/profile/avitar.jsx ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-
-
-
-var Avitar = function Avitar(_ref) {
-  var url = _ref.url,
-      size = _ref.size;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: {
-      width: size,
-      height: size,
-      borderRadius: '100%',
-      overflow: 'hidden'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["ImageBackground"], {
-    source: "assets/".concat(url),
-    style: styles.image
-  }));
-};
-
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
-  image: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center"
-  }
-});
-/* harmony default export */ __webpack_exports__["default"] = (Avitar);
-
-/***/ }),
-
 /***/ "./frontend/components/page_components/profile/profile.jsx":
 /*!*****************************************************************!*\
   !*** ./frontend/components/page_components/profile/profile.jsx ***!
@@ -631,8 +630,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _errors_error404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../errors/error404 */ "./frontend/components/page_components/errors/error404.jsx");
-/* harmony import */ var _avitar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./avitar */ "./frontend/components/page_components/profile/avitar.jsx");
-/* harmony import */ var _profile_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile_tabs */ "./frontend/components/page_components/profile/profile_tabs.jsx");
+/* harmony import */ var _profile_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile_tabs */ "./frontend/components/page_components/profile/profile_tabs.jsx");
+/* harmony import */ var _profile_photo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile_photo */ "./frontend/components/page_components/profile/profile_photo.jsx");
+/* harmony import */ var _profile_info__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile_info */ "./frontend/components/page_components/profile/profile_info.jsx");
+/* harmony import */ var _profile_repertoire__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile_repertoire */ "./frontend/components/page_components/profile/profile_repertoire.jsx");
+/* harmony import */ var _profile_follows__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./profile_follows */ "./frontend/components/page_components/profile/profile_follows.jsx");
+/* harmony import */ var _profile_tracks__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./profile_tracks */ "./frontend/components/page_components/profile/profile_tracks.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -644,6 +647,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
 
 
 
@@ -669,15 +676,23 @@ var Profile = function Profile(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_avitar__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    url: photo,
-    size: 100
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_photo__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    ownProfile: ownProfile
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text
-  }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
     tab: tab,
     setTab: setTab
-  }));
+  }), tab === "Info" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_info__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    user: user
+  }) : null, tab === "Repertoire" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_repertoire__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    user: user
+  }) : null, tab === "Follows" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_follows__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    user: user
+  }) : null, tab === "Tracks" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tracks__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    user: user,
+    ownProfile: ownProfile
+  }) : null);
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -712,6 +727,187 @@ var msp = function msp(state, ownProps) {
 
 Profile = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(msp, null)(Profile));
 /* harmony default export */ __webpack_exports__["default"] = (Profile);
+
+/***/ }),
+
+/***/ "./frontend/components/page_components/profile/profile_follows.jsx":
+/*!*************************************************************************!*\
+  !*** ./frontend/components/page_components/profile/profile_follows.jsx ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+
+
+
+var ProfileFollows = function ProfileFollows(_ref) {
+  var user = _ref.user;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Follows"));
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  container: {
+    padding: 10
+  },
+  text: {
+    color: 'white'
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (ProfileFollows);
+
+/***/ }),
+
+/***/ "./frontend/components/page_components/profile/profile_info.jsx":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/page_components/profile/profile_info.jsx ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+
+
+
+var ProfileInfo = function ProfileInfo(_ref) {
+  var user = _ref.user;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Info"));
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  container: {
+    padding: 10
+  },
+  text: {
+    color: 'white'
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (ProfileInfo);
+
+/***/ }),
+
+/***/ "./frontend/components/page_components/profile/profile_photo.jsx":
+/*!***********************************************************************!*\
+  !*** ./frontend/components/page_components/profile/profile_photo.jsx ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/avitar */ "./frontend/components/modular_components/avitar.jsx");
+
+
+
+
+var photo = __webpack_require__(/*! ../../../../app/assets/images/photo.png */ "./app/assets/images/photo.png");
+
+var ProfilePhoto = function ProfilePhoto(_ref) {
+  var ownProfile = _ref.ownProfile,
+      user = _ref.user;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    url: photo,
+    size: 100
+  }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    style: styles.touch
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "\u270E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    style: {
+      opacity: 0,
+      zIndex: 1,
+      position: "absolute",
+      cursor: 'pointer',
+      height: '200%',
+      width: '200%'
+    },
+    type: "file",
+    name: "",
+    id: ""
+  })) : null);
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  container: {
+    position: 'relative'
+  },
+  text: {
+    color: 'black',
+    fontSize: 20
+  },
+  touch: {
+    backgroundColor: 'white',
+    borderRadius: '100%',
+    border: '1px solid black',
+    padding: 10,
+    height: 30,
+    width: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    overflow: 'hidden'
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (ProfilePhoto);
+
+/***/ }),
+
+/***/ "./frontend/components/page_components/profile/profile_repertoire.jsx":
+/*!****************************************************************************!*\
+  !*** ./frontend/components/page_components/profile/profile_repertoire.jsx ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+
+
+
+var ProfileRepertoire = function ProfileRepertoire(_ref) {
+  var user = _ref.user;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Repertoire"));
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  container: {
+    padding: 10
+  },
+  text: {
+    color: 'white'
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (ProfileRepertoire);
 
 /***/ }),
 
@@ -792,6 +988,87 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (ProfileTabs);
+
+/***/ }),
+
+/***/ "./frontend/components/page_components/profile/profile_tracks.jsx":
+/*!************************************************************************!*\
+  !*** ./frontend/components/page_components/profile/profile_tracks.jsx ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var ProfileTracks = function ProfileTracks(_ref) {
+  var user = _ref.user,
+      ownProfile = _ref.ownProfile;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      modal = _useState2[0],
+      setModal = _useState2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Tracks"), ownProfile ? modal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Modal")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    style: styles.touch,
+    onPress: function onPress(e) {
+      return setModal(true);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.add
+  }, "+")) : null);
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  container: {
+    padding: 10,
+    alignItems: "center"
+  },
+  touch: {
+    marginTop: 10,
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    border: '1px solid white',
+    borderRadius: '100%',
+    overflow: 'hidden'
+  },
+  text: {
+    flex: 1,
+    color: 'white'
+  },
+  add: {
+    color: 'white',
+    fontSize: 30
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (ProfileTracks);
 
 /***/ }),
 

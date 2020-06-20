@@ -2,10 +2,9 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { logout } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
+import Avitar from '../../modular_components/avitar';
 
 const photo = require('../../../../app/assets/images/photo.png')
-
-import Avitar from '../profile/avitar';
 
 let MainMenu = ({currentUser, logout, history, setMenu}) => {
     

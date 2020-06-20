@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Error404 from '../errors/error404';
-import Avitar from './avitar';
-import { useState } from 'react';
 import ProfileTabs from './profile_tabs';
+import ProfilePhoto from './profile_photo';
+import ProfileInfo from './profile_info';
+import ProfileRepertoire from './profile_repertoire';
+import ProfileFollows from './profile_follows';
+import ProfileTracks from './profile_tracks';
 
 const photo = require('../../../../app/assets/images/photo.png')
 
@@ -19,9 +23,13 @@ let Profile = ({ currentUser, user }) => {
 
     return(
         <View style={styles.container}>
-            <Avitar url={photo} size={100}/>
+            <ProfilePhoto ownProfile={ownProfile}/>
             <Text style={styles.text}>{user.username}</Text>
             <ProfileTabs tab={tab} setTab={setTab}/>
+            {tab === "Info" ? <ProfileInfo user={user} /> : null}
+            {tab === "Repertoire" ? <ProfileRepertoire user={user} /> : null}
+            {tab === "Follows" ? <ProfileFollows user={user} /> : null}
+            {tab === "Tracks" ? <ProfileTracks user={user} ownProfile={ownProfile}/> : null}
         </View>
     );
 };
