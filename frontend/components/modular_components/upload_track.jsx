@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
-import VideoPlayer from './video_player';
-
-const poster = require('../../../app/assets/images/eighth-note.png')
 
 let UploadTrack = ({ user }) => {
     const [modal, setModal] = useState(false);
-    const [url, setUrl] = useState('');
     const [progress, setProgress] = useState('')
+    const [url, setUrl] = useState('');
 
     const handleFile = e => {
         setUrl('')
@@ -23,6 +20,12 @@ let UploadTrack = ({ user }) => {
         };
     };
 
+    const cancel = e => {
+        setUrl('');
+        setProgress('')
+        setModal(false);
+    }
+
     return(modal ?
         <View style={styles.modalContainer}>
             <Text style={styles.text}>Upload Track</Text>
@@ -34,11 +37,17 @@ let UploadTrack = ({ user }) => {
                 {progress? <Text>Upload progress: {progress}</Text>:null}
             </View>
             {url ? 
-            <video width="320" height="240" style={{backgroundColor: 'white', borderRadius: 3}} controls>
-                <source src={url} type="video/mp4"/>
-            </video>
+            <View>
+                <video width="320" height="240" style={{backgroundColor: 'white', borderRadius: 3}} controls>
+                    <source src={url} type="video/mp4"/>
+                </video>
+                <TextInput style={styles.input} placeholder='title'></TextInput>
+                <TextInput style={styles.input} placeholder='time signature'></TextInput>
+                <TextInput style={styles.input} placeholder='instruments'></TextInput>
+                <TextInput style={styles.input} placeholder='tags'></TextInput>
+            </View>
             : null}
-            <TouchableOpacity style={styles.cancel} onPress={e => setModal(false)}>
+            <TouchableOpacity style={styles.cancel} onPress={e => cancel()}>
                 <Text style={styles.text}>Cancel</Text>
             </TouchableOpacity>
         </View>
@@ -75,6 +84,13 @@ const styles = StyleSheet.create({
     add: {
         color: 'white',
         fontSize: 30,
+    },
+    input: {
+        color: 'white',
+        padding: 10,
+        marginTop: 10,
+        border: '1px solid white',
+        borderRadius: 3,
     },
     cancel: {
         border: '1px solid white',

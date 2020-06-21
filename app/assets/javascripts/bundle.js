@@ -86,17 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./app/assets/images/eighth-note.png":
-/*!*******************************************!*\
-  !*** ./app/assets/images/eighth-note.png ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/eighth-note.png";
-
-/***/ }),
-
 /***/ "./app/assets/images/photo.png":
 /*!*************************************!*\
   !*** ./app/assets/images/photo.png ***!
@@ -397,7 +386,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-/* harmony import */ var _video_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./video_player */ "./frontend/components/modular_components/video_player.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -413,9 +401,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-var poster = __webpack_require__(/*! ../../../app/assets/images/eighth-note.png */ "./app/assets/images/eighth-note.png");
-
 var UploadTrack = function UploadTrack(_ref) {
   var user = _ref.user;
 
@@ -426,13 +411,13 @@ var UploadTrack = function UploadTrack(_ref) {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      url = _useState4[0],
-      setUrl = _useState4[1];
+      progress = _useState4[0],
+      setProgress = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      progress = _useState6[0],
-      setProgress = _useState6[1];
+      url = _useState6[0],
+      setUrl = _useState6[1];
 
   var handleFile = function handleFile(e) {
     setUrl('');
@@ -455,6 +440,12 @@ var UploadTrack = function UploadTrack(_ref) {
     ;
   };
 
+  var cancel = function cancel(e) {
+    setUrl('');
+    setProgress('');
+    setModal(false);
+  };
+
   return modal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.modalContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
@@ -471,7 +462,7 @@ var UploadTrack = function UploadTrack(_ref) {
       return handleFile(e);
     },
     type: "file"
-  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
     width: "320",
     height: "240",
     style: {
@@ -482,10 +473,22 @@ var UploadTrack = function UploadTrack(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
     src: url,
     type: "video/mp4"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    style: styles.input,
+    placeholder: "title"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    style: styles.input,
+    placeholder: "time signature"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    style: styles.input,
+    placeholder: "instruments"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    style: styles.input,
+    placeholder: "tags"
   })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.cancel,
     onPress: function onPress(e) {
-      return setModal(false);
+      return cancel();
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text
@@ -526,6 +529,13 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     color: 'white',
     fontSize: 30
   },
+  input: {
+    color: 'white',
+    padding: 10,
+    marginTop: 10,
+    border: '1px solid white',
+    borderRadius: 3
+  },
   cancel: {
     border: '1px solid white',
     borderRadius: 3,
@@ -534,30 +544,6 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (UploadTrack);
-
-/***/ }),
-
-/***/ "./frontend/components/modular_components/video_player.jsx":
-/*!*****************************************************************!*\
-  !*** ./frontend/components/modular_components/video_player.jsx ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-
-
-
-var VideoPlayer = function VideoPlayer(_ref) {
-  var url = _ref.url;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (VideoPlayer);
 
 /***/ }),
 
