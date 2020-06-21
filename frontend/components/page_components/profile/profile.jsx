@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -24,7 +24,16 @@ let Profile = ({ currentUser, user }) => {
     return(
         <View style={styles.container}>
             <ProfilePhoto user={user} ownProfile={ownProfile}/>
-            <Text style={styles.text}>{user.username}</Text>
+            <Text style={styles.usernameText}>{user.username}</Text>
+            <View style={styles.followContainer}>
+                <Text style={styles.subText}>420<br/>Followers</Text>
+                {ownProfile ? 
+                <View></View>:
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.subText}>Follow</Text>
+                </TouchableOpacity>
+                }       
+            </View>
             <ProfileTabs tab={tab} setTab={setTab}/>
             {tab === "Info" ? <ProfileInfo user={user} /> : null}
             {tab === "Repertoire" ? <ProfileRepertoire user={user} /> : null}
@@ -39,11 +48,31 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         padding: 20,
+        position: 'relative',
     },
-    text: {
+    usernameText: {
         color: 'white',
         fontSize: 20,
         padding: 10,
+    },
+    followContainer: {
+        position: "absolute",
+        width: 300,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        zIndex: -1,
+        top: 50,
+    },
+    subText: {
+        color: 'white',
+        fontSize: 12,
+        padding: 10,
+        textAlign: 'center',
+    },
+    button: {
+        border: '1px solid white',
+        borderRadius: 3,
     },
     tabsContainer: {
         flexDirection: "row",

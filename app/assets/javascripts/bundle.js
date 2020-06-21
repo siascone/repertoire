@@ -853,8 +853,16 @@ var Profile = function Profile(_ref) {
     user: user,
     ownProfile: ownProfile
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    style: styles.usernameText
+  }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.followContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.subText
+  }, "420", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Followers"), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    style: styles.button
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.subText
+  }, "Follow"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
     tab: tab,
     setTab: setTab
   }), tab === "Info" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_info__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -873,12 +881,32 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 20
+    padding: 20,
+    position: 'relative'
   },
-  text: {
+  usernameText: {
     color: 'white',
     fontSize: 20,
     padding: 10
+  },
+  followContainer: {
+    position: "absolute",
+    width: 300,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    zIndex: -1,
+    top: 50
+  },
+  subText: {
+    color: 'white',
+    fontSize: 12,
+    padding: 10,
+    textAlign: 'center'
+  },
+  button: {
+    border: '1px solid white',
+    borderRadius: 3
   },
   tabsContainer: {
     flexDirection: "row",
