@@ -8,6 +8,13 @@ let UploadTrack = ({ user }) => {
     const [url, setUrl] = useState('');
     const [addedTags, setTags] = useState({});
 
+    const cancel = e => {
+        setUrl('');
+        setProgress('')
+        setModal(false);
+        setTags({});
+    }
+
     const updateTags = (tag, add) => {
         if (add) {
             setTags({ [tag.id]: tag, ...addedTags });
@@ -31,12 +38,6 @@ let UploadTrack = ({ user }) => {
             fileReader.readAsDataURL(file);
         };
     };
-
-    const cancel = e => {
-        setUrl('');
-        setProgress('')
-        setModal(false);
-    }
 
     return(modal ?
         <View style={styles.modalContainer}>

@@ -685,6 +685,13 @@ var UploadTrack = function UploadTrack(_ref) {
       addedTags = _useState8[0],
       setTags = _useState8[1];
 
+  var cancel = function cancel(e) {
+    setUrl('');
+    setProgress('');
+    setModal(false);
+    setTags({});
+  };
+
   var updateTags = function updateTags(tag, add) {
     if (add) {
       setTags(_objectSpread(_defineProperty({}, tag.id, tag), addedTags));
@@ -714,12 +721,6 @@ var UploadTrack = function UploadTrack(_ref) {
     }
 
     ;
-  };
-
-  var cancel = function cancel(e) {
-    setUrl('');
-    setProgress('');
-    setModal(false);
   };
 
   return modal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
