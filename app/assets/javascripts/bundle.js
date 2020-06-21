@@ -332,6 +332,259 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
 
 /***/ }),
 
+/***/ "./frontend/components/modular_components/autosuggest/autosuggest.jsx":
+/*!****************************************************************************!*\
+  !*** ./frontend/components/modular_components/autosuggest/autosuggest.jsx ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var Autosuggest = function Autosuggest(_ref) {
+  var bank = _ref.bank,
+      styles = _ref.styles,
+      placeholder = _ref.placeholder,
+      getSuggestionText = _ref.getSuggestionText,
+      getSuggestionItem = _ref.getSuggestionItem,
+      onSuggestionSelected = _ref.onSuggestionSelected;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      suggestions = _useState2[0],
+      setSuggestions = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      input = _useState4[0],
+      setInput = _useState4[1];
+
+  var handleSelection = function handleSelection(suggestion) {
+    onSuggestionSelected(suggestion);
+    setInput('');
+    setSuggestions([]);
+  };
+
+  var handleChange = function handleChange(e) {
+    var value = e.currentTarget.value;
+    setInput(value);
+    filterSuggestions(value);
+  };
+
+  var escapeRegexCharacters = function escapeRegexCharacters(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  };
+
+  var filterSuggestions = function filterSuggestions(input) {
+    var escapedValue = escapeRegexCharacters(input.trim());
+
+    if (escapedValue === '') {
+      return setSuggestions([]);
+    }
+
+    var regex = new RegExp('\\b' + escapedValue, 'i');
+    var result = Object.values(bank).filter(function (item) {
+      return regex.test(getSuggestionText(item));
+    });
+    return setSuggestions(result);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: _objectSpread({
+      position: 'relative'
+    }, styles.autosuggest_container)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    value: input,
+    style: styles.autosuggest_input,
+    placeholder: placeholder,
+    onChange: function onChange(e) {
+      return handleChange(e);
+    }
+  }), suggestions.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: _objectSpread({
+      position: 'absolute',
+      zIndex: 999
+    }, styles.suggestions_container)
+  }, suggestions.map(function (suggestion) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      key: suggestion.id,
+      style: _objectSpread({
+        cursor: 'pointer'
+      }, styles.suggestion_item_container),
+      onPress: function onPress(e) {
+        return handleSelection(suggestion);
+      }
+    }, getSuggestionItem(suggestion));
+  })) : null);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Autosuggest);
+
+/***/ }),
+
+/***/ "./frontend/components/modular_components/autosuggest/tag_suggest.jsx":
+/*!****************************************************************************!*\
+  !*** ./frontend/components/modular_components/autosuggest/tag_suggest.jsx ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _autosuggest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./autosuggest */ "./frontend/components/modular_components/autosuggest/autosuggest.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var TagSuggest = function TagSuggest(_ref) {
+  var updateTags = _ref.updateTags,
+      addedTags = _ref.addedTags;
+  var tags = {
+    1: {
+      name: 'rock',
+      id: 1
+    },
+    2: {
+      name: 'progressive rock',
+      id: 2
+    },
+    3: {
+      name: 'rock and roll',
+      id: 3
+    },
+    4: {
+      name: 'hard rock',
+      id: 4
+    },
+    5: {
+      name: 'alternative rock',
+      id: 5
+    },
+    6: {
+      name: 'punk rock',
+      id: 6
+    }
+  };
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(tags),
+      _useState2 = _slicedToArray(_useState, 2),
+      smartBank = _useState2[0],
+      setBank = _useState2[1];
+
+  var placeholder = 'tags';
+
+  var getSuggestionText = function getSuggestionText(tag) {
+    return tag.name;
+  };
+
+  var getSuggestionItem = function getSuggestionItem(tag) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text
+    }, tag.name);
+  };
+
+  var addTag = function addTag(tag) {
+    updateTags(tag, true);
+    var smartBankCopy = Object.assign({}, smartBank);
+    delete smartBankCopy[tag.id];
+    setBank(smartBankCopy);
+  };
+
+  var removeTag = function removeTag(tag) {
+    updateTags(tag);
+    setBank(_objectSpread(_defineProperty({}, tag.id, tag), smartBank));
+  };
+
+  var addedTagsArray = Object.values(addedTags);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    bank: smartBank,
+    styles: styles,
+    placeholder: placeholder,
+    getSuggestionText: getSuggestionText,
+    getSuggestionItem: getSuggestionItem,
+    onSuggestionSelected: addTag
+  }), addedTagsArray.map(function (tag) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text,
+      key: tag.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      onPress: function onPress(e) {
+        return removeTag(tag);
+      }
+    }, "X"), " ", tag.name);
+  }));
+};
+
+var styles = {
+  container: {},
+  autosuggest_input: {
+    color: 'white',
+    padding: 10,
+    marginTop: 10,
+    border: '1px solid white',
+    borderRadius: 3
+  },
+  text: {
+    color: 'white'
+  },
+  suggestions_container: {
+    top: 50,
+    zIndex: 2,
+    width: '100%',
+    border: '1px solid white',
+    backgroundColor: 'black'
+  },
+  suggestion_item_container: {}
+};
+/* harmony default export */ __webpack_exports__["default"] = (TagSuggest);
+
+/***/ }),
+
 /***/ "./frontend/components/modular_components/avitar.jsx":
 /*!***********************************************************!*\
   !*** ./frontend/components/modular_components/avitar.jsx ***!
@@ -386,6 +639,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./autosuggest/tag_suggest */ "./frontend/components/modular_components/autosuggest/tag_suggest.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -397,6 +657,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -418,6 +679,21 @@ var UploadTrack = function UploadTrack(_ref) {
       _useState6 = _slicedToArray(_useState5, 2),
       url = _useState6[0],
       setUrl = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState8 = _slicedToArray(_useState7, 2),
+      addedTags = _useState8[0],
+      setTags = _useState8[1];
+
+  var updateTags = function updateTags(tag, add) {
+    if (add) {
+      setTags(_objectSpread(_defineProperty({}, tag.id, tag), addedTags));
+    } else {
+      var newTags = Object.assign({}, addedTags);
+      delete newTags[tag.id];
+      setTags(newTags);
+    }
+  };
 
   var handleFile = function handleFile(e) {
     setUrl('');
@@ -479,12 +755,9 @@ var UploadTrack = function UploadTrack(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
     style: styles.input,
     placeholder: "time signature"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-    style: styles.input,
-    placeholder: "instruments"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-    style: styles.input,
-    placeholder: "tags"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    addedTags: addedTags,
+    updateTags: updateTags
   })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.cancel,
     onPress: function onPress(e) {
@@ -540,7 +813,8 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     border: '1px solid white',
     borderRadius: 3,
     width: 'fit-content',
-    marginTop: 10
+    marginTop: 10,
+    zIndex: -1
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (UploadTrack);

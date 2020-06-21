@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import TagSuggest from './autosuggest/tag_suggest';
 
 let UploadTrack = ({ user }) => {
     const [modal, setModal] = useState(false);
     const [progress, setProgress] = useState('')
     const [url, setUrl] = useState('');
+    const [addedTags, setTags] = useState({});
+
+    const updateTags = (tag, add) => {
+        if (add) {
+            setTags({ [tag.id]: tag, ...addedTags });
+        } else {
+            const newTags = Object.assign({}, addedTags)
+            delete newTags[tag.id];
+            setTags(newTags);
+        }
+    }
 
     const handleFile = e => {
         setUrl('')
@@ -43,8 +55,7 @@ let UploadTrack = ({ user }) => {
                 </video>
                 <TextInput style={styles.input} placeholder='title'></TextInput>
                 <TextInput style={styles.input} placeholder='time signature'></TextInput>
-                <TextInput style={styles.input} placeholder='instruments'></TextInput>
-                <TextInput style={styles.input} placeholder='tags'></TextInput>
+                <TagSuggest addedTags={addedTags} updateTags={updateTags} />
             </View>
             : null}
             <TouchableOpacity style={styles.cancel} onPress={e => cancel()}>
@@ -97,6 +108,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         width: 'fit-content',
         marginTop: 10,
+        zIndex: -1
     }
 })
 

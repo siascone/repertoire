@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import UploadTrack from '../../modular_components/upload_track';
 
 let ProfileTracks = ({ user, ownProfile }) => {
