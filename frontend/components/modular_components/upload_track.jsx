@@ -1,19 +1,62 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import VideoPlayer from './video_player';
+
+const poster = require('../../../app/assets/images/eighth-note.png')
 
 let UploadTrack = ({ user }) => {
     const [modal, setModal] = useState(false);
+    const [url, setUrl] = useState('');
+    const [progress, setProgress] = useState('')
+
+    const handleFile = e => {
+        setUrl('')
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        fileReader.onprogress = ev => setProgress(`${(ev.loaded*100/ev.total).toFixed(2)}%`);
+        fileReader.onloadend = (event) => {
+            let result = event.target.result;
+            setUrl(result);
+        };
+        if (file) {
+            fileReader.readAsDataURL(file);
+        };
+    };
+
     return(modal ?
-        <View><Text style={styles.text}>Modal</Text></View>
+        <View style={styles.modalContainer}>
+            <Text style={styles.text}>Upload Track</Text>
+            <View style={{ backgroundColor: 'white', padding: 10, borderRadius: 3, marginBottom: 10 }} >
+                <input 
+                    onChange={e => handleFile(e)}
+                    type="file"
+                />
+                {progress? <Text>Upload progress: {progress}</Text>:null}
+            </View>
+            {url ? 
+            <video width="320" height="240" style={{backgroundColor: 'white', borderRadius: 3}} controls>
+                <source src={url} type="video/mp4"/>
+            </video>
+            : null}
+            <TouchableOpacity style={styles.cancel} onPress={e => setModal(false)}>
+                <Text style={styles.text}>Cancel</Text>
+            </TouchableOpacity>
+        </View>
         :
-        <TouchableOpacity style={styles.touch} onPress={e => setModal(true)}>
+        <TouchableOpacity style={styles.addContainer} onPress={e => setModal(true)}>
             <Text style={styles.add}>+</Text>
         </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
-    touch: {
+    modalContainer: {
+        marginTop: 10,
+        padding: 10,
+        border: '1px solid white',
+        borderRadius: 3,
+    },
+    addContainer: {
         marginTop: 10,
         position: 'relative',
         justifyContent: 'center',
@@ -26,11 +69,18 @@ const styles = StyleSheet.create({
     },
     text: {
         flex: 1,
+        padding: 10,
         color: 'white',
     },
     add: {
         color: 'white',
         fontSize: 30,
+    },
+    cancel: {
+        border: '1px solid white',
+        borderRadius: 3,
+        width: 'fit-content',
+        marginTop: 10,
     }
 })
 

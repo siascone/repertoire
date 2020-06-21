@@ -13,7 +13,7 @@ let ProfileTracks = ({ user, ownProfile }) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
+        padding: 20,
         alignItems: "center",
     },
     touch: {
