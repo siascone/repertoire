@@ -81,9 +81,12 @@ const styles = StyleSheet.create({
         border: '1px solid white',
         borderRadius: 3,
     },
+    text: {
+        padding: 10,
+        color: 'white',
+    },
     addContainer: {
         marginTop: 10,
-        position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
         width: 50,
@@ -92,14 +95,14 @@ const styles = StyleSheet.create({
         borderRadius: '100%',
         overflow: 'hidden',
     },
-    text: {
-        flex: 1,
-        padding: 10,
-        color: 'white',
-    },
     add: {
         color: 'white',
         fontSize: 30,
+        flex: 1,
+        paddingTop: 4,
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     input: {
         color: 'white',

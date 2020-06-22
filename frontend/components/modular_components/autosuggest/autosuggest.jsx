@@ -11,20 +11,14 @@ const Autosuggest = ({
 }) => {
     const [suggestions, setSuggestions] = useState([]);
     const [input, setInput] = useState('');
-    const [listOpen, setList] = useState(true);
     const inputField = useRef(null);
 
     const handleBlur = e => {
-        const bool = e.currentTarget.contains(e.relatedTarget)
+        const bool = e.currentTarget.contains(e.relatedTarget) 
         if (!bool) {
-            setList(bool);
             setInput('');
             setSuggestions([]);
         }
-    };
-
-    const handleFocus = e => {
-        setList(true);
     };
 
     const handleSelection = (suggestion) => {
@@ -57,7 +51,6 @@ const Autosuggest = ({
     return(
         <View 
             onBlur={e => handleBlur(e)} 
-            onFocus={e => handleFocus(e)} 
             style={{ position: 'relative', ...styles.autosuggest_container }}>
             <TextInput
                 ref={inputField}
@@ -66,7 +59,7 @@ const Autosuggest = ({
                 placeholder={placeholder} 
                 onChange={e => handleChange(e)}
             ></TextInput>
-            {suggestions.length && listOpen ?
+            {suggestions.length ?
             <View 
                 style={{
                     position: 'absolute', 

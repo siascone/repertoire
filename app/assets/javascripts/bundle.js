@@ -383,25 +383,15 @@ var Autosuggest = function Autosuggest(_ref) {
       input = _useState4[0],
       setInput = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
-      _useState6 = _slicedToArray(_useState5, 2),
-      listOpen = _useState6[0],
-      setList = _useState6[1];
-
   var inputField = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
 
   var handleBlur = function handleBlur(e) {
     var bool = e.currentTarget.contains(e.relatedTarget);
 
     if (!bool) {
-      setList(bool);
       setInput('');
       setSuggestions([]);
     }
-  };
-
-  var handleFocus = function handleFocus(e) {
-    setList(true);
   };
 
   var handleSelection = function handleSelection(suggestion) {
@@ -439,9 +429,6 @@ var Autosuggest = function Autosuggest(_ref) {
     onBlur: function onBlur(e) {
       return handleBlur(e);
     },
-    onFocus: function onFocus(e) {
-      return handleFocus(e);
-    },
     style: _objectSpread({
       position: 'relative'
     }, styles.autosuggest_container)
@@ -453,7 +440,7 @@ var Autosuggest = function Autosuggest(_ref) {
     onChange: function onChange(e) {
       return handleChange(e);
     }
-  }), suggestions.length && listOpen ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+  }), suggestions.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: _objectSpread({
       position: 'absolute',
       zIndex: 999
@@ -837,9 +824,12 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     border: '1px solid white',
     borderRadius: 3
   },
+  text: {
+    padding: 10,
+    color: 'white'
+  },
   addContainer: {
     marginTop: 10,
-    position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
     width: 50,
@@ -848,14 +838,14 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     borderRadius: '100%',
     overflow: 'hidden'
   },
-  text: {
-    flex: 1,
-    padding: 10,
-    color: 'white'
-  },
   add: {
     color: 'white',
-    fontSize: 30
+    fontSize: 30,
+    flex: 1,
+    paddingTop: 4,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   input: {
     color: 'white',
