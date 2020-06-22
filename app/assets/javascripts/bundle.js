@@ -459,6 +459,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _autosuggest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./autosuggest */ "./frontend/components/modular_components/autosuggest/autosuggest.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -476,6 +477,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -524,7 +526,7 @@ var TagSuggest = function TagSuggest(_ref) {
 
   var getSuggestionItem = function getSuggestionItem(tag) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text
+      style: styles.suggestionText
     }, tag.name);
   };
 
@@ -548,20 +550,21 @@ var TagSuggest = function TagSuggest(_ref) {
     getSuggestionText: getSuggestionText,
     getSuggestionItem: getSuggestionItem,
     onSuggestionSelected: addTag
-  }), addedTagsArray.map(function (tag) {
+  }), addedTagsArray.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.addedTagsContainer
+  }, addedTagsArray.reverse().map(function (tag) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text,
+      style: styles.addedTagsText,
       key: tag.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
       onPress: function onPress(e) {
         return removeTag(tag);
       }
-    }, "X"), " ", tag.name);
-  }));
+    }, "X "), " ", tag.name);
+  })) : null);
 };
 
 var styles = {
-  container: {},
   autosuggest_input: {
     color: 'white',
     padding: 10,
@@ -569,17 +572,35 @@ var styles = {
     border: '1px solid white',
     borderRadius: 3
   },
-  text: {
+  suggestionText: {
     color: 'white'
+  },
+  addedTagsContainer: {
+    display: 'block',
+    zIndex: -1,
+    marginTop: 10
+  },
+  addedTagsText: {
+    color: 'white',
+    border: '1px solid white',
+    borderRadius: 20,
+    paddingTop: 7,
+    paddingBottom: 7,
+    paddingRight: 10,
+    paddingLeft: 10,
+    margin: 2,
+    alignItems: 'center',
+    width: 'fit-content',
+    float: 'left'
   },
   suggestions_container: {
     top: 50,
     zIndex: 2,
     width: '100%',
     border: '1px solid white',
-    backgroundColor: 'black'
-  },
-  suggestion_item_container: {}
+    backgroundColor: 'black',
+    marginBottom: 20
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (TagSuggest);
 

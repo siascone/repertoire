@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import Autosuggest from './autosuggest';
+import { withRouter } from 'react-router-dom';
 
 let TagSuggest = ({ updateTags, addedTags }) => {
     const tags = {
@@ -34,7 +35,7 @@ let TagSuggest = ({ updateTags, addedTags }) => {
 
     const placeholder = 'tags'
     const getSuggestionText = tag => tag.name
-    const getSuggestionItem = tag => <Text style={styles.text}>{tag.name}</Text>
+    const getSuggestionItem = tag => <Text style={styles.suggestionText}>{tag.name}</Text>
     const addTag = tag => { 
         updateTags(tag, true);
         const smartBankCopy = Object.assign({}, smartBank);
@@ -58,19 +59,19 @@ let TagSuggest = ({ updateTags, addedTags }) => {
                 getSuggestionItem={getSuggestionItem}
                 onSuggestionSelected={addTag}
             />
-            {addedTagsArray.map(tag =>
-                <Text style={styles.text} key={tag.id}>
-                    <Text onPress={e => removeTag(tag)}>X</Text> {tag.name}
-                </Text>
-            )}
+            {addedTagsArray.length?
+            <View style={styles.addedTagsContainer}>
+                {addedTagsArray.reverse().map(tag =>
+                    <Text style={styles.addedTagsText} key={tag.id}>
+                        <Text onPress={e => removeTag(tag)}>X </Text> {tag.name}
+                    </Text>
+                )}
+            </View> : null}
         </View>
     );
 };
 
 const styles = { 
-    container: {
-
-    }, 
     autosuggest_input: {
         color: 'white',
         padding: 10,
@@ -78,8 +79,26 @@ const styles = {
         border: '1px solid white',
         borderRadius: 3,
     }, 
-    text: {
-        color: 'white'
+    suggestionText: {
+        color: 'white',
+    },
+    addedTagsContainer: {
+        display: 'block',
+        zIndex: -1,
+        marginTop: 10,
+    },
+    addedTagsText: {
+        color: 'white',
+        border: '1px solid white',
+        borderRadius: 20,
+        paddingTop: 7,
+        paddingBottom: 7,
+        paddingRight: 10,
+        paddingLeft: 10,
+        margin: 2,
+        alignItems: 'center',
+        width: 'fit-content',
+        float: 'left',
     },
     suggestions_container: {
         top: 50,
@@ -87,10 +106,8 @@ const styles = {
         width: '100%',
         border: '1px solid white',
         backgroundColor: 'black',
-    }, 
-    suggestion_item_container: {
-        
-    } 
+        marginBottom: 20,
+    },
 }
 
 export default TagSuggest;
