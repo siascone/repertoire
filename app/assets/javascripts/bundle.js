@@ -391,7 +391,13 @@ var Autosuggest = function Autosuggest(_ref) {
   var inputField = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
 
   var handleBlur = function handleBlur(e) {
-    setList(e.currentTarget.contains(e.relatedTarget));
+    var bool = e.currentTarget.contains(e.relatedTarget);
+
+    if (!bool) {
+      setList(bool);
+      setInput('');
+      setSuggestions([]);
+    }
   };
 
   var handleFocus = function handleFocus(e) {

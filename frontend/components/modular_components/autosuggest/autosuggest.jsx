@@ -15,7 +15,12 @@ const Autosuggest = ({
     const inputField = useRef(null);
 
     const handleBlur = e => {
-        setList(e.currentTarget.contains(e.relatedTarget));
+        const bool = e.currentTarget.contains(e.relatedTarget)
+        if (!bool) {
+            setList(bool);
+            setInput('');
+            setSuggestions([]);
+        }
     };
 
     const handleFocus = e => {
