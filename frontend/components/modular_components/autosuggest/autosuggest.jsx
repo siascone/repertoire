@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 
 const Autosuggest = ({ 
@@ -11,11 +11,24 @@ const Autosuggest = ({
 }) => {
     const [suggestions, setSuggestions] = useState([]);
     const [input, setInput] = useState('');
+    const [listOpen, setList] = useState(true);
+    const inputField = useRef(null);
+
+    const handleBlur = e => {
+        if (e.relatedTarget) {
+            setList(e.currentTarget.contains(e.relatedTarget));
+        }
+    };
+
+    const handleFocus = e => {
+        setList(true);
+    };
 
     const handleSelection = (suggestion) => {
         onSuggestionSelected(suggestion);
         setInput('');
         setSuggestions([]);
+        inputField.current.focus();
     };
 
     const handleChange = e => {
@@ -39,14 +52,18 @@ const Autosuggest = ({
     };
 
     return(
-        <View style={{ position: 'relative', ...styles.autosuggest_container }}>
+        <View 
+            onBlur={e => handleBlur(e)} 
+            onFocus={e => handleFocus(e)} 
+            style={{ position: 'relative', ...styles.autosuggest_container }}>
             <TextInput
+                ref={inputField}
                 value={input}
                 style={styles.autosuggest_input} 
                 placeholder={placeholder} 
                 onChange={e => handleChange(e)}
             ></TextInput>
-            {suggestions.length? 
+            {suggestions.length && listOpen ?
             <View 
                 style={{
                     position: 'absolute', 

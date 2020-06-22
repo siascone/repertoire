@@ -383,10 +383,28 @@ var Autosuggest = function Autosuggest(_ref) {
       input = _useState4[0],
       setInput = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      listOpen = _useState6[0],
+      setList = _useState6[1];
+
+  var inputField = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+
+  var handleBlur = function handleBlur(e) {
+    if (e.relatedTarget) {
+      setList(e.currentTarget.contains(e.relatedTarget));
+    }
+  };
+
+  var handleFocus = function handleFocus(e) {
+    setList(true);
+  };
+
   var handleSelection = function handleSelection(suggestion) {
     onSuggestionSelected(suggestion);
     setInput('');
     setSuggestions([]);
+    inputField.current.focus();
   };
 
   var handleChange = function handleChange(e) {
@@ -414,17 +432,24 @@ var Autosuggest = function Autosuggest(_ref) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    onBlur: function onBlur(e) {
+      return handleBlur(e);
+    },
+    onFocus: function onFocus(e) {
+      return handleFocus(e);
+    },
     style: _objectSpread({
       position: 'relative'
     }, styles.autosuggest_container)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    ref: inputField,
     value: input,
     style: styles.autosuggest_input,
     placeholder: placeholder,
     onChange: function onChange(e) {
       return handleChange(e);
     }
-  }), suggestions.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+  }), suggestions.length && listOpen ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: _objectSpread({
       position: 'absolute',
       zIndex: 999
@@ -760,7 +785,7 @@ var UploadTrack = function UploadTrack(_ref) {
       return handleFile(e);
     },
     type: "file"
-  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
     width: "320",
     height: "240",
     style: {
@@ -780,14 +805,18 @@ var UploadTrack = function UploadTrack(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     addedTags: addedTags,
     updateTags: updateTags
-  })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.cancel,
     onPress: function onPress(e) {
       return cancel();
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text
-  }, "Cancel"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  }, "Cancel")), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    style: styles.cancel
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Save")) : null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.addContainer,
     onPress: function onPress(e) {
       return setModal(true);
