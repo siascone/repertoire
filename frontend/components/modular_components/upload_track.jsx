@@ -49,7 +49,7 @@ let UploadTrack = ({ user }) => {
                 />
                 {progress? <Text>Upload progress: {progress}</Text>:null}
             </View>
-            {/* {url ?  */}
+            {url ? 
             <View>
                 <video width="320" height="240" style={{backgroundColor: 'white', borderRadius: 3}} controls>
                     <source src={url} type="video/mp4"/>
@@ -58,7 +58,7 @@ let UploadTrack = ({ user }) => {
                 <TextInput style={styles.input} placeholder='time signature'></TextInput>
                 <TagSuggest addedTags={addedTags} updateTags={updateTags} />
             </View>
-            {/* : null} */}
+            : null}
             <TouchableOpacity style={styles.cancel} onPress={e => cancel()}>
                 <Text style={styles.text}>Cancel</Text>
             </TouchableOpacity>

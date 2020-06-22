@@ -391,9 +391,7 @@ var Autosuggest = function Autosuggest(_ref) {
   var inputField = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
 
   var handleBlur = function handleBlur(e) {
-    if (e.relatedTarget) {
-      setList(e.currentTarget.contains(e.relatedTarget));
-    }
+    setList(e.currentTarget.contains(e.relatedTarget));
   };
 
   var handleFocus = function handleFocus(e) {
@@ -785,7 +783,7 @@ var UploadTrack = function UploadTrack(_ref) {
       return handleFile(e);
     },
     type: "file"
-  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
     width: "320",
     height: "240",
     style: {
@@ -805,7 +803,7 @@ var UploadTrack = function UploadTrack(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     addedTags: addedTags,
     updateTags: updateTags
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.cancel,
     onPress: function onPress(e) {
       return cancel();
