@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import SearchBar from './modular_components/search_bar';
 
 const Header = ({history, setMenu, menu}) => {
 
@@ -16,6 +17,7 @@ const Header = ({history, setMenu, menu}) => {
                     onPress={e => navigateTo('/')} 
                 >Repertoire</Text>
             </TouchableOpacity>
+            <SearchBar history={history} />
             <TouchableOpacity
                 style={styles.menuButtonContainer}
                 onPress={e => setMenu(!menu)}
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
         flex: 0.1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
         backgroundColor: 'black',
         borderBottomColor: 'white',
         borderBottomWidth: 1,
