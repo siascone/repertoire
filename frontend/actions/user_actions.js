@@ -1,8 +1,4 @@
-import { 
-    getUserById, 
-    getUsersByQueryString, 
-    updateUser 
-} from "../util/user_api_util";
+import * as UserAPIUtil from "../util/user_api_util";
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
@@ -24,19 +20,19 @@ const receiveUserErrors = payload => ({
 })
 
 export const getUserbyId = userId => dispatch => (
-    getUserById(usetId)
+    UserAPIUtil.getUserById(userId)
     .then(res => dispatch(receiveUser(res)))
     .catch(res => dispatch(receiveUserErrors(res)))
 );
 
 export const getUsersByQueryString = queryString => dispatch => (
-    getUsersByQueryString(queryString)
+    UserAPIUtil.getUsersByQueryString(queryString)
     .then(res => dispatch(receiveUsers(res)))
     .catch(res => dispatch(receiveUserErrors(res)))
 );
 
 export const updateUser = user => dispatch => (
-    updateUser(user)
+    UserAPIUtil.updateUser(user)
     .then(res => dispatch(receiveUsers(res)))
     .catch(res => dispatch(receiveUserErrors(res)))
 );
