@@ -1347,7 +1347,7 @@ var Profile = function Profile(_ref) {
       getUserById = _ref.getUserById;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     getUserById(userId);
-  }, [user]);
+  }, [userId]);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Tracks'),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2174,7 +2174,7 @@ var usersReducer = function usersReducer() {
       return Object.assign({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
-      return Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
+      return Object.assign({}, state, _defineProperty({}, action.payload.id, action.payload));
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USERS"]:
       return Object.assign({}, state, action.users);
@@ -2505,20 +2505,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsersByQueryString", function() { return getUsersByQueryString; });
 var getUserById = function getUserById(userId) {
   return $.ajax({
-    url: "/users/".concat(userId),
+    url: "/api/users/".concat(userId),
     method: "GET"
   });
 };
 var updateUser = function updateUser(user) {
   return $.ajax({
-    url: "/users/".concat(user.id),
+    url: "/api/users/".concat(user.id),
     method: "PATCH",
     data: user
   });
 };
 var getUsersByQueryString = function getUsersByQueryString(queryString) {
   return $.ajax({
-    url: "/users/search/?".concat(queryString),
+    url: "/api/users/search/?".concat(queryString),
     method: "GET"
   });
 };

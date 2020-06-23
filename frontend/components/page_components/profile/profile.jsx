@@ -21,8 +21,8 @@ let Profile = ({ currentUser, user, userId, getUserById }) => {
 
     useEffect(() => {
         getUserById(userId)
-    }, [user]);
-    
+    }, [userId]);
+
     const [tab, setTab] = useState('Tracks');
 
     if (!user) return <Error404/>
