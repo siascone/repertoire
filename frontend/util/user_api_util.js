@@ -13,7 +13,7 @@ export const updateUser = (user) => (
     })
 );
 
-export const getUserByQueryString = (queryString) => (
+export const getUsersByQueryString = (queryString) => (
     $.ajax({
         method: `GET`,
         url: `/users/search/?${queryString}`,
