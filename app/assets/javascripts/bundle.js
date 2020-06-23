@@ -733,12 +733,12 @@ var SearchBar = function SearchBar(_ref) {
       return handleSearch(e);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.button
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text,
+    style: styles.button,
     onPress: function onPress(e) {
       return handleSearch(e);
     }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
   }, "Go")));
 };
 

@@ -30,8 +30,11 @@ let SearchBar = ({ history }) => {
                 onChange={e => handleChange(e)}
                 onSubmitEditing={e => handleSearch(e)} 
             ></TextInput>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.text} onPress={e => handleSearch(e)}>Go</Text>
+            <TouchableOpacity 
+                style={styles.button}
+                onPress={e => handleSearch(e)}
+            >
+                <Text style={styles.text}>Go</Text>
             </TouchableOpacity>
         </View>
     );
