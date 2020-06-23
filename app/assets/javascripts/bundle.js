@@ -1687,8 +1687,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1700,8 +1698,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 
 
 
@@ -1731,7 +1727,7 @@ var SessionForm = function SessionForm(_ref) {
     };
     clearSessionErrors();
 
-    if (type === 'login') {
+    if (type === 'Login') {
       login(button ? demoUser : user);
     } else {
       signup(user);
@@ -1763,13 +1759,14 @@ var SessionForm = function SessionForm(_ref) {
     onSubmitEditing: function onSubmitEditing(e) {
       return handleSubmit();
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    title: type,
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    style: styles.button,
     onPress: function onPress(e) {
       return handleSubmit();
-    },
-    color: "grey"
-  }));
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, type)));
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -1792,6 +1789,11 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   },
   text: {
     color: 'white'
+  },
+  button: {
+    border: '1px solid white',
+    borderRadius: 3,
+    padding: 10
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (SessionForm);
@@ -1838,7 +1840,7 @@ var Splash = function Splash(_ref) {
       login = _ref.login,
       signup = _ref.signup;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('login'),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Login'),
       _useState2 = _slicedToArray(_useState, 2),
       type = _useState2[0],
       setType = _useState2[1];
@@ -1847,7 +1849,7 @@ var Splash = function Splash(_ref) {
     username: 'demo',
     password: 'password'
   };
-  var otherType = type === 'login' ? 'signup' : 'login';
+  var otherType = type === 'Login' ? 'Signup' : 'Login';
 
   var switchForm = function switchForm() {
     clearSessionErrors();
@@ -1864,19 +1866,22 @@ var Splash = function Splash(_ref) {
     clearSessionErrors: clearSessionErrors
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.buttonsContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    title: otherType,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    style: styles.button,
     onPress: function onPress(e) {
       return switchForm();
-    },
-    color: "grey"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    color: "grey",
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, otherType)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    style: styles.button,
     title: "Demo",
     onPress: function onPress(e) {
       return login(demoUser);
     }
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: styles.text
+  }, "Demo"))));
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -1889,6 +1894,15 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     width: 100,
     justifyContent: "space-between",
     height: 100
+  },
+  button: {
+    border: '1px solid white',
+    borderRadius: 3,
+    padding: 10,
+    textAlign: 'center'
+  },
+  text: {
+    color: 'white'
   }
 });
 

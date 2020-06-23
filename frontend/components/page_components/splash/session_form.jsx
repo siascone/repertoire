@@ -1,7 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Button, Text } from 'react-native';
-import { login, signup, clearSessionErrors } from '../../../actions/session_actions';
-import { connect } from 'react-redux';
+import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 
 let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
@@ -11,7 +9,7 @@ let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
     const handleSubmit = (button) => {
         const user = {username, password};
         clearSessionErrors();
-        if (type === 'login') {
+        if (type === 'Login') {
             login(button ? demoUser : user)
         } else {
             signup(user)
@@ -39,11 +37,10 @@ let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
                 onSubmitEditing={e => handleSubmit()}
             />
             <br/>
-            <Button
-                title={type}
+            <TouchableOpacity
+                style={styles.button}
                 onPress={e => handleSubmit()}
-                color='grey'
-            />
+            ><Text style={styles.text}>{type}</Text></TouchableOpacity>
         </View>
     );
 }
@@ -68,6 +65,11 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white'
+    },
+    button: {
+        border: '1px solid white',
+        borderRadius: 3,
+        padding: 10,
     }
 });
 
