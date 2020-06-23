@@ -8,7 +8,7 @@ let SearchBar = ({ history }) => {
     useEffect(() => { 
         search = (new URLSearchParams(history.location.search)).get('input')
         setInput(search || '')
-    }, [history.location])
+    }, [history.location]);
 
     const handleChange = e => {
         setInput(e.currentTarget.value);
