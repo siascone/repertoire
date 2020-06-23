@@ -247,7 +247,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_USER, RECEIVE_USERS, RECEIVE_USER_ERRORS, getUserbyId, getUsersByQueryString, updateUser */
+/*! exports provided: RECEIVE_USER, RECEIVE_USERS, RECEIVE_USER_ERRORS, getUserById, getUsersByQueryString, updateUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -255,7 +255,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USERS", function() { return RECEIVE_USERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_ERRORS", function() { return RECEIVE_USER_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserbyId", function() { return getUserbyId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserById", function() { return getUserById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsersByQueryString", function() { return getUsersByQueryString; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 /* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
@@ -285,11 +285,11 @@ var receiveUserErrors = function receiveUserErrors(payload) {
   };
 };
 
-var getUserbyId = function getUserbyId(userId) {
+var getUserById = function getUserById(userId) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["getUserById"](userId).then(function (res) {
       return dispatch(receiveUser(res));
-    }).catch(function (res) {
+    }).fail(function (res) {
       return dispatch(receiveUserErrors(res));
     });
   };
@@ -298,7 +298,7 @@ var getUsersByQueryString = function getUsersByQueryString(queryString) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["getUsersByQueryString"](queryString).then(function (res) {
       return dispatch(receiveUsers(res));
-    }).catch(function (res) {
+    }).fail(function (res) {
       return dispatch(receiveUserErrors(res));
     });
   };
@@ -307,7 +307,7 @@ var updateUser = function updateUser(user) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (res) {
       return dispatch(receiveUsers(res));
-    }).catch(function (res) {
+    }).fail(function (res) {
       return dispatch(receiveUserErrors(res));
     });
   };
@@ -1311,6 +1311,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_repertoire__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile_repertoire */ "./frontend/components/page_components/profile/profile_repertoire.jsx");
 /* harmony import */ var _profile_follows__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./profile_follows */ "./frontend/components/page_components/profile/profile_follows.jsx");
 /* harmony import */ var _profile_tracks__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./profile_tracks */ "./frontend/components/page_components/profile/profile_tracks.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1336,19 +1337,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var photo = __webpack_require__(/*! ../../../../app/assets/images/photo.png */ "./app/assets/images/photo.png");
 
 var Profile = function Profile(_ref) {
   var currentUser = _ref.currentUser,
-      user = _ref.user;
-  if (!user) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_errors_error404__WEBPACK_IMPORTED_MODULE_4__["default"], null);
-  var ownProfile = currentUser.username === user.username;
+      user = _ref.user,
+      userId = _ref.userId,
+      getUserById = _ref.getUserById;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    getUserById(userId);
+  }, [user]);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Tracks'),
       _useState2 = _slicedToArray(_useState, 2),
       tab = _useState2[0],
       setTab = _useState2[1];
 
+  if (!user) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_errors_error404__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+  var ownProfile = currentUser.username === user.username;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_photo__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -1429,7 +1436,15 @@ var msp = function msp(state, ownProps) {
   };
 };
 
-Profile = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(msp, null)(Profile));
+var mdp = function mdp(dispatch) {
+  return {
+    getUserById: function getUserById(userId) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_11__["getUserById"])(userId));
+    }
+  };
+};
+
+Profile = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(msp, mdp)(Profile));
 /* harmony default export */ __webpack_exports__["default"] = (Profile);
 
 /***/ }),
@@ -2490,21 +2505,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsersByQueryString", function() { return getUsersByQueryString; });
 var getUserById = function getUserById(userId) {
   return $.ajax({
-    method: "GET",
-    url: "/users/".concat(userId)
+    url: "/users/".concat(userId),
+    method: "GET"
   });
 };
 var updateUser = function updateUser(user) {
   return $.ajax({
-    method: "PATCH",
     url: "/users/".concat(user.id),
+    method: "PATCH",
     data: user
   });
 };
 var getUsersByQueryString = function getUsersByQueryString(queryString) {
   return $.ajax({
-    method: "GET",
-    url: "/users/search/?".concat(queryString)
+    url: "/users/search/?".concat(queryString),
+    method: "GET"
   });
 };
 

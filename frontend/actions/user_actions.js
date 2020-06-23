@@ -19,21 +19,21 @@ const receiveUserErrors = payload => ({
     payload
 })
 
-export const getUserbyId = userId => dispatch => (
+export const getUserById = userId => dispatch => (
     UserAPIUtil.getUserById(userId)
     .then(res => dispatch(receiveUser(res)))
-    .catch(res => dispatch(receiveUserErrors(res)))
+    .fail(res => dispatch(receiveUserErrors(res)))
 );
 
 export const getUsersByQueryString = queryString => dispatch => (
     UserAPIUtil.getUsersByQueryString(queryString)
     .then(res => dispatch(receiveUsers(res)))
-    .catch(res => dispatch(receiveUserErrors(res)))
+    .fail(res => dispatch(receiveUserErrors(res)))
 );
 
 export const updateUser = user => dispatch => (
     UserAPIUtil.updateUser(user)
     .then(res => dispatch(receiveUsers(res)))
-    .catch(res => dispatch(receiveUserErrors(res)))
+    .fail(res => dispatch(receiveUserErrors(res)))
 );
 

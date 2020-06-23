@@ -1,21 +1,21 @@
 export const getUserById = userId => (
     $.ajax({
+        url: `/users/${userId}`,
         method: `GET`,
-        url: `/users/${userId}`
     })
 );
 
 export const updateUser = (user) => (
     $.ajax({
-        method: `PATCH`,
         url: `/users/${user.id}`,
+        method: `PATCH`,
         data: user,
     })
 );
 
 export const getUsersByQueryString = (queryString) => (
     $.ajax({
-        method: `GET`,
         url: `/users/search/?${queryString}`,
+        method: `GET`,
     })
 );

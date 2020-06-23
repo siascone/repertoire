@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -13,13 +13,21 @@ import ProfileRepertoire from './profile_repertoire';
 import ProfileFollows from './profile_follows';
 import ProfileTracks from './profile_tracks';
 
+import { getUserById } from '../../../actions/user_actions';
+
 const photo = require('../../../../app/assets/images/photo.png')
 
-let Profile = ({ currentUser, user }) => {
+let Profile = ({ currentUser, user, userId, getUserById }) => {
+
+    useEffect(() => {
+        getUserById(userId)
+    }, [user]);
+    
+    const [tab, setTab] = useState('Tracks');
+
     if (!user) return <Error404/>
     const ownProfile = currentUser.username === user.username;
 
-    const [tab, setTab] = useState('Tracks');
 
     return(
         <View style={styles.container}>
@@ -93,6 +101,10 @@ const msp = (state, ownProps) => {
     })
 };
 
-Profile = withRouter(connect(msp, null)(Profile));
+const mdp = dispatch => ({
+    getUserById: userId => dispatch(getUserById(userId)),
+})
+
+Profile = withRouter(connect(msp, mdp)(Profile));
 
 export default Profile;
