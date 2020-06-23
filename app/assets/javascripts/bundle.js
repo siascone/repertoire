@@ -697,11 +697,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var SearchBar = function SearchBar(_ref) {
   var history = _ref.history;
+  var search = new URLSearchParams(history.location.search).get('input');
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(search || ''),
       _useState2 = _slicedToArray(_useState, 2),
       input = _useState2[0],
       setInput = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    search = new URLSearchParams(history.location.search).get('input');
+    setInput(search || '');
+  }, [history.location]);
 
   var handleChange = function handleChange(e) {
     setInput(e.currentTarget.value);
@@ -711,12 +717,13 @@ var SearchBar = function SearchBar(_ref) {
     var params = new URLSearchParams();
     params.set('input', input);
     var queryString = params.toString();
-    history.push("/search/".concat(queryString));
+    history.push("/search/?".concat(queryString));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    value: input,
     style: styles.input,
     placeholder: "search",
     onChange: function onChange(e) {

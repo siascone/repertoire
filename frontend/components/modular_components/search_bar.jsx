@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextInput, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 
 let SearchBar = ({ history }) => {
-    const [input, setInput] = useState('')
+    let search = (new URLSearchParams(history.location.search)).get('input');
+    const [input, setInput] = useState(search || '')
+
+    useEffect(() => { 
+        search = (new URLSearchParams(history.location.search)).get('input')
+        setInput(search || '')
+    }, [history.location])
 
     const handleChange = e => {
         setInput(e.currentTarget.value);
@@ -12,12 +18,13 @@ let SearchBar = ({ history }) => {
         const params = new URLSearchParams();
         params.set('input', input);
         const queryString = params.toString();
-        history.push(`/search/${queryString}`);
+        history.push(`/search/?${queryString}`);
     }
 
     return(
         <View style={styles.container}>
             <TextInput 
+                value={input}
                 style={styles.input}
                 placeholder='search' 
                 onChange={e => handleChange(e)}
