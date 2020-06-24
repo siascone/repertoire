@@ -17,11 +17,12 @@ import { getUserById, updateUser } from '../../../actions/user_actions';
 
 let Profile = ({ currentUser, user, userId, getUserById, updateUser }) => {
     const [found, setFound] = useState(true)
+    const [tab, setTab] = useState('Info');
+
     useEffect(() => { 
         getUserById(userId).fail(res => setFound(false));
     }, [userId]);
 
-    const [tab, setTab] = useState('Tracks');
     if (!found) return <Error404 />;
     if (!user) return null;
     const ownProfile = currentUser.username === user.username;
@@ -39,7 +40,7 @@ let Profile = ({ currentUser, user, userId, getUserById, updateUser }) => {
                 </TouchableOpacity>}       
             </View>
             <ProfileTabs tab={tab} setTab={setTab}/>
-            {tab === "Info" ? <ProfileInfo user={user} /> : null}
+            {tab === "Info" && <ProfileInfo user={user} ownProfile={ownProfile} updateUser={updateUser}/>}
             {tab === "Repertoire" ? <ProfileRepertoire user={user} /> : null}
             {tab === "Follows" ? <ProfileFollows user={user} /> : null}
             {tab === "Tracks" ? <ProfileTracks user={user} ownProfile={ownProfile}/> : null}
