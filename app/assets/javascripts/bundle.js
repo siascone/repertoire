@@ -86,8 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-<<<<<<< HEAD
-=======
 /***/ "./app/assets/images/photo.png":
 /*!*************************************!*\
   !*** ./app/assets/images/photo.png ***!
@@ -99,7 +97,6 @@ module.exports = __webpack_require__.p + "images/photo.png";
 
 /***/ }),
 
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /***/ "./frontend/App.jsx":
 /*!**************************!*\
   !*** ./frontend/App.jsx ***!
@@ -115,22 +112,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/header */ "./frontend/components/header.jsx");
 /* harmony import */ var _components_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/page */ "./frontend/components/page.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-<<<<<<< HEAD
-
-
-
-
-
-
-var App = function App(_ref) {
-  var currentUser = _ref.currentUser;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: {
-      flex: 1
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_page__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    currentUser: currentUser
-=======
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -171,7 +152,6 @@ var App = function App(props) {
     setMenu: setMenu,
     currentUser: props.currentUser,
     history: props.history
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
   }));
 };
 
@@ -181,11 +161,7 @@ var msp = function msp(state) {
   };
 };
 
-<<<<<<< HEAD
-App = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(msp, null)(App);
-=======
 App = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(msp, null)(App));
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /* harmony default export */ __webpack_exports__["default"] = (App);
 
 /***/ }),
@@ -194,26 +170,16 @@ App = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-<<<<<<< HEAD
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_ERRORS, CLEAR_ERRORS, clearErrors, signup, login, logout */
-=======
 /*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, CLEAR_SESSION_ERRORS, clearSessionErrors, signup, login, logout */
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_CURRENT_USER", function() { return LOGOUT_CURRENT_USER; });
-<<<<<<< HEAD
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
-=======
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_SESSION_ERRORS", function() { return CLEAR_SESSION_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearSessionErrors", function() { return clearSessionErrors; });
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
@@ -221,15 +187,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
-<<<<<<< HEAD
-var RECEIVE_ERRORS = 'RECEIVE_ERRORS';
-var CLEAR_ERRORS = 'CLEAR_ERRORS';
-
-var receiveCurrentUser = function receiveCurrentUser(currentUser) {
-  return {
-    type: RECEIVE_CURRENT_USER,
-    currentUser: currentUser
-=======
 var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 var CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS';
 
@@ -238,7 +195,6 @@ var receiveCurrentUser = function receiveCurrentUser(_ref) {
   return {
     type: RECEIVE_CURRENT_USER,
     user: user
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
   };
 };
 
@@ -248,28 +204,16 @@ var logoutCurrentUser = function logoutCurrentUser() {
   };
 };
 
-<<<<<<< HEAD
-var receiveErrors = function receiveErrors(errors) {
-  return {
-    type: RECEIVE_ERRORS,
-=======
 var receiveSessionErrors = function receiveSessionErrors(errors) {
   return {
     type: RECEIVE_SESSION_ERRORS,
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
     errors: errors
   };
 };
 
-<<<<<<< HEAD
-var clearErrors = function clearErrors() {
-  return {
-    type: CLEAR_ERRORS
-=======
 var clearSessionErrors = function clearSessionErrors() {
   return {
     type: CLEAR_SESSION_ERRORS
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
   };
 };
 var signup = function signup(user) {
@@ -277,11 +221,7 @@ var signup = function signup(user) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (res) {
       return dispatch(receiveCurrentUser(res));
     }, function (res) {
-<<<<<<< HEAD
-      return dispatch(receiveErrors(res.responseJSON));
-=======
       return dispatch(receiveSessionErrors(res.responseJSON));
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
     });
   };
 };
@@ -290,11 +230,7 @@ var login = function login(user) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (res) {
       return dispatch(receiveCurrentUser(res));
     }, function (res) {
-<<<<<<< HEAD
-      return dispatch(receiveErrors(res.responseJSON));
-=======
       return dispatch(receiveSessionErrors(res.responseJSON));
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
     });
   };
 };
@@ -308,8 +244,6 @@ var logout = function logout() {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./frontend/actions/user_actions.js":
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
@@ -383,7 +317,6 @@ var updateUser = function updateUser(user) {
 
 /***/ }),
 
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /***/ "./frontend/components/header.jsx":
 /*!****************************************!*\
   !*** ./frontend/components/header.jsx ***!
@@ -396,38 +329,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-<<<<<<< HEAD
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-=======
 /* harmony import */ var _modular_components_search_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modular_components/search_bar */ "./frontend/components/modular_components/search_bar.jsx");
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
 
 
 
 var Header = function Header(_ref) {
-<<<<<<< HEAD
-  var history = _ref.history;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text,
-    onPress: function onPress(e) {
-      return history.push('/home');
-    }
-  }, "Repertoire"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.menuContainer,
-    onPress: function onPress(e) {
-      return history.push('/menu');
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.menuLine
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.menuLine
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.menuLine
-  })));
-=======
   var history = _ref.history,
       setMenu = _ref.setMenu,
       menu = _ref.menu;
@@ -1782,44 +1689,10 @@ var ProfileTabs = function ProfileTabs(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text
   }, "Tracks")));
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
-<<<<<<< HEAD
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: 'black'
-  },
-  text: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 20,
-    padding: 10
-  },
-  menuContainer: {
-    padding: 10
-  },
-  menuLine: {
-    width: 30,
-    padding: 1,
-    backgroundColor: 'white',
-    margin: 2,
-    borderRadius: 2
-  }
-});
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Header));
-
-/***/ }),
-
-/***/ "./frontend/components/page.jsx":
-/*!**************************************!*\
-  !*** ./frontend/components/page.jsx ***!
-  \**************************************/
-=======
     flexDirection: "row",
     justifyContent: 'space-around',
     width: '100%',
@@ -1851,7 +1724,6 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
 /*!************************************************************************!*\
   !*** ./frontend/components/page_components/profile/profile_tracks.jsx ***!
   \************************************************************************/
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1860,37 +1732,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-<<<<<<< HEAD
-/* harmony import */ var _page_components_splash_splash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page_components/splash/splash */ "./frontend/components/page_components/splash/splash.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-
-=======
 /* harmony import */ var _modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/upload_track */ "./frontend/components/modular_components/upload_track.jsx");
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
 
 
 
-<<<<<<< HEAD
-var Page = function Page(_ref) {
-  var currentUser = _ref.currentUser;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.view
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "/",
-    component: currentUser ? null : _page_components_splash_splash__WEBPACK_IMPORTED_MODULE_2__["default"]
-  })));
-};
-
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
-  view: {
-    flex: 9,
-    backgroundColor: 'grey',
-    overflow: 'scroll'
-  }
-});
-/* harmony default export */ __webpack_exports__["default"] = (Page);
-=======
 var ProfileTracks = function ProfileTracks(_ref) {
   var user = _ref.user,
       ownProfile = _ref.ownProfile;
@@ -1929,7 +1775,6 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (ProfileTracks);
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
 /***/ }),
 
@@ -1945,8 +1790,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-<<<<<<< HEAD
-=======
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1960,26 +1803,10 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
 
 
 var SessionForm = function SessionForm(_ref) {
-<<<<<<< HEAD
-  var type = _ref.type;
-
-  var handleSubmit = function handleSubmit(e) {
-    console.log("you submit");
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.view
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-    placeholder: "email",
-    style: styles.input,
-    onSubmitEditing: function onSubmitEditing(e) {
-      return handleSubmit(e);
-=======
   var type = _ref.type,
       login = _ref.login,
       signup = _ref.signup,
@@ -2024,31 +1851,10 @@ var SessionForm = function SessionForm(_ref) {
     },
     onSubmitEditing: function onSubmitEditing(e) {
       return handleSubmit();
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
     placeholder: "password",
     style: styles.input,
-<<<<<<< HEAD
-    onSubmitEditing: function onSubmitEditing(e) {
-      return handleSubmit(e);
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    title: "Login",
-    onPress: function onPress(e) {
-      return handleSubmit(e);
-    },
-    style: styles.button,
-    color: "black"
-  }));
-};
-
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
-  view: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: 100
-=======
     secureTextEntry: "true",
     onChange: function onChange(e) {
       return setPassword(e.currentTarget.value);
@@ -2074,7 +1880,6 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     width: 'fit-content',
     border: '1px solid white',
     borderRadius: 3
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
   },
   input: {
     height: 30,
@@ -2085,10 +1890,6 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     borderRadius: 3,
     margin: 5
   },
-<<<<<<< HEAD
-  button: {
-    margin: 100
-=======
   text: {
     color: 'white'
   },
@@ -2096,7 +1897,6 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     border: '1px solid white',
     borderRadius: 3,
     padding: 10
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (SessionForm);
@@ -2116,8 +1916,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _session_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session_form */ "./frontend/components/page_components/splash/session_form.jsx");
-<<<<<<< HEAD
-=======
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -2133,25 +1931,10 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
 
 
 
-<<<<<<< HEAD
-var Splash = function Splash() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.view
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form__WEBPACK_IMPORTED_MODULE_2__["default"], null));
-};
-
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
-  view: {
-    flex: 1 // alignItems: 'center',
-
-  }
-});
-=======
 
 
 var Splash = function Splash(_ref) {
@@ -2247,7 +2030,6 @@ var mdp = function mdp(dispatch) {
 };
 
 Splash = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(msp, mdp)(Splash);
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /* harmony default export */ __webpack_exports__["default"] = (Splash);
 
 /***/ }),
@@ -2317,28 +2099,17 @@ _serviceWorker__WEBPACK_IMPORTED_MODULE_2__["unregister"]();
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ "./frontend/reducers/entities_reducer.js":
-/*!***********************************************!*\
-  !*** ./frontend/reducers/entities_reducer.js ***!
-  \***********************************************/
-=======
 /***/ "./frontend/reducers/entities/entities_reducer.js":
 /*!********************************************************!*\
   !*** ./frontend/reducers/entities/entities_reducer.js ***!
   \********************************************************/
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-<<<<<<< HEAD
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
-=======
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/entities/users_reducer.js");
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
@@ -2348,65 +2119,15 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ "./frontend/reducers/errors_reducer.js":
-/*!*********************************************!*\
-  !*** ./frontend/reducers/errors_reducer.js ***!
-  \*********************************************/
-=======
 /***/ "./frontend/reducers/entities/session_reducer.js":
 /*!*******************************************************!*\
   !*** ./frontend/reducers/entities/session_reducer.js ***!
   \*******************************************************/
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-<<<<<<< HEAD
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _sessions_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sessions_errors_reducer */ "./frontend/reducers/sessions_errors_reducer.js");
-
-
-var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  session: _sessions_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
-});
-/* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/root_reducer.js":
-/*!*******************************************!*\
-  !*** ./frontend/reducers/root_reducer.js ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducers/session_reducer.js");
-/* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducers/entities_reducer.js");
-/* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducers/errors_reducer.js");
-
-
-
-
-var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
-});
-/* harmony default export */ __webpack_exports__["default"] = (rootReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/session_reducer.js":
-/*!**********************************************!*\
-  !*** ./frontend/reducers/session_reducer.js ***!
-  \**********************************************/
-=======
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 
 var _nullSession = {
@@ -2440,22 +2161,11 @@ var sessionReducer = function sessionReducer() {
 /*!*****************************************************!*\
   !*** ./frontend/reducers/entities/users_reducer.js ***!
   \*****************************************************/
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-<<<<<<< HEAD
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-
-var _nullSession = {
-  id: null
-};
-
-var sessionReducer = function sessionReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
-=======
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2465,20 +2175,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-<<<<<<< HEAD
-      return {
-        id: action.currentUser.id
-      };
-
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
-      return _nullSession;
-=======
       return Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
@@ -2486,23 +2187,12 @@ var usersReducer = function usersReducer() {
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USERS"]:
       return Object.assign({}, state, action.users);
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
     default:
       return state;
   }
 };
 
-<<<<<<< HEAD
-/* harmony default export */ __webpack_exports__["default"] = (sessionReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/sessions_errors_reducer.js":
-/*!******************************************************!*\
-  !*** ./frontend/reducers/sessions_errors_reducer.js ***!
-  \******************************************************/
-=======
 /* harmony default export */ __webpack_exports__["default"] = (usersReducer);
 
 /***/ }),
@@ -2534,17 +2224,12 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 /*!*************************************************************!*\
   !*** ./frontend/reducers/errors/sessions_errors_reducer.js ***!
   \*************************************************************/
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-<<<<<<< HEAD
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-=======
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
 
 var sessionsErrorsReducer = function sessionsErrorsReducer() {
@@ -2553,23 +2238,14 @@ var sessionsErrorsReducer = function sessionsErrorsReducer() {
   Object.freeze(state);
 
   switch (action.type) {
-<<<<<<< HEAD
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ERRORS"]:
-=======
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
       return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return [];
 
-<<<<<<< HEAD
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_ERRORS"]:
-      return {};
-=======
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_SESSION_ERRORS"]:
       return [];
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
     default:
       return state;
@@ -2580,56 +2256,32 @@ var sessionsErrorsReducer = function sessionsErrorsReducer() {
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ "./frontend/reducers/users_reducer.js":
-/*!********************************************!*\
-  !*** ./frontend/reducers/users_reducer.js ***!
-  \********************************************/
-=======
 /***/ "./frontend/reducers/errors/user_errors_reducer.js":
 /*!*********************************************************!*\
   !*** ./frontend/reducers/errors/user_errors_reducer.js ***!
   \*********************************************************/
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-<<<<<<< HEAD
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var usersReducer = function usersReducer() {
-=======
 var _require = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js"),
     RECEIVE_USER_ERRORS = _require.RECEIVE_USER_ERRORS;
 
 var userErrorsReducer = function userErrorsReducer() {
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 
   switch (action.type) {
-<<<<<<< HEAD
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object.assign({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
-=======
     case RECEIVE_USER_ERRORS:
       return Object.assign({}, state, action.errors);
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
     default:
       return state;
   }
 };
 
-<<<<<<< HEAD
-/* harmony default export */ __webpack_exports__["default"] = (usersReducer);
-=======
 /* harmony default export */ __webpack_exports__["default"] = (userErrorsReducer);
 
 /***/ }),
@@ -2657,7 +2309,6 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   errors: _errors_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 
 /***/ }),
 
@@ -2849,8 +2500,6 @@ var logout = function logout() {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./frontend/util/user_api_util.js":
 /*!****************************************!*\
   !*** ./frontend/util/user_api_util.js ***!
@@ -2885,7 +2534,6 @@ var getUsersByQueryString = function getUsersByQueryString(queryString) {
 
 /***/ }),
 
->>>>>>> ff24a3c0bb2ec0350ed9c3c895f1032bdb3e8eda
 /***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
 /*!************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
