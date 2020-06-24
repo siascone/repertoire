@@ -244,8 +244,6 @@ var logout = function logout() {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./frontend/actions/track_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/track_actions.js ***!
@@ -357,7 +355,6 @@ var getTracksByProjectId = function getTracksByProjectId(projectId) {
 
 /***/ }),
 
->>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 /***/ "./frontend/actions/user_actions.js":
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
@@ -2067,20 +2064,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/upload_track */ "./frontend/components/modular_components/upload_track.jsx");
-<<<<<<< HEAD
-=======
 /* harmony import */ var _actions_track_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/track_actions */ "./frontend/actions/track_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
->>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 var ProfileTracks = function ProfileTracks(_ref) {
   var user = _ref.user,
       ownProfile = _ref.ownProfile,
@@ -2289,15 +2280,9 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-<<<<<<< HEAD
 
 
 
-=======
-
-
-
->>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 
 
 
@@ -2864,8 +2849,6 @@ var logout = function logout() {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./frontend/util/track_api_util.js":
 /*!*****************************************!*\
   !*** ./frontend/util/track_api_util.js ***!
@@ -2926,7 +2909,6 @@ var $getTracksByProjectId = function $getTracksByProjectId(projectId) {
 
 /***/ }),
 
->>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 /***/ "./frontend/util/user_api_util.js":
 /*!****************************************!*\
   !*** ./frontend/util/user_api_util.js ***!
