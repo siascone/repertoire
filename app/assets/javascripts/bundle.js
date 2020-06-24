@@ -190,10 +190,11 @@ var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 var CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS';
 
-var receiveCurrentUser = function receiveCurrentUser(currentUser) {
+var receiveCurrentUser = function receiveCurrentUser(_ref) {
+  var user = _ref.user;
   return {
     type: RECEIVE_CURRENT_USER,
-    currentUser: currentUser
+    user: user
   };
 };
 
@@ -264,10 +265,11 @@ var RECEIVE_USER = 'RECEIVE_USER';
 var RECEIVE_USERS = 'RECEIVE_USERS';
 var RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
-var receiveUser = function receiveUser(payload) {
+var receiveUser = function receiveUser(_ref) {
+  var user = _ref.user;
   return {
     type: RECEIVE_USER,
-    payload: payload
+    user: user
   };
 };
 
@@ -1338,8 +1340,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var photo = __webpack_require__(/*! ../../../../app/assets/images/photo.png */ "./app/assets/images/photo.png");
-
 var Profile = function Profile(_ref) {
   var currentUser = _ref.currentUser,
       user = _ref.user,
@@ -1354,7 +1354,7 @@ var Profile = function Profile(_ref) {
       tab = _useState2[0],
       setTab = _useState2[1];
 
-  if (!user) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_errors_error404__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+  if (!user) return null;
   var ownProfile = currentUser.username === user.username;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
@@ -2171,10 +2171,10 @@ var usersReducer = function usersReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object.assign({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
+      return Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
-      return Object.assign({}, state, _defineProperty({}, action.payload.id, action.payload));
+      return Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USERS"]:
       return Object.assign({}, state, action.users);

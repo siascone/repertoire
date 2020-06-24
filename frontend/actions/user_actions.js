@@ -4,9 +4,9 @@ export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
-const receiveUser = payload => ({
+const receiveUser = ({user}) => ({
     type: RECEIVE_USER,
-    payload
+    user
 });
 
 const receiveUsers = payload => ({

@@ -15,20 +15,16 @@ import ProfileTracks from './profile_tracks';
 
 import { getUserById } from '../../../actions/user_actions';
 
-const photo = require('../../../../app/assets/images/photo.png')
-
 let Profile = ({ currentUser, user, userId, getUserById }) => {
 
-    useEffect(() => {
+    useEffect(() => { 
         getUserById(userId)
     }, [userId]);
 
     const [tab, setTab] = useState('Tracks');
 
-    if (!user) return <Error404/>
+    if (!user) return null
     const ownProfile = currentUser.username === user.username;
-
-
     return(
         <View style={styles.container}>
             <ProfilePhoto user={user} ownProfile={ownProfile}/>
