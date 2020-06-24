@@ -22,7 +22,7 @@ let MainMenu = ({currentUser, logout, history, setMenu}) => {
             <TouchableOpacity>
                 {currentUser ?
                 <View style={styles.menuItem}>
-                    <Avitar url={`assets/${photo}`} size={30} />
+                    <Avitar url={currentUser.profilePhotoURL || `assets/${photo}`} size={30} />
                     <Text
                         style={styles.text}
                         onPress={e => navigateTo(`/users/${currentUser.id}`)}

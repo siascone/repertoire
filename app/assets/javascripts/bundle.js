@@ -244,6 +244,117 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/track_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/track_actions.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_TRACK, RECEIVE_TRACK_ERRORS, RECEIVE_TRACKS, REMOVE_TRACK, getTrackById, getTracksByUserId, updateTrack, createTrack, deleteTrack, getTracksByProjectId */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TRACK", function() { return RECEIVE_TRACK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TRACK_ERRORS", function() { return RECEIVE_TRACK_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TRACKS", function() { return RECEIVE_TRACKS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_TRACK", function() { return REMOVE_TRACK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTrackById", function() { return getTrackById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTracksByUserId", function() { return getTracksByUserId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTrack", function() { return updateTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTrack", function() { return createTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTrack", function() { return deleteTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTracksByProjectId", function() { return getTracksByProjectId; });
+/* harmony import */ var _util_track_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/track_api_util */ "./frontend/util/track_api_util.js");
+var RECEIVE_TRACK = 'RECEIVE_TRACK';
+var RECEIVE_TRACK_ERRORS = 'RECEIVE_TRACK_ERRORS';
+var RECEIVE_TRACKS = 'RECEIVE_TRACKS';
+var REMOVE_TRACK = 'REMOVE_TRACK';
+
+
+var receiveTrack = function receiveTrack(track) {
+  return {
+    type: RECEIVE_TRACK,
+    track: track
+  };
+};
+
+var receiveTracks = function receiveTracks(tracks) {
+  return {
+    type: RECEIVE_TRACKS,
+    tracks: tracks
+  };
+};
+
+var removeTrack = function removeTrack(id) {
+  return {
+    type: REMOVE_TRACK,
+    id: id
+  };
+};
+
+var receiveTrackErrors = function receiveTrackErrors(errors) {
+  return {
+    type: RECEIVE_TRACK_ERRORS,
+    errors: errors
+  };
+};
+
+var getTrackById = function getTrackById(trackId) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$getTrackById"])(trackId).then(function (res) {
+      return dispatch(receiveTrack(res.track));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var getTracksByUserId = function getTracksByUserId(userId) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$getTracksByUserId"])(userId).then(function (res) {
+      return dispatch(receiveTracks(res.tracks));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var updateTrack = function updateTrack(track) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$updateTrack"])(track).then(function (res) {
+      return dispatch(receiveTrack(res.track));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var createTrack = function createTrack(track) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$createTrack"])(track).then(function (res) {
+      return dispatch(receiveTrack(res.track));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var deleteTrack = function deleteTrack(trackId) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$deleteTrack"])(trackId).then(function (res) {
+      return dispatch(removeTrack(trackId));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var getTracksByProjectId = function getTracksByProjectId(projectId) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$getTracksByProjectId"])(projectId).then(function (res) {
+      return dispatch(receiveTracks(res.tracks));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/user_actions.js":
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
@@ -1246,7 +1357,7 @@ var MainMenu = function MainMenu(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], null, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuItem
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    url: "assets/".concat(photo),
+    url: currentUser.profilePhotoURL || "assets/".concat(photo),
     size: 30
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text,
@@ -1945,13 +2056,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/upload_track */ "./frontend/components/modular_components/upload_track.jsx");
+/* harmony import */ var _actions_track_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/track_actions */ "./frontend/actions/track_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
 
 
 
 
 var ProfileTracks = function ProfileTracks(_ref) {
   var user = _ref.user,
-      ownProfile = _ref.ownProfile;
+      ownProfile = _ref.ownProfile,
+      getTracksByUserId = _ref.getTracksByUserId;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    getTracksByUserId(user.id);
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
@@ -1986,6 +2105,16 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     fontSize: 30
   }
 });
+
+var mdp = function mdp(dispatch) {
+  return {
+    getTracksByUserId: function getTracksByUserId(userId) {
+      return dispatch(Object(_actions_track_actions__WEBPACK_IMPORTED_MODULE_3__["getTracksByUserId"])(userId));
+    }
+  };
+};
+
+ProfileTracks = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mdp)(ProfileTracks);
 /* harmony default export */ __webpack_exports__["default"] = (ProfileTracks);
 
 /***/ }),
@@ -2707,6 +2836,66 @@ var logout = function logout() {
   return $.ajax({
     url: 'api/session',
     method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/track_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/track_api_util.js ***!
+  \*****************************************/
+/*! exports provided: $createTrack, $getTracksByUserId, $updateTrack, $deleteTrack, $getTrackById, $getTracksByProjectId */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$createTrack", function() { return $createTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getTracksByUserId", function() { return $getTracksByUserId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$updateTrack", function() { return $updateTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$deleteTrack", function() { return $deleteTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getTrackById", function() { return $getTrackById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getTracksByProjectId", function() { return $getTracksByProjectId; });
+var $createTrack = function $createTrack(formData) {
+  return $.ajax({
+    url: "/api/tracks",
+    method: "POST",
+    data: formData,
+    contentType: false,
+    processData: false
+  });
+};
+var $getTracksByUserId = function $getTracksByUserId(userId) {
+  return $.ajax({
+    url: "/api/tracks/users/".concat(userId),
+    method: "GET"
+  });
+};
+var $updateTrack = function $updateTrack(formData) {
+  return $.ajax({
+    url: "/api/tracks",
+    method: "PATCH",
+    data: formData,
+    contentType: false,
+    processData: false
+  });
+};
+var $deleteTrack = function $deleteTrack(trackId) {
+  return $.ajax({
+    url: "/api/tracks/".concat(trackId),
+    method: "DELETE"
+  });
+};
+var $getTrackById = function $getTrackById(trackId) {
+  return $.ajax({
+    url: "/api/tracks/".concat(trackId),
+    method: "GET"
+  });
+};
+var $getTracksByProjectId = function $getTracksByProjectId(projectId) {
+  return $.ajax({
+    url: "/api/tracks/projects/".concat(projectId),
+    method: "GET"
   });
 };
 
