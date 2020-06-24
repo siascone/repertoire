@@ -1,11 +1,11 @@
-export const getUserById = userId => (
+export const $getUserById = userId => (
     $.ajax({
         url: `/api/users/${userId}`,
         method: `GET`,
     })
 );
 
-export const updateUser = formData => (
+export const $updateUser = formData => (
     $.ajax({
         url: `/api/users/${formData.get('user[id]')}`,
         method: `PATCH`,
@@ -15,7 +15,7 @@ export const updateUser = formData => (
     })
 )
 
-export const getUsersByQueryString = (queryString) => (
+export const $getUsersByQueryString = (queryString) => (
     $.ajax({
         url: `/api/users/search/?${queryString}`,
         method: `GET`,

@@ -265,16 +265,14 @@ var RECEIVE_USER = 'RECEIVE_USER';
 var RECEIVE_USERS = 'RECEIVE_USERS';
 var RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
-var receiveUser = function receiveUser(_ref) {
-  var user = _ref.user;
+var receiveUser = function receiveUser(user) {
   return {
     type: RECEIVE_USER,
     user: user
   };
 };
 
-var receiveUsers = function receiveUsers(_ref2) {
-  var users = _ref2.users;
+var receiveUsers = function receiveUsers(users) {
   return {
     type: RECEIVE_USERS,
     users: users
@@ -290,28 +288,28 @@ var receiveUserErrors = function receiveUserErrors(errors) {
 
 var getUserById = function getUserById(userId) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["getUserById"](userId).then(function (res) {
-      return dispatch(receiveUser(res));
-    }).fail(function (res) {
-      return dispatch(receiveUserErrors(res));
+    return Object(_util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["$getUserById"])(userId).then(function (res) {
+      return dispatch(receiveUser(res.user));
+    }).fail(function (err) {
+      return dispatch(receiveUserErrors(err));
     });
   };
 };
 var getUsersByQueryString = function getUsersByQueryString(queryString) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["getUsersByQueryString"](queryString).then(function (res) {
-      return dispatch(receiveUsers(res));
-    }).fail(function (res) {
-      return dispatch(receiveUserErrors(res));
+    return Object(_util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["$getUsersByQueryString"])(queryString).then(function (res) {
+      return dispatch(receiveUsers(res.users));
+    }).fail(function (err) {
+      return dispatch(receiveUserErrors(err));
     });
   };
 };
 var updateUser = function updateUser(user) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (res) {
-      return dispatch(receiveUsers(res));
-    }).fail(function (res) {
-      return dispatch(receiveUserErrors(res));
+    return Object(_util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["$updateUser"])(user).then(function (res) {
+      return dispatch(receiveUsers(res.user));
+    }).fail(function (err) {
+      return dispatch(receiveUserErrors(err));
     });
   };
 };
@@ -2718,21 +2716,21 @@ var logout = function logout() {
 /*!****************************************!*\
   !*** ./frontend/util/user_api_util.js ***!
   \****************************************/
-/*! exports provided: getUserById, updateUser, getUsersByQueryString */
+/*! exports provided: $getUserById, $updateUser, $getUsersByQueryString */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserById", function() { return getUserById; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsersByQueryString", function() { return getUsersByQueryString; });
-var getUserById = function getUserById(userId) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getUserById", function() { return $getUserById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$updateUser", function() { return $updateUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getUsersByQueryString", function() { return $getUsersByQueryString; });
+var $getUserById = function $getUserById(userId) {
   return $.ajax({
     url: "/api/users/".concat(userId),
     method: "GET"
   });
 };
-var updateUser = function updateUser(formData) {
+var $updateUser = function $updateUser(formData) {
   return $.ajax({
     url: "/api/users/".concat(formData.get('user[id]')),
     method: "PATCH",
@@ -2741,7 +2739,7 @@ var updateUser = function updateUser(formData) {
     processData: false
   });
 };
-var getUsersByQueryString = function getUsersByQueryString(queryString) {
+var $getUsersByQueryString = function $getUsersByQueryString(queryString) {
   return $.ajax({
     url: "/api/users/search/?".concat(queryString),
     method: "GET"
