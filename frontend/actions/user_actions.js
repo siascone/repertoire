@@ -9,14 +9,14 @@ const receiveUser = ({user}) => ({
     user
 });
 
-const receiveUsers = payload => ({
+const receiveUsers = ({users}) => ({
     type: RECEIVE_USERS,
-    payload
+    users
 });
 
-const receiveUserErrors = payload => ({
+const receiveUserErrors = errors => ({
     type: RECEIVE_USER_ERRORS,
-    payload
+    errors
 })
 
 export const getUserById = userId => dispatch => (

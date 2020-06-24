@@ -273,17 +273,18 @@ var receiveUser = function receiveUser(_ref) {
   };
 };
 
-var receiveUsers = function receiveUsers(payload) {
+var receiveUsers = function receiveUsers(_ref2) {
+  var users = _ref2.users;
   return {
     type: RECEIVE_USERS,
-    payload: payload
+    users: users
   };
 };
 
-var receiveUserErrors = function receiveUserErrors(payload) {
+var receiveUserErrors = function receiveUserErrors(errors) {
   return {
     type: RECEIVE_USER_ERRORS,
-    payload: payload
+    errors: errors
   };
 };
 
@@ -726,7 +727,7 @@ var Avitar = function Avitar(_ref) {
       overflow: 'hidden'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["ImageBackground"], {
-    source: "assets/".concat(url),
+    source: url,
     style: styles.image
   }));
 };
@@ -1344,7 +1345,8 @@ var Profile = function Profile(_ref) {
   var currentUser = _ref.currentUser,
       user = _ref.user,
       userId = _ref.userId,
-      getUserById = _ref.getUserById;
+      getUserById = _ref.getUserById,
+      updateUser = _ref.updateUser;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -1369,7 +1371,8 @@ var Profile = function Profile(_ref) {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_photo__WEBPACK_IMPORTED_MODULE_6__["default"], {
     user: user,
-    ownProfile: ownProfile
+    ownProfile: ownProfile,
+    updateUser: updateUser
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.usernameText
   }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
@@ -1449,6 +1452,9 @@ var mdp = function mdp(dispatch) {
   return {
     getUserById: function getUserById(userId) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_11__["getUserById"])(userId));
+    },
+    updateUser: function updateUser(user) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_11__["updateUser"])(user));
     }
   };
 };
@@ -1543,6 +1549,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/avitar */ "./frontend/components/modular_components/avitar.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1551,11 +1569,44 @@ var photo = __webpack_require__(/*! ../../../../app/assets/images/photo.png */ "
 
 var ProfilePhoto = function ProfilePhoto(_ref) {
   var ownProfile = _ref.ownProfile,
-      user = _ref.user;
+      user = _ref.user,
+      updateUser = _ref.updateUser;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    url: null,
+    file: null
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      newPhoto = _useState2[0],
+      setNewPhoto = _useState2[1];
+
+  var handleFile = function handleFile(e) {
+    var file = e.currentTarget.files[0];
+    var fileReader = new FileReader();
+
+    fileReader.onloadend = function (event) {
+      var url = event.target.result;
+      setNewPhoto({
+        url: url,
+        file: file
+      });
+    };
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+
+    ;
+    var formData = new FormData();
+    formData.append('user[profile_photo]', file);
+    formData.append('user[id]', user.id);
+    updateUser(formData);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    url: user.profilePhoto || photo,
+    url: user.profilePhotoURL || "/assets/".concat(photo),
     size: 100
   }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.touch
@@ -1572,7 +1623,10 @@ var ProfilePhoto = function ProfilePhoto(_ref) {
     },
     type: "file",
     name: "",
-    id: ""
+    id: "",
+    onChange: function onChange(e) {
+      return handleFile(e);
+    }
   })) : null);
 };
 
@@ -2518,11 +2572,13 @@ var getUserById = function getUserById(userId) {
     method: "GET"
   });
 };
-var updateUser = function updateUser(user) {
+var updateUser = function updateUser(formData) {
   return $.ajax({
-    url: "/api/users/".concat(user.id),
+    url: "/api/users/".concat(formData.get('user[id]')),
     method: "PATCH",
-    data: user
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 var getUsersByQueryString = function getUsersByQueryString(queryString) {

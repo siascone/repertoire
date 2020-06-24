@@ -5,13 +5,15 @@ export const getUserById = userId => (
     })
 );
 
-export const updateUser = (user) => (
+export const updateUser = formData => (
     $.ajax({
-        url: `/api/users/${user.id}`,
+        url: `/api/users/${formData.get('user[id]')}`,
         method: `PATCH`,
-        data: user,
+        data: formData,
+        contentType: false,
+        processData: false
     })
-);
+)
 
 export const getUsersByQueryString = (queryString) => (
     $.ajax({
