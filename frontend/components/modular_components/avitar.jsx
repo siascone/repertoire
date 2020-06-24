@@ -4,7 +4,7 @@ import { View, StyleSheet, ImageBackground } from 'react-native';
 let Avitar = ({ url, size }) => {
     return (
         <View style={{width: size, height: size, borderRadius: '100%', overflow: 'hidden'}}>
-            <ImageBackground source={`assets/${url}`} style={styles.image}>
+            <ImageBackground source={url} style={styles.image}>
             </ImageBackground>
         </View>
     );

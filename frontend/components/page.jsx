@@ -21,8 +21,8 @@ let Page = ({ currentUser, history, menu, setMenu }) => {
             <Switch>
                 <Route 
                     exact path='/' 
-                    component={currentUser ? 
-                        Feed : Splash
+                    render={() => currentUser ? 
+                        <Feed currentUser={currentUser}/> : <Splash/>
                     }
                 />
                 <Route 

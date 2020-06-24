@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Avitar from '../../modular_components/avitar';
 
 const photo = require('../../../../app/assets/images/photo.png')
 
-let ProfilePhoto = ({ ownProfile, user }) => {
+let ProfilePhoto = ({ ownProfile, user, updateUser }) => {
+    const [newPhoto, setNewPhoto] = useState({ url: null, file: null })
+
+    const handleFile = e => {
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        fileReader.onloadend = event => {
+            const url = event.target.result;
+            setNewPhoto({ url, file });
+        };
+        if (file) {
+            fileReader.readAsDataURL(file);
+        };
+        const formData = new FormData();
+        formData.append('user[profile_photo]', file);
+        formData.append('user[id]', user.id);
+        updateUser(formData);
+    };
+
     return (
         <View style={styles.container}>
-            <Avitar url={user.profilePhoto || photo} size={100} />
+            <Avitar url={user.profilePhotoURL || `/assets/${photo}`} size={100} />
             {ownProfile?
             <TouchableOpacity style={styles.touch}>
                 <Text style={styles.pencil}>✎</Text>
                 <input 
                     style={{opacity: 0, zIndex: 1, position: "absolute", cursor: 'pointer', height: '300%', width: '300%'}} 
                     type="file" name="" id=""
+                    onChange={e => handleFile(e)}
                 />
             </TouchableOpacity> : null}
         </View>

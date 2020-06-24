@@ -13,33 +13,34 @@ import ProfileRepertoire from './profile_repertoire';
 import ProfileFollows from './profile_follows';
 import ProfileTracks from './profile_tracks';
 
-import { getUserById } from '../../../actions/user_actions';
+import { getUserById, updateUser } from '../../../actions/user_actions';
 
-let Profile = ({ currentUser, user, userId, getUserById }) => {
+let Profile = ({ currentUser, user, userId, getUserById, updateUser }) => {
     const [found, setFound] = useState(true)
+    const [tab, setTab] = useState('Info');
+
     useEffect(() => { 
         getUserById(userId).fail(res => setFound(false));
     }, [userId]);
 
-    const [tab, setTab] = useState('Tracks');
     if (!found) return <Error404 />;
     if (!user) return null;
     const ownProfile = currentUser.username === user.username;
     return(
         <View style={styles.container}>
-            <ProfilePhoto user={user} ownProfile={ownProfile}/>
+            <ProfilePhoto user={user} ownProfile={ownProfile} updateUser={updateUser}/>
             <Text style={styles.usernameText}>{user.username}</Text>
             <View style={styles.followContainer}>
                 <Text style={styles.subText}>420<br/>Followers</Text>
                 {ownProfile ? 
-                <View></View>:
+                <View></View>
+                :
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.subText}>Follow</Text>
-                </TouchableOpacity>
-                }       
+                </TouchableOpacity>}       
             </View>
             <ProfileTabs tab={tab} setTab={setTab}/>
-            {tab === "Info" ? <ProfileInfo user={user} /> : null}
+            {tab === "Info" && <ProfileInfo user={user} ownProfile={ownProfile} updateUser={updateUser}/>}
             {tab === "Repertoire" ? <ProfileRepertoire user={user} /> : null}
             {tab === "Follows" ? <ProfileFollows user={user} /> : null}
             {tab === "Tracks" ? <ProfileTracks user={user} ownProfile={ownProfile}/> : null}
@@ -99,6 +100,7 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => ({
     getUserById: userId => dispatch(getUserById(userId)),
+    updateUser: user => dispatch(updateUser(user)),
 });
 
 Profile = withRouter(connect(msp, mdp)(Profile));

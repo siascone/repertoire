@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-let Feed = () => {
+let Feed = ({ currentUser }) => {
+
+    // useEffect(() => {
+    //     getUserFeed(currentUser.id);
+    // })
+
     return(
         <View style={styles.container}>
             <Text style={styles.text}>FEED</Text>

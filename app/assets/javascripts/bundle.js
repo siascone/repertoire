@@ -244,6 +244,120 @@ var logout = function logout() {
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
+/***/ "./frontend/actions/track_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/track_actions.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_TRACK, RECEIVE_TRACK_ERRORS, RECEIVE_TRACKS, REMOVE_TRACK, getTrackById, getTracksByUserId, updateTrack, createTrack, deleteTrack, getTracksByProjectId */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TRACK", function() { return RECEIVE_TRACK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TRACK_ERRORS", function() { return RECEIVE_TRACK_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TRACKS", function() { return RECEIVE_TRACKS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_TRACK", function() { return REMOVE_TRACK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTrackById", function() { return getTrackById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTracksByUserId", function() { return getTracksByUserId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTrack", function() { return updateTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTrack", function() { return createTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTrack", function() { return deleteTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTracksByProjectId", function() { return getTracksByProjectId; });
+/* harmony import */ var _util_track_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/track_api_util */ "./frontend/util/track_api_util.js");
+var RECEIVE_TRACK = 'RECEIVE_TRACK';
+var RECEIVE_TRACK_ERRORS = 'RECEIVE_TRACK_ERRORS';
+var RECEIVE_TRACKS = 'RECEIVE_TRACKS';
+var REMOVE_TRACK = 'REMOVE_TRACK';
+
+
+var receiveTrack = function receiveTrack(track) {
+  return {
+    type: RECEIVE_TRACK,
+    track: track
+  };
+};
+
+var receiveTracks = function receiveTracks(tracks) {
+  return {
+    type: RECEIVE_TRACKS,
+    tracks: tracks
+  };
+};
+
+var removeTrack = function removeTrack(id) {
+  return {
+    type: REMOVE_TRACK,
+    id: id
+  };
+};
+
+var receiveTrackErrors = function receiveTrackErrors(errors) {
+  return {
+    type: RECEIVE_TRACK_ERRORS,
+    errors: errors
+  };
+};
+
+var getTrackById = function getTrackById(trackId) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$getTrackById"])(trackId).then(function (res) {
+      return dispatch(receiveTrack(res.track));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var getTracksByUserId = function getTracksByUserId(userId) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$getTracksByUserId"])(userId).then(function (res) {
+      return dispatch(receiveTracks(res.tracks));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var updateTrack = function updateTrack(track) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$updateTrack"])(track).then(function (res) {
+      return dispatch(receiveTrack(res.track));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var createTrack = function createTrack(track) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$createTrack"])(track).then(function (res) {
+      return dispatch(receiveTrack(res.track));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var deleteTrack = function deleteTrack(trackId) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$deleteTrack"])(trackId).then(function (res) {
+      return dispatch(removeTrack(trackId));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+var getTracksByProjectId = function getTracksByProjectId(projectId) {
+  return function (dispatch) {
+    return Object(_util_track_api_util__WEBPACK_IMPORTED_MODULE_0__["$getTracksByProjectId"])(projectId).then(function (res) {
+      return dispatch(receiveTracks(res.tracks));
+    }).fail(function (err) {
+      return dispatch(receiveTrackErrors(err));
+    });
+  };
+};
+
+/***/ }),
+
+>>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 /***/ "./frontend/actions/user_actions.js":
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
@@ -265,52 +379,51 @@ var RECEIVE_USER = 'RECEIVE_USER';
 var RECEIVE_USERS = 'RECEIVE_USERS';
 var RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
-var receiveUser = function receiveUser(_ref) {
-  var user = _ref.user;
+var receiveUser = function receiveUser(user) {
   return {
     type: RECEIVE_USER,
     user: user
   };
 };
 
-var receiveUsers = function receiveUsers(payload) {
+var receiveUsers = function receiveUsers(users) {
   return {
     type: RECEIVE_USERS,
-    payload: payload
+    users: users
   };
 };
 
-var receiveUserErrors = function receiveUserErrors(payload) {
+var receiveUserErrors = function receiveUserErrors(errors) {
   return {
     type: RECEIVE_USER_ERRORS,
-    payload: payload
+    errors: errors
   };
 };
 
 var getUserById = function getUserById(userId) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["getUserById"](userId).then(function (res) {
-      return dispatch(receiveUser(res));
-    }).fail(function (res) {
-      return dispatch(receiveUserErrors(res));
+    return Object(_util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["$getUserById"])(userId).then(function (res) {
+      return dispatch(receiveUser(res.user));
+    }).fail(function (err) {
+      return dispatch(receiveUserErrors(err));
     });
   };
 };
 var getUsersByQueryString = function getUsersByQueryString(queryString) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["getUsersByQueryString"](queryString).then(function (res) {
-      return dispatch(receiveUsers(res));
-    }).fail(function (res) {
-      return dispatch(receiveUserErrors(res));
+    return Object(_util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["$getUsersByQueryString"])(queryString).then(function (res) {
+      return dispatch(receiveUsers(res.users));
+    }).fail(function (err) {
+      return dispatch(receiveUserErrors(err));
     });
   };
 };
 var updateUser = function updateUser(user) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (res) {
-      return dispatch(receiveUsers(res));
-    }).fail(function (res) {
-      return dispatch(receiveUserErrors(res));
+    return Object(_util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["$updateUser"])(user).then(function (res) {
+      return dispatch(receiveUsers(res.user));
+    }).fail(function (err) {
+      return dispatch(receiveUserErrors(err));
     });
   };
 };
@@ -726,7 +839,7 @@ var Avitar = function Avitar(_ref) {
       overflow: 'hidden'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["ImageBackground"], {
-    source: "assets/".concat(url),
+    source: url,
     style: styles.image
   }));
 };
@@ -1092,7 +1205,11 @@ var Page = function Page(_ref) {
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
-    component: currentUser ? _page_components_feed_feed__WEBPACK_IMPORTED_MODULE_7__["default"] : _page_components_splash_splash__WEBPACK_IMPORTED_MODULE_3__["default"]
+    render: function render() {
+      return currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_page_components_feed_feed__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        currentUser: currentUser
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_page_components_splash_splash__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/menu",
@@ -1180,7 +1297,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Feed = function Feed() {
+var Feed = function Feed(_ref) {
+  var currentUser = _ref.currentUser;
+  // useEffect(() => {
+  //     getUserFeed(currentUser.id);
+  // })
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
@@ -1247,7 +1368,7 @@ var MainMenu = function MainMenu(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], null, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuItem
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    url: photo,
+    url: currentUser.profilePhotoURL || "assets/".concat(photo),
     size: 30
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text,
@@ -1344,24 +1465,24 @@ var Profile = function Profile(_ref) {
   var currentUser = _ref.currentUser,
       user = _ref.user,
       userId = _ref.userId,
-      getUserById = _ref.getUserById;
+      getUserById = _ref.getUserById,
+      updateUser = _ref.updateUser;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
       found = _useState2[0],
       setFound = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Info'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      tab = _useState4[0],
+      setTab = _useState4[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     getUserById(userId).fail(function (res) {
       return setFound(false);
     });
   }, [userId]);
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Tracks'),
-      _useState4 = _slicedToArray(_useState3, 2),
-      tab = _useState4[0],
-      setTab = _useState4[1];
-
   if (!found) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_errors_error404__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   if (!user) return null;
   var ownProfile = currentUser.username === user.username;
@@ -1369,7 +1490,8 @@ var Profile = function Profile(_ref) {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_photo__WEBPACK_IMPORTED_MODULE_6__["default"], {
     user: user,
-    ownProfile: ownProfile
+    ownProfile: ownProfile,
+    updateUser: updateUser
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.usernameText
   }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
@@ -1383,9 +1505,11 @@ var Profile = function Profile(_ref) {
   }, "Follow"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
     tab: tab,
     setTab: setTab
-  }), tab === "Info" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_info__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    user: user
-  }) : null, tab === "Repertoire" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_repertoire__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }), tab === "Info" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_info__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    user: user,
+    ownProfile: ownProfile,
+    updateUser: updateUser
+  }), tab === "Repertoire" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_repertoire__WEBPACK_IMPORTED_MODULE_8__["default"], {
     user: user
   }) : null, tab === "Follows" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_follows__WEBPACK_IMPORTED_MODULE_9__["default"], {
     user: user
@@ -1449,6 +1573,9 @@ var mdp = function mdp(dispatch) {
   return {
     getUserById: function getUserById(userId) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_11__["getUserById"])(userId));
+    },
+    updateUser: function updateUser(user) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_11__["updateUser"])(user));
     }
   };
 };
@@ -1506,24 +1633,183 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 var ProfileInfo = function ProfileInfo(_ref) {
-  var user = _ref.user;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Info"));
+  var user = _ref.user,
+      ownProfile = _ref.ownProfile,
+      updateUser = _ref.updateUser;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      edit = _useState2[0],
+      setEdit = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    id: user.id,
+    f_name: user.f_name,
+    l_name: user.l_name,
+    bio: user.bio,
+    headline: user.headline
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      inputs = _useState4[0],
+      setInputs = _useState4[1];
+
+  var handleSave = function handleSave(e) {
+    var formData = new FormData();
+    Object.keys(inputs).forEach(function (key) {
+      formData.append("user[".concat(key, "]"), inputs[key]);
+    });
+    updateUser(formData);
+  };
+
+  var handleChange = function handleChange(field) {
+    return function (e) {
+      var newState = Object.assign({}, inputs);
+      newState[field] = e.currentTarget.value;
+      setInputs(newState);
+    };
+  };
+
+  var dispayInfo = function dispayInfo() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.container
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: {
+        flexDirection: 'row',
+        alignItems: 'center'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: {
+        color: 'white'
+      }
+    }, "Info"), ownProfile && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      style: styles.touch,
+      onPress: function onPress(e) {
+        return setEdit(true);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.pencil
+    }, "\u270E"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text
+    }, "Username: ", user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text
+    }, "First Name: ", user.f_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text
+    }, "Last Name: ", user.l_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text
+    }, "Bio: ", user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text
+    }, "Headline: ", user.headline));
+  };
+
+  var editInfo = function editInfo() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.container
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.text
+    }, "Username: ", user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+      style: styles.input,
+      placeholder: "f_name",
+      onChange: handleChange('f_name')
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+      style: styles.input,
+      placeholder: "l_name",
+      onChange: handleChange('l_name')
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+      style: styles.input,
+      placeholder: "bio",
+      onChange: handleChange('bio')
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+      style: styles.input,
+      placeholder: "headline",
+      onChange: handleChange('headline')
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.buttonContainer
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      onPress: function onPress(e) {
+        return handleSave(e);
+      },
+      style: styles.button
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.buttonText
+    }, "Save")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      onPress: function onPress(e) {
+        return setEdit(false);
+      },
+      style: styles.button
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+      style: styles.buttonText
+    }, "Cancel"))));
+  };
+
+  return edit ? editInfo() : dispayInfo();
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
     padding: 10
   },
+  pencil: {
+    color: 'black',
+    fontSize: 20
+  },
+  touch: {
+    cursor: 'pointer',
+    backgroundColor: 'white',
+    borderRadius: '100%',
+    border: '1px solid black',
+    padding: 10,
+    height: 30,
+    width: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 10
+  },
   text: {
+    color: 'white',
+    marginTop: 10
+  },
+  buttonText: {
     color: 'white'
+  },
+  input: {
+    paddingTop: 7,
+    paddingBottom: 7,
+    paddingLeft: 10,
+    paddingRight: 10,
+    border: '1px solid white',
+    borderRadius: 3,
+    marginTop: 10,
+    color: 'white'
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginTop: 10
+  },
+  button: {
+    paddingTop: 7,
+    paddingBottom: 7,
+    paddingLeft: 10,
+    paddingRight: 10,
+    border: '1px solid white',
+    borderRadius: 3,
+    width: 'fit-content',
+    marginRight: 10
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (ProfileInfo);
@@ -1543,6 +1829,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/avitar */ "./frontend/components/modular_components/avitar.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1551,11 +1849,44 @@ var photo = __webpack_require__(/*! ../../../../app/assets/images/photo.png */ "
 
 var ProfilePhoto = function ProfilePhoto(_ref) {
   var ownProfile = _ref.ownProfile,
-      user = _ref.user;
+      user = _ref.user,
+      updateUser = _ref.updateUser;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    url: null,
+    file: null
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      newPhoto = _useState2[0],
+      setNewPhoto = _useState2[1];
+
+  var handleFile = function handleFile(e) {
+    var file = e.currentTarget.files[0];
+    var fileReader = new FileReader();
+
+    fileReader.onloadend = function (event) {
+      var url = event.target.result;
+      setNewPhoto({
+        url: url,
+        file: file
+      });
+    };
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+
+    ;
+    var formData = new FormData();
+    formData.append('user[profile_photo]', file);
+    formData.append('user[id]', user.id);
+    updateUser(formData);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    url: user.profilePhoto || photo,
+    url: user.profilePhotoURL || "/assets/".concat(photo),
     size: 100
   }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.touch
@@ -1572,7 +1903,10 @@ var ProfilePhoto = function ProfilePhoto(_ref) {
     },
     type: "file",
     name: "",
-    id: ""
+    id: "",
+    onChange: function onChange(e) {
+      return handleFile(e);
+    }
   })) : null);
 };
 
@@ -1733,13 +2067,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/upload_track */ "./frontend/components/modular_components/upload_track.jsx");
+<<<<<<< HEAD
+=======
+/* harmony import */ var _actions_track_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/track_actions */ "./frontend/actions/track_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+>>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 var ProfileTracks = function ProfileTracks(_ref) {
   var user = _ref.user,
-      ownProfile = _ref.ownProfile;
+      ownProfile = _ref.ownProfile,
+      getTracksByUserId = _ref.getTracksByUserId;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    getTracksByUserId(user.id);
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
@@ -1774,6 +2122,16 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     fontSize: 30
   }
 });
+
+var mdp = function mdp(dispatch) {
+  return {
+    getTracksByUserId: function getTracksByUserId(userId) {
+      return dispatch(Object(_actions_track_actions__WEBPACK_IMPORTED_MODULE_3__["getTracksByUserId"])(userId));
+    }
+  };
+};
+
+ProfileTracks = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mdp)(ProfileTracks);
 /* harmony default export */ __webpack_exports__["default"] = (ProfileTracks);
 
 /***/ }),
@@ -1931,9 +2289,15 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+<<<<<<< HEAD
 
 
 
+=======
+
+
+
+>>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
 
 
 
@@ -2500,32 +2864,97 @@ var logout = function logout() {
 
 /***/ }),
 
-/***/ "./frontend/util/user_api_util.js":
-/*!****************************************!*\
-  !*** ./frontend/util/user_api_util.js ***!
-  \****************************************/
-/*! exports provided: getUserById, updateUser, getUsersByQueryString */
+<<<<<<< HEAD
+=======
+/***/ "./frontend/util/track_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/track_api_util.js ***!
+  \*****************************************/
+/*! exports provided: $createTrack, $getTracksByUserId, $updateTrack, $deleteTrack, $getTrackById, $getTracksByProjectId */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserById", function() { return getUserById; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsersByQueryString", function() { return getUsersByQueryString; });
-var getUserById = function getUserById(userId) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$createTrack", function() { return $createTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getTracksByUserId", function() { return $getTracksByUserId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$updateTrack", function() { return $updateTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$deleteTrack", function() { return $deleteTrack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getTrackById", function() { return $getTrackById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getTracksByProjectId", function() { return $getTracksByProjectId; });
+var $createTrack = function $createTrack(formData) {
+  return $.ajax({
+    url: "/api/tracks",
+    method: "POST",
+    data: formData,
+    contentType: false,
+    processData: false
+  });
+};
+var $getTracksByUserId = function $getTracksByUserId(userId) {
+  return $.ajax({
+    url: "/api/tracks/users/".concat(userId),
+    method: "GET"
+  });
+};
+var $updateTrack = function $updateTrack(formData) {
+  return $.ajax({
+    url: "/api/tracks",
+    method: "PATCH",
+    data: formData,
+    contentType: false,
+    processData: false
+  });
+};
+var $deleteTrack = function $deleteTrack(trackId) {
+  return $.ajax({
+    url: "/api/tracks/".concat(trackId),
+    method: "DELETE"
+  });
+};
+var $getTrackById = function $getTrackById(trackId) {
+  return $.ajax({
+    url: "/api/tracks/".concat(trackId),
+    method: "GET"
+  });
+};
+var $getTracksByProjectId = function $getTracksByProjectId(projectId) {
+  return $.ajax({
+    url: "/api/tracks/projects/".concat(projectId),
+    method: "GET"
+  });
+};
+
+/***/ }),
+
+>>>>>>> d5ca6a6c1cb800530ab50f62a157c465c1127062
+/***/ "./frontend/util/user_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/user_api_util.js ***!
+  \****************************************/
+/*! exports provided: $getUserById, $updateUser, $getUsersByQueryString */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getUserById", function() { return $getUserById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$updateUser", function() { return $updateUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getUsersByQueryString", function() { return $getUsersByQueryString; });
+var $getUserById = function $getUserById(userId) {
   return $.ajax({
     url: "/api/users/".concat(userId),
     method: "GET"
   });
 };
-var updateUser = function updateUser(user) {
+var $updateUser = function $updateUser(formData) {
   return $.ajax({
-    url: "/api/users/".concat(user.id),
+    url: "/api/users/".concat(formData.get('user[id]')),
     method: "PATCH",
-    data: user
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
-var getUsersByQueryString = function getUsersByQueryString(queryString) {
+var $getUsersByQueryString = function $getUsersByQueryString(queryString) {
   return $.ajax({
     url: "/api/users/search/?".concat(queryString),
     method: "GET"
