@@ -1,37 +1,58 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
 
-const SessionForm = ({ type }) => {
-    const handleSubmit = (e) => {
-        console.log("you submit")
+let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = (button) => {
+        const user = {username, password};
+        clearSessionErrors();
+        if (type === 'Login') {
+            login(button ? demoUser : user)
+        } else {
+            signup(user)
+        }
     }
+
     return (
-        <View style={styles.view}>
+        <View style={styles.container}>
+            <View>
+            {errors.map(error => 
+                <Text style={styles.text}>{error}</Text>
+            )}
+            </View>
             <TextInput
                 placeholder='email'
                 style={styles.input}
-                onSubmitEditing={e => handleSubmit(e)}
+                onChange={e => setUsername(e.currentTarget.value)}
+                onSubmitEditing={e => handleSubmit()}
             />
             <TextInput
                 placeholder='password'
                 style={styles.input}
-                onSubmitEditing={e => handleSubmit(e)}
+                secureTextEntry='true'
+                onChange={e => setPassword(e.currentTarget.value)}
+                onSubmitEditing={e => handleSubmit()}
             />
-            <Button
-                title='Login'
-                onPress={e => handleSubmit(e)}
+            <br/>
+            <TouchableOpacity
                 style={styles.button}
-                color='black'
-            />
+                onPress={e => handleSubmit()}
+            ><Text style={styles.text}>{type}</Text></TouchableOpacity>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    view: {
-        flex: 1,
+    container: {
         alignItems: 'center',
-        paddingTop: 100,
+        padding: 20,
+        marginTop: 50,
+        width: 'fit-content',
+        border: '1px solid white',
+        borderRadius: 3
     },
     input: {
         height: 30,
@@ -42,8 +63,13 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         margin: 5,
     },
+    text: {
+        color: 'white'
+    },
     button: {
-        margin: 100,
+        border: '1px solid white',
+        borderRadius: 3,
+        padding: 10,
     }
 });
 

@@ -1,31 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { withRouter } from 'react-router-dom';
+import SearchBar from './modular_components/search_bar';
 
-const Header = ({history}) => (
-    <View style={styles.container}>
-        <Text 
-            style={styles.text} 
-            onPress={e => history.push('/home')} 
-        >Repertoire</Text>
-        <TouchableOpacity
-            style={styles.menuContainer}
-            onPress={e => history.push('/menu')}
-        >
-            <View style={styles.menuLine}/>
-            <View style={styles.menuLine}/>
-            <View style={styles.menuLine}/>
-        </TouchableOpacity>
-    </View>
-);
+const Header = ({history, setMenu, menu}) => {
+
+    const navigateTo = path => {
+        history.push(path);
+        setMenu(false);
+    };
+
+    return(
+        <View style={styles.container}>
+            <TouchableOpacity>
+                <Text 
+                    style={styles.text} 
+                    onPress={e => navigateTo('/')} 
+                >Repertoire</Text>
+            </TouchableOpacity>
+            <SearchBar history={history} />
+            <TouchableOpacity
+                style={styles.menuButtonContainer}
+                onPress={e => setMenu(!menu)}
+            >
+                {menu ?
+                <Text style={styles.menuText}>X</Text>
+                :
+                <View>
+                    <View style={styles.menuLine}/>
+                    <View style={styles.menuLine}/>
+                    <View style={styles.menuLine}/>
+                </View>}
+            </TouchableOpacity>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 0.1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
         backgroundColor: 'black',
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
     },
     text: {
         color: 'white',
@@ -33,8 +51,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 10,
     },
-    menuContainer: {
+    menuButtonContainer: {
         padding: 10,
+        width: 50,
+        alignItems: 'center'
     },
     menuLine: {
         width: 30,
@@ -42,7 +62,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         margin: 2,
         borderRadius: 2,
+    },
+    menuText: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontSize: 30,
+        padding: 10,
+        fontWeight: 300
     }
 });
 
-export default withRouter(Header);
+export default Header;
