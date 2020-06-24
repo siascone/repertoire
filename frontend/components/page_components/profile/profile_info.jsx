@@ -31,11 +31,13 @@ let ProfileInfo = ({ user, ownProfile, updateUser }) => {
 
     const dispayInfo = () => (
         <View style={styles.container}>
-            {ownProfile &&
-            <TouchableOpacity style={styles.touch} onPress={e => setEdit(true)}>
-                <Text style={styles.pencil}>✎</Text>
-            </TouchableOpacity>}
-            <Text style={styles.text}>Info</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ color: 'white' }}>Info</Text>
+                {ownProfile &&
+                <TouchableOpacity style={styles.touch} onPress={e => setEdit(true)}>
+                    <Text style={styles.pencil}>✎</Text>
+                </TouchableOpacity>}
+            </View>
             <Text style={styles.text}>Username: {user.username}</Text>
             <Text style={styles.text}>First Name: {user.f_name}</Text>
             <Text style={styles.text}>Last Name: {user.l_name}</Text>
@@ -83,6 +85,7 @@ const styles = StyleSheet.create({
         width: 30,
         alignItems: 'center',
         justifyContent: 'center',
+        marginLeft: 10
     },
     text: {
         color: 'white',
