@@ -16,14 +16,14 @@ import ProfileTracks from './profile_tracks';
 import { getUserById } from '../../../actions/user_actions';
 
 let Profile = ({ currentUser, user, userId, getUserById }) => {
-
+    const [found, setFound] = useState(true)
     useEffect(() => { 
-        getUserById(userId)
+        getUserById(userId).fail(res => setFound(false));
     }, [userId]);
 
     const [tab, setTab] = useState('Tracks');
-
-    if (!user) return null
+    if (!found) return <Error404 />;
+    if (!user) return null;
     const ownProfile = currentUser.username === user.username;
     return(
         <View style={styles.container}>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'none',
         borderBottomWidth: 5,
     }
-})
+});
 
 const msp = (state, ownProps) => {
     const userId = ownProps.match.params.userId
@@ -99,7 +99,7 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => ({
     getUserById: userId => dispatch(getUserById(userId)),
-})
+});
 
 Profile = withRouter(connect(msp, mdp)(Profile));
 

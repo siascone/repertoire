@@ -1345,15 +1345,24 @@ var Profile = function Profile(_ref) {
       user = _ref.user,
       userId = _ref.userId,
       getUserById = _ref.getUserById;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      found = _useState2[0],
+      setFound = _useState2[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    getUserById(userId);
+    getUserById(userId).fail(function (res) {
+      return setFound(false);
+    });
   }, [userId]);
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Tracks'),
-      _useState2 = _slicedToArray(_useState, 2),
-      tab = _useState2[0],
-      setTab = _useState2[1];
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Tracks'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      tab = _useState4[0],
+      setTab = _useState4[1];
 
+  if (!found) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_errors_error404__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   if (!user) return null;
   var ownProfile = currentUser.username === user.username;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
@@ -2133,7 +2142,7 @@ var sessionReducer = function sessionReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return {
-        id: action.currentUser.id
+        id: action.user.id
       };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
