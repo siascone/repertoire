@@ -1202,7 +1202,11 @@ var Page = function Page(_ref) {
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
-    component: currentUser ? _page_components_feed_feed__WEBPACK_IMPORTED_MODULE_7__["default"] : _page_components_splash_splash__WEBPACK_IMPORTED_MODULE_3__["default"]
+    render: function render() {
+      return currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_page_components_feed_feed__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        currentUser: currentUser
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_page_components_splash_splash__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/menu",
@@ -1290,7 +1294,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Feed = function Feed() {
+var Feed = function Feed(_ref) {
+  var currentUser = _ref.currentUser;
+  // useEffect(() => {
+  //     getUserFeed(currentUser.id);
+  // })
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {

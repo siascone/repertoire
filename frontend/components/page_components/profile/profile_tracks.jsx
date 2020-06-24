@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 let ProfileTracks = ({ user, ownProfile, getTracksByUserId }) => {
     useEffect(() => {
         getTracksByUserId(user.id);
-    })
+    });
 
     return(
         <View style={styles.container}>
