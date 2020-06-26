@@ -12,7 +12,6 @@
 #  headline        :string
 #  f_name          :string
 #  l_name          :string
-#  photo_url       :string
 #
 class User < ApplicationRecord
     validates :username, presence:true, uniqueness:true

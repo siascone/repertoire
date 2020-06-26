@@ -12,7 +12,6 @@
 #  headline        :string
 #  f_name          :string
 #  l_name          :string
-#  photo_url       :string
 #
 require 'test_helper'
 
