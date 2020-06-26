@@ -21,7 +21,7 @@ const receiveUsers = users => ({
 const receiveUserErrors = errors => ({
     type: RECEIVE_USER_ERRORS,
     errors
-})
+});
 
 export const getUserById = userId => dispatch => (
     $getUserById(userId)

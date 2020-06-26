@@ -13,7 +13,7 @@ export const $updateUser = formData => (
         contentType: false,
         processData: false
     })
-)
+);
 
 export const $getUsersByQueryString = (queryString) => (
     $.ajax({
