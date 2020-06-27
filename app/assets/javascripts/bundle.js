@@ -447,7 +447,8 @@ __webpack_require__.r(__webpack_exports__);
 var RegularButton = function RegularButton(_ref) {
   var text = _ref.text,
       onPress = _ref.onPress,
-      customStyles = _ref.customStyles;
+      _ref$style = _ref.style,
+      style = _ref$style === void 0 ? {} : _ref$style;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.container,
     onPress: onPress
@@ -464,7 +465,8 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     paddingRight: 10,
     paddingTop: 7,
     paddingBottom: 7,
-    width: 'fit-content'
+    width: 'fit-content',
+    zIndex: -2
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (RegularButton);
@@ -1034,6 +1036,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./autosuggest/tag_suggest */ "./frontend/components/modular_components/autosuggest/tag_suggest.jsx");
+/* harmony import */ var _buttons_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../buttons/regular_button */ "./frontend/components/buttons/regular_button.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1045,6 +1048,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1072,6 +1076,10 @@ var UploadTrack = function UploadTrack(_ref) {
       _useState8 = _slicedToArray(_useState7, 2),
       addedTags = _useState8[0],
       setTags = _useState8[1];
+
+  var handleSave = function handleSave(e) {
+    cancel();
+  };
 
   var cancel = function cancel(e) {
     setUrl('');
@@ -1117,7 +1125,7 @@ var UploadTrack = function UploadTrack(_ref) {
       return handleFile(e);
     },
     type: "file"
-  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
     width: "320",
     height: "240",
     style: {
@@ -1137,18 +1145,15 @@ var UploadTrack = function UploadTrack(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     addedTags: addedTags,
     setTags: setTags
-  })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.cancel,
-    onPress: function onPress(e) {
-      return cancel();
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Cancel")), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.cancel
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Save")) : null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.buttonsContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "Cancel",
+    onPress: cancel
+  }), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "Save",
+    onPress: handleSave
+  }) : null))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.addContainer,
     onPress: function onPress(e) {
       return setModal(true);
@@ -1201,6 +1206,13 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     width: 'fit-content',
     marginTop: 10,
     zIndex: -1
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    zIndex: -1,
+    paddingTop: 10,
+    width: 130,
+    justifyContent: 'space-between'
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (UploadTrack);
@@ -1527,7 +1539,7 @@ var Profile = function Profile(_ref) {
       found = _useState2[0],
       setFound = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Info'),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Tracks'),
       _useState4 = _slicedToArray(_useState3, 2),
       tab = _useState4[0],
       setTab = _useState4[1];
@@ -2376,7 +2388,9 @@ var SearchResults = function SearchResults(_ref) {
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
-  container: {},
+  container: {
+    padding: 20
+  },
   text: {
     color: 'white'
   }

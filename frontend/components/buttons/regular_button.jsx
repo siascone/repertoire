@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import RegularText from '../texts/regular_text'
 
-let RegularButton = ({ text, onPress, customStyles }) => {
+let RegularButton = ({ text, onPress, style = {} }) => {
 return(
     <TouchableOpacity 
         style={styles.container} 
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         paddingTop: 7,
         paddingBottom: 7,
         width: 'fit-content',
+        zIndex: -2,
     }
 });
 

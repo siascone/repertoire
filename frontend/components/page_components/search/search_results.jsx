@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 let SearchResults = ({ history, input }) => {
 
-    return (
+    return(
         <View style={styles.container}>
             <Text style={styles.text}>
                 Showing results for '{input}'
@@ -14,6 +14,7 @@ let SearchResults = ({ history, input }) => {
 
 const styles = StyleSheet.create({
     container: {
+        padding: 20,
     },
     text: {
         color: 'white',

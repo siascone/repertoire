@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+
 import TagSuggest from './autosuggest/tag_suggest';
+import RegularButton from '../buttons/regular_button';
 
 let UploadTrack = ({ user }) => {
     const [modal, setModal] = useState(false);
     const [progress, setProgress] = useState('')
     const [url, setUrl] = useState('');
     const [addedTags, setTags] = useState({});
+
+    const handleSave = e => {
+        cancel();
+    }
 
     const cancel = e => {
         setUrl('');
@@ -37,9 +43,8 @@ let UploadTrack = ({ user }) => {
                     onChange={e => handleFile(e)}
                     type="file"
                 />
-                {progress? <Text>Upload progress: {progress}</Text>:null}
+                {progress ? <Text>Upload progress: {progress}</Text> : null}
             </View>
-            {url ? 
             <View>
                 <video width="320" height="240" style={{backgroundColor: 'white', borderRadius: 3}} controls>
                     <source src={url} type="video/mp4"/>
@@ -47,15 +52,11 @@ let UploadTrack = ({ user }) => {
                 <TextInput style={styles.input} placeholder='title'></TextInput>
                 <TextInput style={styles.input} placeholder='time signature'></TextInput>
                 <TagSuggest addedTags={addedTags} setTags={setTags} />
+                <View style={styles.buttonsContainer}>
+                    <RegularButton text='Cancel' onPress={cancel} />
+                    {url ? <RegularButton text='Save' onPress={handleSave}/> : null}
+                </View>
             </View>
-            : null}
-            <TouchableOpacity style={styles.cancel} onPress={e => cancel()}>
-                <Text style={styles.text}>Cancel</Text>
-            </TouchableOpacity>
-            {url?
-            <TouchableOpacity style={styles.cancel}>
-                <Text style={styles.text}>Save</Text>
-            </TouchableOpacity>: null}
         </View>
         :
         <TouchableOpacity style={styles.addContainer} onPress={e => setModal(true)}>
@@ -107,6 +108,13 @@ const styles = StyleSheet.create({
         width: 'fit-content',
         marginTop: 10,
         zIndex: -1
+    },
+    buttonsContainer: {
+        flexDirection: 'row',
+        zIndex: -1,
+        paddingTop: 10,
+        width: 130,
+        justifyContent: 'space-between',
     }
 })
 

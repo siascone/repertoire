@@ -17,7 +17,7 @@ import { getUserById, updateUser } from '../../../actions/user_actions';
 
 let Profile = ({ currentUser, user, userId, getUserById, updateUser }) => {
     const [found, setFound] = useState(true)
-    const [tab, setTab] = useState('Info');
+    const [tab, setTab] = useState('Tracks');
 
     useEffect(() => { 
         getUserById(userId).fail(res => setFound(false));
