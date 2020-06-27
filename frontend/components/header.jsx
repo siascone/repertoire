@@ -17,7 +17,7 @@ const Header = ({history, setMenu, menu}) => {
                     onPress={e => navigateTo('/')} 
                 >Repertoire</Text>
             </TouchableOpacity>
-            <SearchBar history={history} />
+            <SearchBar history={history} navigateTo={navigateTo} />
             <TouchableOpacity
                 style={styles.menuButtonContainer}
                 onPress={e => setMenu(!menu)}

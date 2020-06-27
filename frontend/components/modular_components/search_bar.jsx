@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextInput, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 
-let SearchBar = ({ history }) => {
+let SearchBar = ({ history, navigateTo }) => {
     let search = (new URLSearchParams(history.location.search)).get('input');
     const [input, setInput] = useState(search || '')
 
@@ -18,7 +18,8 @@ let SearchBar = ({ history }) => {
         const params = new URLSearchParams();
         params.set('input', input);
         const queryString = params.toString();
-        history.push(`/search/?${queryString}`);
+        navigateTo(`/search/?${queryString}`);
+        // history.push(`/search/?${queryString}`);
     }
 
     return(

@@ -1,15 +1,31 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 import Filters from './filters';
+import SearchResults from './search_results';
 
-let Search = () => {
+let Search = ({ history }) => {
+    let search = (new URLSearchParams(history.location.search)).get('input');
+    const [input, setInput] = useState(search || '');
+
+    useEffect(() => {
+        search = (new URLSearchParams(history.location.search)).get('input')
+        setInput(search || '')
+    }, [history.location]);
+
     return(
-        <View>
-            <Filters setFilter={setFilter} />
-            <Text>Showing results for</Text>
+        <View style={styles.container}>
+            <Filters history={history} />
+            <SearchResults input={input} />
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+
+});
 
 export default Search;

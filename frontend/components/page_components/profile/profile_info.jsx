@@ -49,8 +49,8 @@ let ProfileInfo = ({ user, ownProfile, updateUser }) => {
     const editInfo = () => (
         <View style={styles.container}>
             <Text style={styles.text}>Username: {user.username}</Text>
-            <TextInput style={styles.input} placeholder='f_name' onChange={handleChange('f_name')}></TextInput>
-            <TextInput style={styles.input} placeholder='l_name' onChange={handleChange('l_name')}></TextInput>
+            <TextInput style={styles.input} placeholder='first name' onChange={handleChange('f_name')}></TextInput>
+            <TextInput style={styles.input} placeholder='last name' onChange={handleChange('l_name')}></TextInput>
             <TextInput style={styles.input} placeholder='bio' onChange={handleChange('bio')}></TextInput>
             <TextInput style={styles.input} placeholder='headline' onChange={handleChange('headline')}></TextInput>
             <View style={styles.buttonContainer}>

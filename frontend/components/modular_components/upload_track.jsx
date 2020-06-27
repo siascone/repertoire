@@ -15,16 +15,6 @@ let UploadTrack = ({ user }) => {
         setTags({});
     }
 
-    const updateTags = (tag, add) => {
-        if (add) {
-            setTags({ [tag.id]: tag, ...addedTags });
-        } else {
-            const newTags = Object.assign({}, addedTags)
-            delete newTags[tag.id];
-            setTags(newTags);
-        }
-    }
-
     const handleFile = e => {
         setUrl('')
         const file = e.currentTarget.files[0];
@@ -56,7 +46,7 @@ let UploadTrack = ({ user }) => {
                 </video>
                 <TextInput style={styles.input} placeholder='title'></TextInput>
                 <TextInput style={styles.input} placeholder='time signature'></TextInput>
-                <TagSuggest addedTags={addedTags} updateTags={updateTags} />
+                <TagSuggest addedTags={addedTags} setTags={setTags} />
             </View>
             : null}
             <TouchableOpacity style={styles.cancel} onPress={e => cancel()}>

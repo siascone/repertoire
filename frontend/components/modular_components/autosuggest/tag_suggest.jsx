@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import Autosuggest from './autosuggest';
 import { withRouter } from 'react-router-dom';
 
-let TagSuggest = ({ updateTags, addedTags }) => {
+let TagSuggest = ({ addedTags, setTags }) => {
     const tags = {
         1: { 
             name: 'rock',
@@ -29,6 +29,16 @@ let TagSuggest = ({ updateTags, addedTags }) => {
             name: 'punk rock',
             id: 6 
         },
+    };
+
+    const updateTags = (tag, add) => {
+        if (add) {
+            setTags({ [tag.id]: tag, ...addedTags });
+        } else {
+            const newTags = Object.assign({}, addedTags)
+            delete newTags[tag.id];
+            setTags(newTags);
+        }
     };
 
     const [smartBank, setBank] = useState(tags);
@@ -108,6 +118,12 @@ const styles = {
         backgroundColor: 'black',
         marginBottom: 20,
     },
+    suggestion_item_container: {
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 5,
+        paddingBottom: 5
+    }
 }
 
 export default TagSuggest;
