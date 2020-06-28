@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 0.9,
         backgroundColor: 'black',
-        overflow: 'scroll'
+        overflow: 'scroll',
     }
 });
 

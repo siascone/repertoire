@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import UploadTrack from '../../modular_components/upload_track';
 
 let Feed = ({ currentUser }) => {
 
@@ -10,6 +11,7 @@ let Feed = ({ currentUser }) => {
     return(
         <View style={styles.container}>
             <Text style={styles.text}>FEED</Text>
+            <UploadTrack currentUser={currentUser} />
         </View>
     );
 };

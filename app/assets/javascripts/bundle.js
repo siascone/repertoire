@@ -1182,6 +1182,8 @@ var TimeSignatureSelect = function TimeSignatureSelect(_ref) {
       setDenominator = _useState4[1];
 
   var updateTimes = function updateTimes(timeString, add) {
+    if (!denominatorValue || !numeratorValue) return null;
+
     if (add) {
       setTimes(_objectSpread(_defineProperty({}, timeString, timeString), addedTimes));
     } else {
@@ -1263,6 +1265,7 @@ var TimeSignatureSelect = function TimeSignatureSelect(_ref) {
     })));
   };
 
+  var addedTimesArray = Object.values(addedTimes);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1279,9 +1282,9 @@ var TimeSignatureSelect = function TimeSignatureSelect(_ref) {
     onPress: function onPress(e) {
       return updateTimes("".concat(numeratorValue, "/").concat(denominatorValue), true);
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+  })), addedTimesArray.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.addedTagsContainer
-  }, Object.values(addedTimes).map(function (time) {
+  }, addedTimesArray.map(function (time) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
       style: styles.addedTagsText,
       key: time
@@ -1290,7 +1293,7 @@ var TimeSignatureSelect = function TimeSignatureSelect(_ref) {
         return updateTimes(time, false);
       }
     }, "X "), " ", time);
-  })));
+  })) : null);
 };
 
 var styles = {
@@ -1390,7 +1393,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var UploadTrack = function UploadTrack(_ref) {
-  var user = _ref.user;
+  var currentUser = _ref.currentUser;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -1426,6 +1429,7 @@ var UploadTrack = function UploadTrack(_ref) {
     setProgress('');
     setModal(false);
     setTags({});
+    setTimes({});
   };
 
   var handleFile = function handleFile(e) {
@@ -1508,7 +1512,8 @@ var styles = {
     marginTop: 10,
     padding: 10,
     border: '1px solid white',
-    borderRadius: 3
+    borderRadius: 3,
+    marginBottom: 20
   },
   text: {
     padding: 10,
@@ -1689,6 +1694,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/upload_track */ "./frontend/components/modular_components/upload_track.jsx");
+
 
 
 
@@ -1701,7 +1708,9 @@ var Feed = function Feed(_ref) {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text
-  }, "FEED"));
+  }, "FEED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    currentUser: currentUser
+  }));
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -2576,6 +2585,25 @@ var Filters = function Filters(_ref) {
       addedTimes = _useState6[0],
       setTimes = _useState6[1];
 
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    users: true,
+    tracks: true,
+    projects: true
+  }),
+      _useState8 = _slicedToArray(_useState7, 2),
+      enitityTypes = _useState8[0],
+      setEntityTypes = _useState8[1];
+
+  var clear = function clear() {
+    setTags({});
+    setTimes({});
+    setEntityTypes({
+      users: true,
+      tracks: true,
+      projects: true
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
@@ -2590,15 +2618,18 @@ var Filters = function Filters(_ref) {
   }), show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     text: "Apply"
   }), show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    onPress: function onPress(e) {
+      return clear();
+    },
     text: "Clear All"
   })), show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.filtersContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text
-  }, "Filters:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Filters:"), enitityTypes.tracks || enitityTypes.projects && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__["default"], {
     setTags: setTags,
     addedTags: addedTags
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), enitityTypes.tracks || enitityTypes.projects && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
     setTimes: setTimes,
     addedTimes: addedTimes
   }))));

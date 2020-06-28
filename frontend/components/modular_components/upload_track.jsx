@@ -6,7 +6,7 @@ import RegularButton from '../custom/regular_button';
 import TimeSignatureSelect from './time_signature_select';
 import RegularTextInput from '../custom/regular_text_input';
 
-let UploadTrack = ({ user }) => {
+let UploadTrack = ({ currentUser }) => {
     const [modal, setModal] = useState(false);
     const [progress, setProgress] = useState('')
     const [url, setUrl] = useState('');
@@ -22,6 +22,7 @@ let UploadTrack = ({ user }) => {
         setProgress('')
         setModal(false);
         setTags({});
+        setTimes({});
     }
 
     const handleFile = e => {
@@ -74,6 +75,7 @@ const styles = {
         padding: 10,
         border: '1px solid white',
         borderRadius: 3,
+        marginBottom: 20,
     },
     text: {
         padding: 10,

@@ -8,6 +8,21 @@ let Filters = ({ history }) => {
     const [show, setShow] = useState(false);
     const [addedTags, setTags] = useState({});
     const [addedTimes, setTimes] = useState({});
+    const [enitityTypes, setEntityTypes] = useState({
+        users: true,
+        tracks: true,
+        projects: true
+    });
+
+    const clear = () => {
+        setTags({});
+        setTimes({});
+        setEntityTypes({
+            users: true,
+            tracks: true,
+            projects: true
+        });
+    };
 
     return (
         <View style={styles.container}>
@@ -23,15 +38,17 @@ let Filters = ({ history }) => {
                     />}
                     {show &&
                     <RegularButton 
+                        onPress={e => clear()}
                         text='Clear All' 
                     />}
-
                 </View>
                 {show &&
                 <View style={styles.filtersContainer}>
                     <Text style={styles.text}>Filters:</Text> 
-                    <TagSuggest setTags={setTags} addedTags={addedTags} />
-                    <TimeSignatureSelect setTimes={setTimes} addedTimes={addedTimes} />
+                    {enitityTypes.tracks || enitityTypes.projects && 
+                    <TagSuggest setTags={setTags} addedTags={addedTags} />}
+                    {enitityTypes.tracks || enitityTypes.projects && 
+                    <TimeSignatureSelect setTimes={setTimes} addedTimes={addedTimes} />}
                 </View>}
             </View>
         </View>

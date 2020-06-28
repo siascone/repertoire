@@ -9,6 +9,7 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
     const [denominatorValue, setDenominator] = useState(4);
 
     const updateTimes = (timeString, add) => {
+        if (!denominatorValue || !numeratorValue) return null;
         if (add) {
             setTimes({ [timeString]: timeString, ...addedTimes });
         } else {
@@ -92,6 +93,8 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
         </View>
     );
 
+    const addedTimesArray = Object.values(addedTimes);
+
     return(
         <View style={styles.container}>
             <RegularText styles={styles} text='Time signatures' />
@@ -101,15 +104,19 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
                     <View style={styles.fractionBar}></View>
                     {denominator()}
                 </View>
-                <RegularButton text='Add' onPress={e => updateTimes(`${numeratorValue}/${denominatorValue}`, true)}/>
+                <RegularButton 
+                    text='Add' 
+                    onPress={e => updateTimes(`${numeratorValue}/${denominatorValue}`, true)}
+                />
             </View>
+            {addedTimesArray.length ? 
             <View style={styles.addedTagsContainer}>
-                {Object.values(addedTimes).map(time => 
+                {addedTimesArray.map(time => 
                     <Text style={styles.addedTagsText} key={time}>
                         <Text onPress={e => updateTimes(time, false)}>X </Text> {time}
                     </Text>
                 )}
-            </View>
+            </View> : null}
         </View>
     );
 };
