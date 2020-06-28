@@ -60,7 +60,7 @@ let TagSuggest = ({ addedTags, setTags }) => {
     const addedTagsArray = Object.values(addedTags)
 
     return(
-        <View>
+        <View style={styles.container}>
             <Autosuggest 
                 bank={smartBank}
                 styles={styles}
@@ -82,6 +82,9 @@ let TagSuggest = ({ addedTags, setTags }) => {
 };
 
 const styles = { 
+    container: {
+        zIndex: 2
+    },
     autosuggest_input: {
         color: 'white',
         padding: 10,

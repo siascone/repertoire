@@ -439,7 +439,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-/* harmony import */ var _texts_regular_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../texts/regular_text */ "./frontend/components/texts/regular_text.jsx");
+/* harmony import */ var _regular_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./regular_text */ "./frontend/components/buttons/regular_text.jsx");
 
 
 
@@ -452,7 +452,7 @@ var RegularButton = function RegularButton(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.container,
     onPress: onPress
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_texts_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
     text: text
   }));
 };
@@ -473,6 +473,189 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
 
 /***/ }),
 
+/***/ "./frontend/components/buttons/regular_text.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/buttons/regular_text.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var RegularText = function RegularText(_ref) {
+  var text = _ref.text,
+      style = _ref.style;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: _objectSpread({
+      color: 'white'
+    }, style)
+  }, text);
+};
+
+var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+  text: {
+    color: 'white'
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (RegularText);
+
+/***/ }),
+
+/***/ "./frontend/components/custom/regular_button.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/custom/regular_button.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _regular_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./regular_text */ "./frontend/components/custom/regular_text.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var RegularButton = function RegularButton(_ref) {
+  var _ref$text = _ref.text,
+      text = _ref$text === void 0 ? '' : _ref$text,
+      _ref$onPress = _ref.onPress,
+      onPress = _ref$onPress === void 0 ? function (e) {
+    return null;
+  } : _ref$onPress,
+      _ref$styles = _ref.styles,
+      styles = _ref$styles === void 0 ? {} : _ref$styles;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    onPress: onPress,
+    style: _objectSpread({
+      border: '1px solid white',
+      borderRadius: 3,
+      paddingLeft: 10,
+      paddingRight: 10,
+      paddingTop: 7,
+      paddingBottom: 7,
+      width: 'fit-content',
+      zIndex: -2
+    }, styles.regular_button_container)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: text
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (RegularButton);
+
+/***/ }),
+
+/***/ "./frontend/components/custom/regular_text.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/custom/regular_text.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var RegularText = function RegularText(_ref) {
+  var _ref$text = _ref.text,
+      text = _ref$text === void 0 ? {} : _ref$text,
+      _ref$styles = _ref.styles,
+      styles = _ref$styles === void 0 ? {} : _ref$styles;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: _objectSpread({
+      color: 'white'
+    }, styles.regular_text)
+  }, text);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (RegularText);
+
+/***/ }),
+
+/***/ "./frontend/components/custom/regular_text_input.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/custom/regular_text_input.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var RegularTextInput = function RegularTextInput(_ref) {
+  var value = _ref.value,
+      _ref$placeholder = _ref.placeholder,
+      placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,
+      _ref$onChange = _ref.onChange,
+      onChange = _ref$onChange === void 0 ? function (e) {
+    return null;
+  } : _ref$onChange,
+      _ref$onSubmitEditing = _ref.onSubmitEditing,
+      onSubmitEditing = _ref$onSubmitEditing === void 0 ? function (e) {
+    return null;
+  } : _ref$onSubmitEditing,
+      _ref$styles = _ref.styles,
+      styles = _ref$styles === void 0 ? {} : _ref$styles;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    placeholder: placeholder,
+    value: value,
+    onSubmitEditing: onSubmitEditing,
+    onChange: onChange,
+    style: _objectSpread({
+      border: '1px solid white',
+      borderRadius: 3,
+      color: 'white',
+      padding: 10
+    }, styles.regular_text_input)
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (RegularTextInput);
+
+/***/ }),
+
 /***/ "./frontend/components/header.jsx":
 /*!****************************************!*\
   !*** ./frontend/components/header.jsx ***!
@@ -486,6 +669,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_search_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modular_components/search_bar */ "./frontend/components/modular_components/search_bar.jsx");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -527,7 +712,7 @@ var Header = function Header(_ref) {
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
-  container: {
+  container: _defineProperty({
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -535,7 +720,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     backgroundColor: 'black',
     borderBottomColor: 'white',
     borderBottomWidth: 1
-  },
+  }, "backgroundColor", '#111111'),
   text: {
     color: 'white',
     fontWeight: 'bold',
@@ -602,7 +787,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Autosuggest = function Autosuggest(_ref) {
   var bank = _ref.bank,
-      styles = _ref.styles,
+      _ref$styles = _ref.styles,
+      styles = _ref$styles === void 0 ? {} : _ref$styles,
       placeholder = _ref.placeholder,
       getSuggestionText = _ref.getSuggestionText,
       getSuggestionItem = _ref.getSuggestionItem,
@@ -804,7 +990,9 @@ var TagSuggest = function TagSuggest(_ref) {
   };
 
   var addedTagsArray = Object.values(addedTags);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     bank: smartBank,
     styles: styles,
     placeholder: placeholder,
@@ -826,6 +1014,9 @@ var TagSuggest = function TagSuggest(_ref) {
 };
 
 var styles = {
+  container: {
+    zIndex: 2
+  },
   autosuggest_input: {
     color: 'white',
     padding: 10,
@@ -1023,6 +1214,207 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
 
 /***/ }),
 
+/***/ "./frontend/components/modular_components/time_signature_select.jsx":
+/*!**************************************************************************!*\
+  !*** ./frontend/components/modular_components/time_signature_select.jsx ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var TimeSignatureSelect = function TimeSignatureSelect(_ref) {
+  var addedTimes = _ref.addedTimes,
+      setTimes = _ref.setTimes;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(4),
+      _useState2 = _slicedToArray(_useState, 2),
+      numeratorValue = _useState2[0],
+      setNumerator = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(4),
+      _useState4 = _slicedToArray(_useState3, 2),
+      denominatorValue = _useState4[0],
+      setDenominator = _useState4[1];
+
+  var updateTimes = function updateTimes(timeString, add) {
+    if (add) {
+      setTimes(_objectSpread(_defineProperty({}, timeString, timeString), addedTimes));
+    } else {
+      var newTimes = Object.assign({}, addedTimes);
+      delete newTimes[timeString];
+      setTimes(newTags);
+    }
+  };
+
+  var relativePowerOf2 = function relativePowerOf2(num, int) {
+    num = num ? num : 1;
+    var exp = Math.log2(num);
+    var res = Math.pow(2, exp + int);
+    handleChange('denominator', res.toString())();
+  };
+
+  var handleChange = function handleChange(type, num) {
+    return function (e) {
+      num = num ? num : e.currentTarget.value;
+      if (isNaN(parseInt(num.slice(-1))) && num !== '') return null;
+
+      if (type === 'numerator') {
+        if (num < 1) {
+          setNumerator('');
+        } else {
+          setNumerator(parseInt(num));
+        }
+      } else {
+        if (!parseInt(num)) return setDenominator('');
+        var power = Math.log2(num);
+        var isIntegralPowerOf2 = !(power - Math.floor(power));
+
+        if (isIntegralPowerOf2) {
+          setDenominator(parseInt(num));
+        } else {
+          null;
+        }
+      }
+    };
+  };
+
+  var numerator = function numerator() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.numeratorDenominator
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      value: numeratorValue,
+      styles: styles,
+      onChange: handleChange('numerator')
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "+",
+      styles: styles,
+      onPress: handleChange('numerator', (numeratorValue + 1).toString())
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "-",
+      styles: styles,
+      onPress: handleChange('numerator', (numeratorValue - 1).toString())
+    })));
+  };
+
+  var denominator = function denominator() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.numeratorDenominator
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      value: denominatorValue,
+      styles: styles,
+      onChange: handleChange('denominator')
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "+",
+      styles: styles,
+      onPress: function onPress(e) {
+        return relativePowerOf2(denominatorValue, 1);
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "-",
+      styles: styles,
+      onPress: function onPress(e) {
+        return relativePowerOf2(denominatorValue, -1);
+      }
+    })));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    styles: styles,
+    text: "Time signatures"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.fractionAndButtonContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.fractionContainer
+  }, numerator(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.fractionBar
+  }), denominator()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    text: "Add",
+    onPress: function onPress(e) {
+      return updateTimes("".concat(numeratorValue, "/").concat(denominatorValue), true);
+    }
+  })), Object.values(addedTimes).map(function (time) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: time
+    });
+  }));
+};
+
+var styles = {
+  container: {
+    marginTop: 10
+  },
+  fractionAndButtonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  fractionContainer: {
+    width: 'fit-content',
+    marginRight: 10
+  },
+  numeratorDenominator: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  regular_text_input: {
+    textAlign: 'center',
+    marginRight: 10,
+    width: 230
+  },
+  regular_text: {
+    marginRight: 10,
+    marginBottom: 10
+  },
+  fractionBar: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'white',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  regular_button_container: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 1,
+    paddingBottom: 1,
+    width: '100%'
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (TimeSignatureSelect);
+
+/***/ }),
+
 /***/ "./frontend/components/modular_components/upload_track.jsx":
 /*!*****************************************************************!*\
   !*** ./frontend/components/modular_components/upload_track.jsx ***!
@@ -1036,7 +1428,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./autosuggest/tag_suggest */ "./frontend/components/modular_components/autosuggest/tag_suggest.jsx");
-/* harmony import */ var _buttons_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../buttons/regular_button */ "./frontend/components/buttons/regular_button.jsx");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
+/* harmony import */ var _time_signature_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./time_signature_select */ "./frontend/components/modular_components/time_signature_select.jsx");
+/* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1048,6 +1442,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -1076,6 +1472,11 @@ var UploadTrack = function UploadTrack(_ref) {
       _useState8 = _slicedToArray(_useState7, 2),
       addedTags = _useState8[0],
       setTags = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState10 = _slicedToArray(_useState9, 2),
+      addedTimes = _useState10[0],
+      setTimes = _useState10[1];
 
   var handleSave = function handleSave(e) {
     cancel();
@@ -1136,21 +1537,21 @@ var UploadTrack = function UploadTrack(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
     src: url,
     type: "video/mp4"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-    style: styles.input,
-    placeholder: "title"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-    style: styles.input,
-    placeholder: "time signature"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    placeholder: "title",
+    styles: styles
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     addedTags: addedTags,
     setTags: setTags
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    addedTimes: addedTimes,
+    setTimes: setTimes
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.buttonsContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "Cancel",
     onPress: cancel
-  }), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "Save",
     onPress: handleSave
   }) : null))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
@@ -1163,7 +1564,7 @@ var UploadTrack = function UploadTrack(_ref) {
   }, "+"));
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   modalContainer: {
     marginTop: 10,
     padding: 10,
@@ -1193,19 +1594,8 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  input: {
-    color: 'white',
-    padding: 10,
-    marginTop: 10,
-    border: '1px solid white',
-    borderRadius: 3
-  },
-  cancel: {
-    border: '1px solid white',
-    borderRadius: 3,
-    width: 'fit-content',
-    marginTop: 10,
-    zIndex: -1
+  regular_text_input: {
+    marginTop: 10
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -1214,7 +1604,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     width: 130,
     justifyContent: 'space-between'
   }
-});
+};
 /* harmony default export */ __webpack_exports__["default"] = (UploadTrack);
 
 /***/ }),
@@ -2652,46 +3042,6 @@ var mdp = function mdp(dispatch) {
 
 Splash = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(msp, mdp)(Splash);
 /* harmony default export */ __webpack_exports__["default"] = (Splash);
-
-/***/ }),
-
-/***/ "./frontend/components/texts/regular_text.jsx":
-/*!****************************************************!*\
-  !*** ./frontend/components/texts/regular_text.jsx ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-var RegularText = function RegularText(_ref) {
-  var text = _ref.text,
-      style = _ref.style;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: _objectSpread({
-      color: 'white'
-    }, style)
-  }, text);
-};
-
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
-  text: {
-    color: 'white'
-  }
-});
-/* harmony default export */ __webpack_exports__["default"] = (RegularText);
 
 /***/ }),
 

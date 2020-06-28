@@ -3,7 +3,7 @@ import { View, TextInput, TouchableOpacity } from 'react-native';
 
 const Autosuggest = ({ 
     bank, // an object of suggestable objects in the form { id1: obj1, id2: obj2 }
-    styles, // { autosuggest_container, autosuggest_input, suggestions_container, suggestion_item_container }
+    styles = {}, // autosuggest_container, autosuggest_input, suggestions_container, suggestion_item_container
     placeholder, // text to be displayed when input is empty
     getSuggestionText, // takes a bank item and returns text to be checked in filterSuggestions
     getSuggestionItem, // takes a bank item and returns a suggestion item component

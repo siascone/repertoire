@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, } from 'react-native';
 
 import TagSuggest from './autosuggest/tag_suggest';
-import RegularButton from '../buttons/regular_button';
+import RegularButton from '../custom/regular_button';
+import TimeSignatureSelect from './time_signature_select';
+import RegularTextInput from '../custom/regular_text_input';
 
 let UploadTrack = ({ user }) => {
     const [modal, setModal] = useState(false);
     const [progress, setProgress] = useState('')
     const [url, setUrl] = useState('');
     const [addedTags, setTags] = useState({});
+    const [addedTimes, setTimes] = useState({});
 
     const handleSave = e => {
         cancel();
@@ -49,9 +52,9 @@ let UploadTrack = ({ user }) => {
                 <video width="320" height="240" style={{backgroundColor: 'white', borderRadius: 3}} controls>
                     <source src={url} type="video/mp4"/>
                 </video>
-                <TextInput style={styles.input} placeholder='title'></TextInput>
-                <TextInput style={styles.input} placeholder='time signature'></TextInput>
+                <RegularTextInput placeholder='title' styles={styles}/>
                 <TagSuggest addedTags={addedTags} setTags={setTags} />
+                <TimeSignatureSelect addedTimes={addedTimes} setTimes={setTimes}/>
                 <View style={styles.buttonsContainer}>
                     <RegularButton text='Cancel' onPress={cancel} />
                     {url ? <RegularButton text='Save' onPress={handleSave}/> : null}
@@ -65,7 +68,7 @@ let UploadTrack = ({ user }) => {
     );
 };
 
-const styles = StyleSheet.create({
+const styles = {
     modalContainer: {
         marginTop: 10,
         padding: 10,
@@ -95,19 +98,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    input: {
-        color: 'white',
-        padding: 10,
+    regular_text_input: {
         marginTop: 10,
-        border: '1px solid white',
-        borderRadius: 3,
-    },
-    cancel: {
-        border: '1px solid white',
-        borderRadius: 3,
-        width: 'fit-content',
-        marginTop: 10,
-        zIndex: -1
     },
     buttonsContainer: {
         flexDirection: 'row',
@@ -116,6 +108,6 @@ const styles = StyleSheet.create({
         width: 130,
         justifyContent: 'space-between',
     }
-})
+};
 
 export default UploadTrack;
