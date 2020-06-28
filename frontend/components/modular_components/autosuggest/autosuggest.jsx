@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { View, TextInput, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import RegularTextInput from '../../custom/regular_text_input';
+import RegularButton from '../../custom/regular_button';
 
 const Autosuggest = ({ 
-    bank, // an object of suggestable objects in the form { id1: obj1, id2: obj2 }
+    wholeBank, // the whole bank of items, used to setNoExactMatches
+    smartBank, // an object of suggestable objects excluding added items in the form { id1: obj1, id2: obj2 }
     styles = {}, // autosuggest_container, autosuggest_input, suggestions_container, suggestion_item_container
     placeholder, // text to be displayed when input is empty
     getSuggestionText, // takes a bank item and returns text to be checked in filterSuggestions
@@ -12,6 +14,7 @@ const Autosuggest = ({
 }) => {
     const [suggestions, setSuggestions] = useState([]);
     const [input, setInput] = useState('');
+    const [noExactMatches, setNoExactMatches] = useState(false);
     const inputField = useRef(null);
 
     const handleBlur = e => {
@@ -19,6 +22,7 @@ const Autosuggest = ({
         if (!bool) {
             setInput('');
             setSuggestions([]);
+            setNoExactMatches(false);
         }
     };
 
@@ -26,6 +30,7 @@ const Autosuggest = ({
         onSuggestionSelected(suggestion);
         setInput('');
         setSuggestions([]);
+        setNoExactMatches(false);
         inputField.current.focus();
     };
 
@@ -40,12 +45,14 @@ const Autosuggest = ({
     };
 
     const filterSuggestions = input => {
+        !wholeBank.includes(input.trim().toLowerCase()) && input ? 
+            setNoExactMatches(true) : setNoExactMatches(false);
         const escapedValue = escapeRegexCharacters(input.trim());
         if (escapedValue === '') {
             return setSuggestions([]);
         }
         const regex = new RegExp('\\b' + escapedValue, 'i');
-        const result = Object.values(bank).filter(item => regex.test(getSuggestionText(item)));
+        const result = Object.values(smartBank).filter(item => regex.test(getSuggestionText(item)));
         return setSuggestions(result);
     };
 
@@ -53,6 +60,8 @@ const Autosuggest = ({
         <View 
             onBlur={e => handleBlur(e)} 
             style={{ position: 'relative', ...styles.autosuggest_container }}>
+            {noExactMatches &&
+            <RegularButton text='+' styles={buttonStyles} />}
             <RegularTextInput
                 reff={inputField}
                 value={input}
@@ -60,6 +69,7 @@ const Autosuggest = ({
                 placeholder={placeholder} 
                 onChange={e => handleChange(e)}
             />
+            
             {suggestions.length ?
             <View 
                 style={{
@@ -79,6 +89,15 @@ const Autosuggest = ({
             </View> : null}
         </View>
     );
+};
+
+const buttonStyles = {
+    regular_button_container: {
+        position: 'absolute',
+        top: 13,
+        right: 5,
+        zIndex: 3,
+    },
 };
 
 export default Autosuggest;

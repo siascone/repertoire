@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         width: '50%'
     },
     input: {
+        backgroundColor: 'black',
         border: '1px solid white',
         paddingLeft: 10,
         paddingRight: 45,

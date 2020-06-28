@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import Autosuggest from './autosuggest';
-import { withRouter } from 'react-router-dom';
 import RegularText from '../../custom/regular_text';
 
 let TagSuggest = ({ addedTags, setTags }) => {
@@ -31,6 +30,9 @@ let TagSuggest = ({ addedTags, setTags }) => {
             id: 6 
         },
     };
+    
+    const [smartBank, setBank] = useState(tags);
+    const addedTagsArray = Object.values(addedTags)
 
     const updateTags = (tag, add) => {
         if (add) {
@@ -42,9 +44,6 @@ let TagSuggest = ({ addedTags, setTags }) => {
         }
     };
 
-    const [smartBank, setBank] = useState(tags);
-
-    const placeholder = 'tags'
     const getSuggestionText = tag => tag.name
     const getSuggestionItem = tag => <Text style={styles.suggestionText}>{tag.name}</Text>
     const addTag = tag => { 
@@ -58,7 +57,6 @@ let TagSuggest = ({ addedTags, setTags }) => {
         setBank({ [tag.id]: tag, ...smartBank })
     }
 
-    const addedTagsArray = Object.values(addedTags)
 
     return(
         <View style={styles.container}>
@@ -72,20 +70,23 @@ let TagSuggest = ({ addedTags, setTags }) => {
                 )}
             </View> : null}
             <Autosuggest 
-                bank={smartBank}
+                wholeBank={Object.values(tags).map(tag => tag.name)}
+                smartBank={smartBank}
                 styles={styles}
-                placeholder={placeholder}
+                placeholder='tags'
                 getSuggestionText={getSuggestionText}
                 getSuggestionItem={getSuggestionItem}
                 onSuggestionSelected={addTag}
             />
+            
         </View>
     );
 };
 
 const styles = { 
     container: {
-        zIndex: 2
+        zIndex: 2,
+        position: 'relative',
     },
     autosuggest_input: {
         marginTop: 10,

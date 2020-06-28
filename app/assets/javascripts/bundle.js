@@ -684,6 +684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -706,8 +707,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Autosuggest = function Autosuggest(_ref) {
-  var bank = _ref.bank,
+  var wholeBank = _ref.wholeBank,
+      smartBank = _ref.smartBank,
       _ref$styles = _ref.styles,
       styles = _ref$styles === void 0 ? {} : _ref$styles,
       placeholder = _ref.placeholder,
@@ -725,6 +728,11 @@ var Autosuggest = function Autosuggest(_ref) {
       input = _useState4[0],
       setInput = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      noExactMatches = _useState6[0],
+      setNoExactMatches = _useState6[1];
+
   var inputField = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
 
   var handleBlur = function handleBlur(e) {
@@ -733,6 +741,7 @@ var Autosuggest = function Autosuggest(_ref) {
     if (!bool) {
       setInput('');
       setSuggestions([]);
+      setNoExactMatches(false);
     }
   };
 
@@ -740,6 +749,7 @@ var Autosuggest = function Autosuggest(_ref) {
     onSuggestionSelected(suggestion);
     setInput('');
     setSuggestions([]);
+    setNoExactMatches(false);
     inputField.current.focus();
   };
 
@@ -754,6 +764,7 @@ var Autosuggest = function Autosuggest(_ref) {
   };
 
   var filterSuggestions = function filterSuggestions(input) {
+    !wholeBank.includes(input.trim().toLowerCase()) && input ? setNoExactMatches(true) : setNoExactMatches(false);
     var escapedValue = escapeRegexCharacters(input.trim());
 
     if (escapedValue === '') {
@@ -761,7 +772,7 @@ var Autosuggest = function Autosuggest(_ref) {
     }
 
     var regex = new RegExp('\\b' + escapedValue, 'i');
-    var result = Object.values(bank).filter(function (item) {
+    var result = Object.values(smartBank).filter(function (item) {
       return regex.test(getSuggestionText(item));
     });
     return setSuggestions(result);
@@ -774,7 +785,10 @@ var Autosuggest = function Autosuggest(_ref) {
     style: _objectSpread({
       position: 'relative'
     }, styles.autosuggest_container)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, noExactMatches && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "+",
+    styles: buttonStyles
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     reff: inputField,
     value: input,
     styles: {
@@ -802,6 +816,14 @@ var Autosuggest = function Autosuggest(_ref) {
   })) : null);
 };
 
+var buttonStyles = {
+  regular_button_container: {
+    position: 'absolute',
+    top: 13,
+    right: 5,
+    zIndex: 3
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = (Autosuggest);
 
 /***/ }),
@@ -819,8 +841,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _autosuggest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./autosuggest */ "./frontend/components/modular_components/autosuggest/autosuggest.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -832,13 +859,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -875,6 +895,13 @@ var TagSuggest = function TagSuggest(_ref) {
     }
   };
 
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(tags),
+      _useState2 = _slicedToArray(_useState, 2),
+      smartBank = _useState2[0],
+      setBank = _useState2[1];
+
+  var addedTagsArray = Object.values(addedTags);
+
   var updateTags = function updateTags(tag, add) {
     if (add) {
       setTags(_objectSpread(_defineProperty({}, tag.id, tag), addedTags));
@@ -884,13 +911,6 @@ var TagSuggest = function TagSuggest(_ref) {
       setTags(newTags);
     }
   };
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(tags),
-      _useState2 = _slicedToArray(_useState, 2),
-      smartBank = _useState2[0],
-      setBank = _useState2[1];
-
-  var placeholder = 'tags';
 
   var getSuggestionText = function getSuggestionText(tag) {
     return tag.name;
@@ -914,10 +934,9 @@ var TagSuggest = function TagSuggest(_ref) {
     setBank(_objectSpread(_defineProperty({}, tag.id, tag), smartBank));
   };
 
-  var addedTagsArray = Object.values(addedTags);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "Tags"
   }), addedTagsArray.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.addedTagsContainer
@@ -931,9 +950,12 @@ var TagSuggest = function TagSuggest(_ref) {
       }
     }, "X "), " ", tag.name);
   })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    bank: smartBank,
+    wholeBank: Object.values(tags).map(function (tag) {
+      return tag.name;
+    }),
+    smartBank: smartBank,
     styles: styles,
-    placeholder: placeholder,
+    placeholder: "tags",
     getSuggestionText: getSuggestionText,
     getSuggestionItem: getSuggestionItem,
     onSuggestionSelected: addTag
@@ -942,7 +964,8 @@ var TagSuggest = function TagSuggest(_ref) {
 
 var styles = {
   container: {
-    zIndex: 2
+    zIndex: 2,
+    position: 'relative'
   },
   autosuggest_input: {
     marginTop: 10
@@ -1111,6 +1134,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     width: '50%'
   },
   input: {
+    backgroundColor: 'black',
     border: '1px solid white',
     paddingLeft: 10,
     paddingRight: 45,
