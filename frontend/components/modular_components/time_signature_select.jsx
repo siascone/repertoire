@@ -98,6 +98,14 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
     return(
         <View style={styles.container}>
             <RegularText styles={styles} text='Time signatures' />
+            {addedTimesArray.length ?
+            <View style={styles.addedTagsContainer}>
+                {addedTimesArray.map(time =>
+                    <Text style={styles.addedTagsText} key={time}>
+                        <Text onPress={e => updateTimes(time, false)}>X </Text> {time}
+                    </Text>
+                )}
+            </View> : null}
             <View style={styles.fractionAndButtonContainer}>
                 <View style={styles.fractionContainer}>
                     {numerator()}
@@ -109,14 +117,6 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
                     onPress={e => updateTimes(`${numeratorValue}/${denominatorValue}`, true)}
                 />
             </View>
-            {addedTimesArray.length ? 
-            <View style={styles.addedTagsContainer}>
-                {addedTimesArray.map(time => 
-                    <Text style={styles.addedTagsText} key={time}>
-                        <Text onPress={e => updateTimes(time, false)}>X </Text> {time}
-                    </Text>
-                )}
-            </View> : null}
         </View>
     );
 };
@@ -128,6 +128,7 @@ const styles = {
     fractionAndButtonContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginTop: 10,
     },
     fractionContainer: {
         width: 'fit-content',
@@ -144,7 +145,6 @@ const styles = {
     },
     regular_text: {
         marginRight: 10,
-        marginBottom: 10,
     },
     fractionBar: {
         borderBottomWidth: 1,
@@ -165,6 +165,7 @@ const styles = {
         marginTop: 10,
     },
     addedTagsText: {
+        backgroundColor: 'black',
         color: 'white',
         border: '1px solid white',
         borderRadius: 20,

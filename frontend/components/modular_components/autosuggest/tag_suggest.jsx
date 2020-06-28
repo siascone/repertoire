@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import Autosuggest from './autosuggest';
 import { withRouter } from 'react-router-dom';
+import RegularText from '../../custom/regular_text';
 
 let TagSuggest = ({ addedTags, setTags }) => {
     const tags = {
@@ -61,6 +62,15 @@ let TagSuggest = ({ addedTags, setTags }) => {
 
     return(
         <View style={styles.container}>
+            <RegularText text='Tags' />
+            {addedTagsArray.length ?
+            <View style={styles.addedTagsContainer}>
+                {addedTagsArray.reverse().map(tag =>
+                    <Text style={styles.addedTagsText} key={tag.id}>
+                        <Text onPress={e => removeTag(tag)}>X </Text> {tag.name}
+                    </Text>
+                )}
+            </View> : null}
             <Autosuggest 
                 bank={smartBank}
                 styles={styles}
@@ -69,14 +79,6 @@ let TagSuggest = ({ addedTags, setTags }) => {
                 getSuggestionItem={getSuggestionItem}
                 onSuggestionSelected={addTag}
             />
-            {addedTagsArray.length?
-            <View style={styles.addedTagsContainer}>
-                {addedTagsArray.reverse().map(tag =>
-                    <Text style={styles.addedTagsText} key={tag.id}>
-                        <Text onPress={e => removeTag(tag)}>X </Text> {tag.name}
-                    </Text>
-                )}
-            </View> : null}
         </View>
     );
 };
@@ -86,11 +88,7 @@ const styles = {
         zIndex: 2
     },
     autosuggest_input: {
-        color: 'white',
-        padding: 10,
         marginTop: 10,
-        border: '1px solid white',
-        borderRadius: 3,
     }, 
     suggestionText: {
         color: 'white',
@@ -101,6 +99,7 @@ const styles = {
         marginTop: 10,
     },
     addedTagsText: {
+        backgroundColor: 'black',
         color: 'white',
         border: '1px solid white',
         borderRadius: 20,
@@ -114,7 +113,7 @@ const styles = {
         float: 'left',
     },
     suggestions_container: {
-        top: 50,
+        top: 48,
         zIndex: 2,
         width: '100%',
         border: '1px solid white',

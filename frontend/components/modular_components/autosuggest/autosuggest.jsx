@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
+import RegularTextInput from '../../custom/regular_text_input';
 
 const Autosuggest = ({ 
     bank, // an object of suggestable objects in the form { id1: obj1, id2: obj2 }
@@ -52,13 +53,13 @@ const Autosuggest = ({
         <View 
             onBlur={e => handleBlur(e)} 
             style={{ position: 'relative', ...styles.autosuggest_container }}>
-            <TextInput
-                ref={inputField}
+            <RegularTextInput
+                reff={inputField}
                 value={input}
-                style={styles.autosuggest_input} 
+                styles={{regular_text_input: styles.autosuggest_input}} 
                 placeholder={placeholder} 
                 onChange={e => handleChange(e)}
-            ></TextInput>
+            />
             {suggestions.length ?
             <View 
                 style={{

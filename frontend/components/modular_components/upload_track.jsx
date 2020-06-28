@@ -50,7 +50,7 @@ let UploadTrack = ({ currentUser }) => {
                 {progress ? <Text>Upload progress: {progress}</Text> : null}
             </View>
             <View>
-                <video width="320" height="240" style={{backgroundColor: 'white', borderRadius: 3}} controls>
+                <video width="600" height="350" style={{backgroundColor: 'white', borderRadius: 3}} controls>
                     <source src={url} type="video/mp4"/>
                 </video>
                 <RegularTextInput placeholder='title' styles={styles}/>
@@ -71,6 +71,7 @@ let UploadTrack = ({ currentUser }) => {
 
 const styles = {
     modalContainer: {
+        backgroundColor: '#111111',
         marginTop: 10,
         padding: 10,
         border: '1px solid white',
@@ -102,6 +103,7 @@ const styles = {
     },
     regular_text_input: {
         marginTop: 10,
+        marginBottom: 10,
     },
     buttonsContainer: {
         flexDirection: 'row',

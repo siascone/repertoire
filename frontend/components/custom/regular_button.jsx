@@ -10,6 +10,7 @@ let RegularButton = ({
     <TouchableOpacity 
         onPress={onPress}
         style={{
+            backgroundColor: 'black',
             border: '1px solid white',
             borderRadius: 3,
             paddingLeft: 10,
