@@ -5,6 +5,7 @@ import SearchBar from './modular_components/search_bar';
 const Header = ({history, setMenu, menu}) => {
 
     const navigateTo = path => {
+        if (history.location.pathname === path) return window.location.reload()
         history.push(path);
         setMenu(false);
     };

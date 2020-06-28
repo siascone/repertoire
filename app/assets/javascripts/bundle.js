@@ -599,6 +599,7 @@ var Header = function Header(_ref) {
       menu = _ref.menu;
 
   var navigateTo = function navigateTo(path) {
+    if (history.location.pathname === path) return window.location.reload();
     history.push(path);
     setMenu(false);
   };
