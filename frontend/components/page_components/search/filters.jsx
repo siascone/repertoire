@@ -45,9 +45,9 @@ let Filters = ({ history }) => {
                 {show &&
                 <View style={styles.filtersContainer}>
                     <Text style={styles.text}>Filters:</Text> 
-                    {enitityTypes.tracks || enitityTypes.projects && 
+                    {(enitityTypes.tracks || enitityTypes.projects) && 
                     <TagSuggest setTags={setTags} addedTags={addedTags} />}
-                    {enitityTypes.tracks || enitityTypes.projects && 
+                    {(enitityTypes.tracks || enitityTypes.projects) && 
                     <TimeSignatureSelect setTimes={setTimes} addedTimes={addedTimes} />}
                 </View>}
             </View>

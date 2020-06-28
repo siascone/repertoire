@@ -2626,10 +2626,10 @@ var Filters = function Filters(_ref) {
     style: styles.filtersContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text
-  }, "Filters:"), enitityTypes.tracks || enitityTypes.projects && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Filters:"), (enitityTypes.tracks || enitityTypes.projects) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__["default"], {
     setTags: setTags,
     addedTags: addedTags
-  }), enitityTypes.tracks || enitityTypes.projects && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), (enitityTypes.tracks || enitityTypes.projects) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
     setTimes: setTimes,
     addedTimes: addedTimes
   }))));
