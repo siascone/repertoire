@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import RegularButton from '../../buttons/regular_button';
+import RegularButton from '../../custom/regular_button';
 import TagSuggest from '../../modular_components/autosuggest/tag_suggest';
+import TimeSignatureSelect from '../../modular_components/time_signature_select';
 
 let Filters = ({ history }) => {
     const [show, setShow] = useState(false);
     const [addedTags, setTags] = useState({});
+    const [addedTimes, setTimes] = useState({});
 
     return (
         <View style={styles.container}>
@@ -29,9 +31,7 @@ let Filters = ({ history }) => {
                 <View style={styles.filtersContainer}>
                     <Text style={styles.text}>Filters:</Text> 
                     <TagSuggest setTags={setTags} addedTags={addedTags} />
-                    <Text style={styles.text}>Filter 2</Text> 
-                    <Text style={styles.text}>Filter 3</Text> 
-                    <Text style={styles.text}>Filter 4</Text> 
+                    <TimeSignatureSelect setTimes={setTimes} addedTimes={addedTimes} />
                 </View>}
             </View>
         </View>

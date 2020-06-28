@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import RegularTextInput from '../custom/regular_text_input';
 import RegularText from '../custom/regular_text';
 import RegularButton from '../custom/regular_button';
@@ -14,7 +14,7 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
         } else {
             const newTimes = Object.assign({}, addedTimes)
             delete newTimes[timeString];
-            setTimes(newTags);
+            setTimes(newTimes);
         }
     };
 
@@ -103,7 +103,13 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
                 </View>
                 <RegularButton text='Add' onPress={e => updateTimes(`${numeratorValue}/${denominatorValue}`, true)}/>
             </View>
-            {Object.values(addedTimes).map(time => <RegularText text={time} />)}
+            <View style={styles.addedTagsContainer}>
+                {Object.values(addedTimes).map(time => 
+                    <Text style={styles.addedTagsText} key={time}>
+                        <Text onPress={e => updateTimes(time, false)}>X </Text> {time}
+                    </Text>
+                )}
+            </View>
         </View>
     );
 };
@@ -127,7 +133,7 @@ const styles = {
     regular_text_input: {
         textAlign: 'center',
         marginRight: 10,
-        width: 230,
+        width: 220,
     },
     regular_text: {
         marginRight: 10,
@@ -145,7 +151,25 @@ const styles = {
         paddingTop: 1,
         paddingBottom: 1,
         width: '100%'
-    }
+    },
+    addedTagsContainer: {
+        display: 'block',
+        zIndex: -1,
+        marginTop: 10,
+    },
+    addedTagsText: {
+        color: 'white',
+        border: '1px solid white',
+        borderRadius: 20,
+        paddingTop: 7,
+        paddingBottom: 7,
+        paddingRight: 10,
+        paddingLeft: 10,
+        margin: 2,
+        alignItems: 'center',
+        width: 'fit-content',
+        float: 'left',
+    },
 };
 
 export default TimeSignatureSelect;
