@@ -4,13 +4,16 @@ import RegularTextInput from '../../custom/regular_text_input';
 import RegularButton from '../../custom/regular_button';
 
 const Autosuggest = ({ 
+    allowAdd, // boolean controlling appearance of + button when noExactMatches
+    onAdd, // fcn fires when + button is pressed, takes input value
     wholeBank, // the whole bank of items, used to setNoExactMatches
     smartBank, // an object of suggestable objects excluding added items in the form { id1: obj1, id2: obj2 }
-    styles = {}, // autosuggest_container, autosuggest_input, suggestions_container, suggestion_item_container
     placeholder, // text to be displayed when input is empty
-    getSuggestionText, // takes a bank item and returns text to be checked in filterSuggestions
-    getSuggestionItem, // takes a bank item and returns a suggestion item component
-    onSuggestionSelected, // takes a bank item. fires when item is selected (suggestion list and input are automatically cleared)
+    onValueChange, // fcn fires when input changes, takes text value of the input
+    getSuggestionText, // fcn takes a bank item and returns text to be checked in filterSuggestions
+    getSuggestionItem, // fcn takes a bank item and returns a suggestion item component
+    onSuggestionSelected, // fcn takes the selected bank item. fires when item is selected (suggestion list and input are automatically cleared)
+    styles = {}, // autosuggest_container, autosuggest_input, suggestions_container, suggestion_item_container
 }) => {
     const [suggestions, setSuggestions] = useState([]);
     const [input, setInput] = useState('');
@@ -37,6 +40,7 @@ const Autosuggest = ({
     const handleChange = e => {
         const value = e.currentTarget.value
         setInput(value);
+        onValueChange(value)
         filterSuggestions(value);
     };
     
@@ -60,8 +64,8 @@ const Autosuggest = ({
         <View 
             onBlur={e => handleBlur(e)} 
             style={{ position: 'relative', ...styles.autosuggest_container }}>
-            {noExactMatches &&
-            <RegularButton text='+' styles={buttonStyles} />}
+            {(noExactMatches && allowAdd) &&
+            <RegularButton text='+' styles={buttonStyles} onPress={e => onAdd(e)}/>}
             <RegularTextInput
                 reff={inputField}
                 value={input}

@@ -295,11 +295,13 @@ var createTag = function createTag(tag) {
   };
 };
 var getTagsByQueryString = function getTagsByQueryString(queryString) {
-  return Object(_util_tag_util__WEBPACK_IMPORTED_MODULE_0__["$getTagsByQueryString"])(queryString).then(function (res) {
-    return dispatch(receiveTags(res.tags));
-  }).fail(function (err) {
-    return dispatch(receiveTagErrors(err));
-  });
+  return function (dispatch) {
+    return Object(_util_tag_util__WEBPACK_IMPORTED_MODULE_0__["$getTagsByQueryString"])(queryString).then(function (res) {
+      return dispatch(receiveTags(res.tags));
+    }).fail(function (err) {
+      return dispatch(receiveTagErrors(err));
+    });
+  };
 };
 
 /***/ }),
@@ -769,14 +771,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Autosuggest = function Autosuggest(_ref) {
-  var wholeBank = _ref.wholeBank,
+  var allowAdd = _ref.allowAdd,
+      onAdd = _ref.onAdd,
+      wholeBank = _ref.wholeBank,
       smartBank = _ref.smartBank,
-      _ref$styles = _ref.styles,
-      styles = _ref$styles === void 0 ? {} : _ref$styles,
       placeholder = _ref.placeholder,
+      onValueChange = _ref.onValueChange,
       getSuggestionText = _ref.getSuggestionText,
       getSuggestionItem = _ref.getSuggestionItem,
-      onSuggestionSelected = _ref.onSuggestionSelected;
+      onSuggestionSelected = _ref.onSuggestionSelected,
+      _ref$styles = _ref.styles,
+      styles = _ref$styles === void 0 ? {} : _ref$styles;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -816,6 +821,7 @@ var Autosuggest = function Autosuggest(_ref) {
   var handleChange = function handleChange(e) {
     var value = e.currentTarget.value;
     setInput(value);
+    onValueChange(value);
     filterSuggestions(value);
   };
 
@@ -845,9 +851,12 @@ var Autosuggest = function Autosuggest(_ref) {
     style: _objectSpread({
       position: 'relative'
     }, styles.autosuggest_container)
-  }, noExactMatches && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, noExactMatches && allowAdd && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "+",
-    styles: buttonStyles
+    styles: buttonStyles,
+    onPress: function onPress(e) {
+      return onAdd(e);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     reff: inputField,
     value: input,
@@ -902,6 +911,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _autosuggest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./autosuggest */ "./frontend/components/modular_components/autosuggest/autosuggest.jsx");
 /* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/tag_actions */ "./frontend/actions/tag_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -925,10 +936,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+
 var TagSuggest = function TagSuggest(_ref) {
-  var addedTags = _ref.addedTags,
-      setTags = _ref.setTags;
-  var tags = {
+  var tags = _ref.tags,
+      createTag = _ref.createTag,
+      getTagsByQueryString = _ref.getTagsByQueryString,
+      addedTags = _ref.addedTags,
+      setTags = _ref.setTags,
+      allowTagCreation = _ref.allowTagCreation;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {});
+  tags = tags || {
     1: {
       name: 'rock',
       id: 1
@@ -970,6 +989,20 @@ var TagSuggest = function TagSuggest(_ref) {
       delete newTags[tag.id];
       setTags(newTags);
     }
+  };
+
+  var onValueChange = function onValueChange(value) {
+    var params = new URLSearchParams();
+    params.append('name', value);
+    var queryString = params.toString();
+    getTagsByQueryString(queryString);
+  };
+
+  var onAdd = function onAdd(e) {
+    var name = e.currentTarget.value;
+    createTag({
+      name: name
+    });
   };
 
   var getSuggestionText = function getSuggestionText(tag) {
@@ -1018,7 +1051,10 @@ var TagSuggest = function TagSuggest(_ref) {
     placeholder: "tags",
     getSuggestionText: getSuggestionText,
     getSuggestionItem: getSuggestionItem,
-    onSuggestionSelected: addTag
+    onSuggestionSelected: addTag,
+    allowAdd: allowTagCreation,
+    onValueChange: onValueChange,
+    onAdd: onAdd
   }));
 };
 
@@ -1067,6 +1103,25 @@ var styles = {
     paddingBottom: 5
   }
 };
+
+var msp = function msp(state) {
+  return {
+    tags: state.tags
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    createTag: function createTag(tag) {
+      return dispatch(Object(_actions_tag_actions__WEBPACK_IMPORTED_MODULE_4__["createTag"])(tag));
+    },
+    getTagsByQueryString: function getTagsByQueryString(queryString) {
+      return dispatch(Object(_actions_tag_actions__WEBPACK_IMPORTED_MODULE_4__["getTagsByQueryString"])(queryString));
+    }
+  };
+};
+
+TagSuggest = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(msp, mdp)(TagSuggest);
 /* harmony default export */ __webpack_exports__["default"] = (TagSuggest);
 
 /***/ }),
@@ -1580,7 +1635,8 @@ var UploadTrack = function UploadTrack(_ref) {
     styles: styles
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     addedTags: addedTags,
-    setTags: setTags
+    setTags: setTags,
+    allowTagCreation: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
     addedTimes: addedTimes,
     setTimes: setTimes
@@ -2769,7 +2825,8 @@ var Filters = function Filters(_ref) {
     style: styles.text
   }, "Filters:"), checkboxes(), (enitityTypes.tracks || enitityTypes.projects) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__["default"], {
     setTags: setTags,
-    addedTags: addedTags
+    addedTags: addedTags,
+    allowTagCreation: false
   }), (enitityTypes.tracks || enitityTypes.projects) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
     setTimes: setTimes,
     addedTimes: addedTimes

@@ -1,6 +1,6 @@
 export const RECEIVE_TAG = 'RECEIVE_TAG';
 export const RECEIVE_TAGS = 'RECEIVE_TAGS';
-export const RECEIVE_TAG_ERRORS = 'RECEIVE_TAG_ERRORS'
+export const RECEIVE_TAG_ERRORS = 'RECEIVE_TAG_ERRORS';
 
 import { 
     $createTag,
@@ -28,7 +28,7 @@ export const createTag = tag => dispatch => (
     .fail(err => dispatch(receiveTagErrors(err)))
 );
 
-export const getTagsByQueryString = queryString => (
+export const getTagsByQueryString = queryString => dispatch => (
     $getTagsByQueryString(queryString)
     .then(res => dispatch(receiveTags(res.tags)))
     .fail(err => dispatch(receiveTagErrors(err)))

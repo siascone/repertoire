@@ -2,9 +2,24 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import Autosuggest from './autosuggest';
 import RegularText from '../../custom/regular_text';
+import { createTag, getTagsByQueryString } from '../../../actions/tag_actions';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
-let TagSuggest = ({ addedTags, setTags }) => {
-    const tags = {
+let TagSuggest = ({ 
+    tags, 
+    createTag, 
+    getTagsByQueryString, 
+    addedTags, 
+    setTags, 
+    allowTagCreation,
+}) => {
+
+    useEffect(() => {
+        
+    })
+
+    tags = tags || {
         1: { 
             name: 'rock',
             id: 1 
@@ -32,7 +47,7 @@ let TagSuggest = ({ addedTags, setTags }) => {
     };
     
     const [smartBank, setBank] = useState(tags);
-    const addedTagsArray = Object.values(addedTags)
+    const addedTagsArray = Object.values(addedTags);
 
     const updateTags = (tag, add) => {
         if (add) {
@@ -44,7 +59,17 @@ let TagSuggest = ({ addedTags, setTags }) => {
         }
     };
 
-    const getSuggestionText = tag => tag.name
+    const onValueChange = value => {
+        const params = new URLSearchParams();
+        params.append('name', value);
+        const queryString = params.toString();
+        getTagsByQueryString(queryString);
+    };
+    const onAdd = e => {
+        const name = e.currentTarget.value;
+        createTag({ name })
+    };
+    const getSuggestionText = tag => tag.name;
     const getSuggestionItem = tag => <Text style={styles.suggestionText}>{tag.name}</Text>
     const addTag = tag => { 
         updateTags(tag, true);
@@ -54,7 +79,7 @@ let TagSuggest = ({ addedTags, setTags }) => {
     };
     const removeTag = tag => {
         updateTags(tag);
-        setBank({ [tag.id]: tag, ...smartBank })
+        setBank({ [tag.id]: tag, ...smartBank });
     }
 
 
@@ -77,8 +102,10 @@ let TagSuggest = ({ addedTags, setTags }) => {
                 getSuggestionText={getSuggestionText}
                 getSuggestionItem={getSuggestionItem}
                 onSuggestionSelected={addTag}
+                allowAdd={allowTagCreation}
+                onValueChange={onValueChange}
+                onAdd={onAdd}
             />
-            
         </View>
     );
 };
@@ -127,6 +154,17 @@ const styles = {
         paddingTop: 5,
         paddingBottom: 5
     }
-}
+};
+
+const msp = state => ({
+    tags: state.tags,
+});
+
+const mdp = dispatch => ({
+    createTag: tag => dispatch(createTag(tag)),
+    getTagsByQueryString: queryString => dispatch(getTagsByQueryString(queryString)),
+});
+
+TagSuggest = connect(msp, mdp)(TagSuggest);
 
 export default TagSuggest;

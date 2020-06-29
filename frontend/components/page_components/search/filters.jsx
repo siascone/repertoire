@@ -83,7 +83,7 @@ let Filters = ({ history }) => {
                     <Text style={styles.text}>Filters:</Text> 
                     {checkboxes()}
                     {(enitityTypes.tracks || enitityTypes.projects) && 
-                    <TagSuggest setTags={setTags} addedTags={addedTags} />}
+                    <TagSuggest setTags={setTags} addedTags={addedTags} allowTagCreation={false} />}
                     {(enitityTypes.tracks || enitityTypes.projects) && 
                     <TimeSignatureSelect setTimes={setTimes} addedTimes={addedTimes} />}
                 </View>}

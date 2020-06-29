@@ -54,7 +54,7 @@ let UploadTrack = ({ currentUser }) => {
                     <source src={url} type="video/mp4"/>
                 </video>
                 <RegularTextInput placeholder='title' styles={styles}/>
-                <TagSuggest addedTags={addedTags} setTags={setTags} />
+                <TagSuggest addedTags={addedTags} setTags={setTags} allowTagCreation={true}/>
                 <TimeSignatureSelect addedTimes={addedTimes} setTimes={setTimes}/>
                 <View style={styles.buttonsContainer}>
                     <RegularButton text='Cancel' onPress={cancel} />
