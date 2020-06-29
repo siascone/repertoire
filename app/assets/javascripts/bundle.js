@@ -244,6 +244,66 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/tag_actions.js":
+/*!*****************************************!*\
+  !*** ./frontend/actions/tag_actions.js ***!
+  \*****************************************/
+/*! exports provided: RECEIVE_TAG, RECEIVE_TAGS, RECEIVE_TAG_ERRORS, createTag, getTagsByQueryString */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TAG", function() { return RECEIVE_TAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TAGS", function() { return RECEIVE_TAGS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TAG_ERRORS", function() { return RECEIVE_TAG_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTag", function() { return createTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTagsByQueryString", function() { return getTagsByQueryString; });
+/* harmony import */ var _util_tag_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/tag_util */ "./frontend/util/tag_util.js");
+var RECEIVE_TAG = 'RECEIVE_TAG';
+var RECEIVE_TAGS = 'RECEIVE_TAGS';
+var RECEIVE_TAG_ERRORS = 'RECEIVE_TAG_ERRORS';
+
+
+var receiveTag = function receiveTag(tag) {
+  return {
+    type: RECEIVE_TAG,
+    tag: tag
+  };
+};
+
+var receiveTags = function receiveTags(tags) {
+  return {
+    type: RECEIVE_TAGS,
+    tags: tags
+  };
+};
+
+var receiveTagErrors = function receiveTagErrors(errors) {
+  return {
+    type: RECEIVE_TAG_ERRORS,
+    errors: errors
+  };
+};
+
+var createTag = function createTag(tag) {
+  return function (dispatch) {
+    return Object(_util_tag_util__WEBPACK_IMPORTED_MODULE_0__["$createTag"])(tag).then(function (res) {
+      return dispatch(receiveTag(res.tag));
+    }).fail(function (err) {
+      return dispatch(receiveTagErrors(err));
+    });
+  };
+};
+var getTagsByQueryString = function getTagsByQueryString(queryString) {
+  return Object(_util_tag_util__WEBPACK_IMPORTED_MODULE_0__["$getTagsByQueryString"])(queryString).then(function (res) {
+    return dispatch(receiveTags(res.tags));
+  }).fail(function (err) {
+    return dispatch(receiveTagErrors(err));
+  });
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/track_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/track_actions.js ***!
@@ -3192,16 +3252,54 @@ _serviceWorker__WEBPACK_IMPORTED_MODULE_2__["unregister"]();
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/entities/users_reducer.js");
+/* harmony import */ var _tags_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tags_reducer */ "./frontend/reducers/entities/tags_reducer.js");
 /* harmony import */ var _tracks_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tracks_reducer */ "./frontend/reducers/entities/tracks_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/entities/users_reducer.js");
+
 
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  tracks: _tracks_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  tags: _tags_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  tracks: _tracks_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/entities/tags_reducer.js":
+/*!****************************************************!*\
+  !*** ./frontend/reducers/entities/tags_reducer.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/tag_actions */ "./frontend/actions/tag_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var tagsReducer = function tagsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TAG"]:
+      return Object.assign({}, state, _defineProperty({}, action.tag.id, action.tag));
+
+    case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TAGS"]:
+      return Object.assign({}, state, _defineProperty({}, action.tag.id, action.tag));
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (tagsReducer);
 
 /***/ }),
 
@@ -3290,19 +3388,52 @@ var usersReducer = function usersReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _session_sessions_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../session/sessions_errors_reducer */ "./frontend/reducers/session/sessions_errors_reducer.js");
-/* harmony import */ var _user_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_errors_reducer */ "./frontend/reducers/errors/user_errors_reducer.js");
-/* harmony import */ var _track_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./track_errors_reducer */ "./frontend/reducers/errors/track_errors_reducer.js");
+/* harmony import */ var _tag_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tag_errors_reducer */ "./frontend/reducers/errors/tag_errors_reducer.js");
+/* harmony import */ var _track_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./track_errors_reducer */ "./frontend/reducers/errors/track_errors_reducer.js");
+/* harmony import */ var _user_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user_errors_reducer */ "./frontend/reducers/errors/user_errors_reducer.js");
+/* harmony import */ var _session_sessions_errors_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session/sessions_errors_reducer */ "./frontend/reducers/session/sessions_errors_reducer.js");
+
 
 
 
 
 var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  session: _session_sessions_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  users: _user_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  tracks: _track_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  tags: _tag_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  tracks: _track_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  users: _user_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  session: _session_sessions_errors_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/errors/tag_errors_reducer.js":
+/*!********************************************************!*\
+  !*** ./frontend/reducers/errors/tag_errors_reducer.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/tag_actions */ "./frontend/actions/tag_actions.js");
+
+
+var tagErrorsReducer = function tagErrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TAG_ERRORS"]:
+      return action.errors;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (tagErrorsReducer);
 
 /***/ }),
 
@@ -3649,6 +3780,33 @@ var logout = function logout() {
   return $.ajax({
     url: 'api/session',
     method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/tag_util.js":
+/*!***********************************!*\
+  !*** ./frontend/util/tag_util.js ***!
+  \***********************************/
+/*! exports provided: $createTag, $getTagsByQueryString */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$createTag", function() { return $createTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$getTagsByQueryString", function() { return $getTagsByQueryString; });
+var $createTag = function $createTag(tag) {
+  return $.ajax({
+    url: "/app/tags/",
+    method: "POST",
+    data: tag
+  });
+};
+var $getTagsByQueryString = function $getTagsByQueryString(queryString) {
+  return $.ajax({
+    url: "/app/tags/".concat(queryString),
+    method: "GET"
   });
 };
 
