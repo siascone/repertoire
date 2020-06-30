@@ -5,11 +5,13 @@ import TagSuggest from './autosuggest/tag_suggest';
 import RegularButton from '../custom/regular_button';
 import TimeSignatureSelect from './time_signature_select';
 import RegularTextInput from '../custom/regular_text_input';
+import RegularText from '../custom/regular_text';
 
 let UploadTrack = ({ currentUser }) => {
     const [modal, setModal] = useState(false);
-    const [progress, setProgress] = useState('')
+    const [progress, setProgress] = useState('');
     const [url, setUrl] = useState('');
+    const [fileState, setFileState] = useState(null)
     const [addedTags, setTags] = useState({});
     const [addedTimes, setTimes] = useState({});
 
@@ -26,29 +28,37 @@ let UploadTrack = ({ currentUser }) => {
     }
 
     const handleFile = e => {
-        setUrl('')
         const file = e.currentTarget.files[0];
         const fileReader = new FileReader();
         fileReader.onprogress = ev => setProgress(`${(ev.loaded*100/ev.total).toFixed(2)}%`);
         fileReader.onloadend = (event) => {
+            setUrl('')
             let result = event.target.result;
             setUrl(result);
         };
         if (file) {
             fileReader.readAsDataURL(file);
+            setFileState(file);
         };
     };
 
     return(modal ?
         <View style={styles.modalContainer}>
             <Text style={styles.text}>Upload Track</Text>
-            <View style={{ backgroundColor: 'white', padding: 10, borderRadius: 3, marginBottom: 10 }} >
+            <TouchableOpacity style={{ position: 'relative', marginBottom: 10, overflow: 'hidden', cursor: 'pointer' }} >
+                <RegularButton text={'Choose file'} styles={chooseFileStyles}/>
                 <input 
                     onChange={e => handleFile(e)}
                     type="file"
+                    style={{position: 'absolute', opacity: 0, width: '100%', height: '100%'}}
                 />
-                {progress ? <Text>Upload progress: {progress}</Text> : null}
-            </View>
+                {fileState ? 
+                <RegularText 
+                    text={`${fileState.name}  |  Upload progress: ${progress}`} 
+                    styles={chooseFileStyles}
+                /> : null}
+            </TouchableOpacity>
+            {url ?
             <View>
                 <video width="600" height="350" style={{backgroundColor: 'white', borderRadius: 3}} controls>
                     <source src={url} type="video/mp4"/>
@@ -60,7 +70,7 @@ let UploadTrack = ({ currentUser }) => {
                     <RegularButton text='Cancel' onPress={cancel} />
                     {url ? <RegularButton text='Save' onPress={handleSave}/> : null}
                 </View>
-            </View>
+            </View> : null}
         </View>
         :
         <TouchableOpacity style={styles.addContainer} onPress={e => setModal(true)}>
@@ -71,7 +81,6 @@ let UploadTrack = ({ currentUser }) => {
 
 const styles = {
     modalContainer: {
-        backgroundColor: '#111111',
         marginTop: 10,
         padding: 10,
         border: '1px solid white',
@@ -113,5 +122,14 @@ const styles = {
         justifyContent: 'space-between',
     }
 };
+
+const chooseFileStyles = {
+    regular_button_container: {
+        width: '100%',
+    },
+    regular_text: {
+        marginTop: 10,
+    }
+}
 
 export default UploadTrack;

@@ -18,6 +18,7 @@ let RegularButton = ({
             paddingTop: 7,
             paddingBottom: 7,
             width: 'fit-content',
+            textAlign: 'center',
             zIndex: -2,
             ...styles.regular_button_container
         }} 

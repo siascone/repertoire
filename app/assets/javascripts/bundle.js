@@ -532,6 +532,7 @@ var RegularButton = function RegularButton(_ref) {
       paddingTop: 7,
       paddingBottom: 7,
       width: 'fit-content',
+      textAlign: 'center',
       zIndex: -2
     }, styles.regular_button_container)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -649,8 +650,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_search_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modular_components/search_bar */ "./frontend/components/modular_components/search_bar.jsx");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -693,7 +692,7 @@ var Header = function Header(_ref) {
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
-  container: _defineProperty({
+  container: {
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -701,7 +700,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     backgroundColor: 'black',
     borderBottomColor: 'white',
     borderBottomWidth: 1
-  }, "backgroundColor", '#111111'),
+  },
   text: {
     color: 'white',
     fontWeight: 'bold',
@@ -1523,6 +1522,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
 /* harmony import */ var _time_signature_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./time_signature_select */ "./frontend/components/modular_components/time_signature_select.jsx");
 /* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1534,6 +1534,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1560,15 +1561,20 @@ var UploadTrack = function UploadTrack(_ref) {
       url = _useState6[0],
       setUrl = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState8 = _slicedToArray(_useState7, 2),
-      addedTags = _useState8[0],
-      setTags = _useState8[1];
+      fileState = _useState8[0],
+      setFileState = _useState8[1];
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState10 = _slicedToArray(_useState9, 2),
-      addedTimes = _useState10[0],
-      setTimes = _useState10[1];
+      addedTags = _useState10[0],
+      setTags = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState12 = _slicedToArray(_useState11, 2),
+      addedTimes = _useState12[0],
+      setTimes = _useState12[1];
 
   var handleSave = function handleSave(e) {
     cancel();
@@ -1583,7 +1589,6 @@ var UploadTrack = function UploadTrack(_ref) {
   };
 
   var handleFile = function handleFile(e) {
-    setUrl('');
     var file = e.currentTarget.files[0];
     var fileReader = new FileReader();
 
@@ -1592,12 +1597,14 @@ var UploadTrack = function UploadTrack(_ref) {
     };
 
     fileReader.onloadend = function (event) {
+      setUrl('');
       var result = event.target.result;
       setUrl(result);
     };
 
     if (file) {
       fileReader.readAsDataURL(file);
+      setFileState(file);
     }
 
     ;
@@ -1607,19 +1614,31 @@ var UploadTrack = function UploadTrack(_ref) {
     style: styles.modalContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text
-  }, "Upload Track"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+  }, "Upload Track"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: {
-      backgroundColor: 'white',
-      padding: 10,
-      borderRadius: 3,
-      marginBottom: 10
+      position: 'relative',
+      marginBottom: 10,
+      overflow: 'hidden',
+      cursor: 'pointer'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: 'Choose file',
+    styles: chooseFileStyles
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onChange: function onChange(e) {
       return handleFile(e);
     },
-    type: "file"
-  }), progress ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Upload progress: ", progress) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    type: "file",
+    style: {
+      position: 'absolute',
+      opacity: 0,
+      width: '100%',
+      height: '100%'
+    }
+  }), fileState ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    text: "".concat(fileState.name, "  |  Upload progress: ").concat(progress),
+    styles: chooseFileStyles
+  }) : null), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
     width: "600",
     height: "350",
     style: {
@@ -1648,7 +1667,7 @@ var UploadTrack = function UploadTrack(_ref) {
   }), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "Save",
     onPress: handleSave
-  }) : null))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  }) : null)) : null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.addContainer,
     onPress: function onPress(e) {
       return setModal(true);
@@ -1660,7 +1679,6 @@ var UploadTrack = function UploadTrack(_ref) {
 
 var styles = {
   modalContainer: {
-    backgroundColor: '#111111',
     marginTop: 10,
     padding: 10,
     border: '1px solid white',
@@ -1700,6 +1718,14 @@ var styles = {
     paddingTop: 10,
     width: 130,
     justifyContent: 'space-between'
+  }
+};
+var chooseFileStyles = {
+  regular_button_container: {
+    width: '100%'
+  },
+  regular_text: {
+    marginTop: 10
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (UploadTrack);
