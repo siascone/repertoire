@@ -48,7 +48,7 @@ const styles = {
         width: '50vw'
     },
     regular_text_input: {
-        paddingRight: 45,
+        paddingRight: 65,
         width: '100%',
     },
     regular_button_container: {
@@ -56,8 +56,11 @@ const styles = {
         justifyContent: 'center',
         right: 0,
         padding: 8,
+        paddingRight: 20,
+        paddingLeft: 20,
         width: 'fit-content',
         height: '100%',
+        width: 60,
         borderLeftWidth: 1,
         borderLeftColor: 'white',
         zIndex: 1,

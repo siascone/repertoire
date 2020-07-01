@@ -56,18 +56,16 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
                 styles={styles}
                 onChange={handleChange('numerator')}
             />
-            {/* <View > */}
             <RegularButton
                 text='-'
                 styles={styles}
                 onPress={handleChange('numerator', (numeratorValue - 1).toString())}
             />
-                <RegularButton
-                    text='+'
-                    styles={styles}
-                    onPress={handleChange('numerator', (numeratorValue + 1).toString())}
-                />
-            {/* </View> */}
+            <RegularButton
+                text='+'
+                styles={styles}
+                onPress={handleChange('numerator', (numeratorValue + 1).toString())}
+            />
         </View>
     );
 
@@ -78,18 +76,16 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
                 styles={styles}
                 onChange={handleChange('denominator')}
             />
-            {/* <View > */}
             <RegularButton
                 text='-'
                 styles={styles}
                 onPress={e => relativePowerOf2(denominatorValue, -1)}
             />
-                <RegularButton
-                    text='+'
-                    styles={styles}
-                    onPress={e => relativePowerOf2(denominatorValue, 1)}
-                />
-            {/* </View> */}
+            <RegularButton
+                text='+'
+                styles={styles}
+                onPress={e => relativePowerOf2(denominatorValue, 1)}
+            />
         </View>
     );
 
@@ -129,10 +125,12 @@ const styles = {
     fractionAndButtonContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
         marginTop: 10,
     },
     fractionContainer: {
-        width: 'fit-content',
+        width: '80%',
         marginRight: 10,
     },
     numeratorDenominator: {
@@ -142,7 +140,7 @@ const styles = {
     regular_text_input: {
         textAlign: 'center',
         marginRight: 10,
-        width: 220,
+        width: '100%',
     },
     fractionBar: {
         borderBottomWidth: 1,

@@ -1217,6 +1217,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
 /* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
+var _regular_button_conta;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1287,20 +1291,19 @@ var styles = {
     width: '50vw'
   },
   regular_text_input: {
-    paddingRight: 45,
+    paddingRight: 65,
     width: '100%'
   },
-  regular_button_container: {
+  regular_button_container: (_regular_button_conta = {
     position: 'absolute',
     justifyContent: 'center',
     right: 0,
     padding: 8,
+    paddingRight: 20,
+    paddingLeft: 20,
     width: 'fit-content',
-    height: '100%',
-    borderLeftWidth: 1,
-    borderLeftColor: 'white',
-    zIndex: 1
-  },
+    height: '100%'
+  }, _defineProperty(_regular_button_conta, "width", 60), _defineProperty(_regular_button_conta, "borderLeftWidth", 1), _defineProperty(_regular_button_conta, "borderLeftColor", 'white'), _defineProperty(_regular_button_conta, "zIndex", 1), _regular_button_conta),
   text: {
     color: 'white'
   }
@@ -1490,10 +1493,12 @@ var styles = {
   fractionAndButtonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
     marginTop: 10
   },
   fractionContainer: {
-    width: 'fit-content',
+    width: '80%',
     marginRight: 10
   },
   numeratorDenominator: {
@@ -1503,7 +1508,7 @@ var styles = {
   regular_text_input: {
     textAlign: 'center',
     marginRight: 10,
-    width: 220
+    width: '100%'
   },
   fractionBar: {
     borderBottomWidth: 1,
@@ -1564,6 +1569,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _time_signature_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./time_signature_select */ "./frontend/components/modular_components/time_signature_select.jsx");
 /* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
 /* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+/* harmony import */ var _util_media_query_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/media_query_util */ "./frontend/util/media_query_util.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1575,6 +1587,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1652,8 +1665,11 @@ var UploadTrack = function UploadTrack(_ref) {
     ;
   };
 
+  var small = Object(_util_media_query_util__WEBPACK_IMPORTED_MODULE_7__["default"])("(min-width: 1300px)");
   return modal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.modalContainer
+    style: _objectSpread({
+      flexDirection: small ? 'row' : 'column'
+    }, styles.modalContainer)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.floatContainer1
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
@@ -1710,7 +1726,7 @@ var UploadTrack = function UploadTrack(_ref) {
 
 var styles = {
   modalContainer: {
-    display: 'block',
+    // flexWrap: 'wrap',
     marginTop: 10,
     padding: 20,
     border: '1px solid white',
@@ -1718,14 +1734,12 @@ var styles = {
     marginBottom: 20
   },
   floatContainer1: {
-    float: 'left',
     margin: 5,
     maxWidth: 640
   },
   floatContainer2: {
-    float: 'left',
     margin: 5,
-    maxWidth: 450
+    maxWidth: 640
   },
   chooseFileContainer: {
     position: 'relative',
@@ -1774,8 +1788,8 @@ var styles = {
     marginRight: 10
   },
   video: {
-    width: 600,
-    height: 350
+    width: '100%',
+    height: '60%'
   }
 };
 var chooseFileStyles = {
@@ -3901,6 +3915,59 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/media_query_util.js":
+/*!*******************************************!*\
+  !*** ./frontend/util/media_query_util.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var useMediaQuery = function useMediaQuery(query) {
+  var defaultMatches = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.matchMedia(query);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(defaultMatches),
+      _useState2 = _slicedToArray(_useState, 2),
+      matches = _useState2[0],
+      setMatches = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useLayoutEffect"])(function () {
+    var media = window.matchMedia(query);
+    if (media.matches !== matches) setMatches(media.matches);
+
+    var listener = function listener(e) {
+      return setMatches(media.matches);
+    };
+
+    media.addListener(listener);
+    return function () {
+      return media.removeListener(listener);
+    };
+  }, [matches]);
+  return matches;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (useMediaQuery);
 
 /***/ }),
 

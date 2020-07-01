@@ -6,6 +6,7 @@ import RegularButton from '../custom/regular_button';
 import TimeSignatureSelect from './time_signature_select';
 import RegularTextInput from '../custom/regular_text_input';
 import RegularText from '../custom/regular_text';
+import useMediaQuery from '../../util/media_query_util';
 
 let UploadTrack = ({ currentUser }) => {
     const [modal, setModal] = useState(false);
@@ -43,8 +44,10 @@ let UploadTrack = ({ currentUser }) => {
         };
     };
 
+    const small = useMediaQuery("(min-width: 1300px)");
+
     return(modal ?
-        <View style={styles.modalContainer}>
+        <View style={{ flexDirection: small ? 'row' : 'column', ...styles.modalContainer}}>
             <View style={styles.floatContainer1}>
                 <TouchableOpacity style={styles.chooseFileContainer} >
                     <RegularButton text={'Choose file'} styles={chooseFileStyles} />
@@ -84,7 +87,7 @@ let UploadTrack = ({ currentUser }) => {
 
 const styles = {
     modalContainer: {
-        display: 'block',
+        // flexWrap: 'wrap',
         marginTop: 10,
         padding: 20,
         border: '1px solid white',
@@ -92,14 +95,12 @@ const styles = {
         marginBottom: 20,
     },
     floatContainer1: { 
-        float: 'left', 
         margin: 5,
         maxWidth: 640,
     },
     floatContainer2: { 
-        float: 'left', 
         margin: 5,
-        maxWidth: 450,
+        maxWidth: 640,
     },
     chooseFileContainer: { 
         position: 'relative',
@@ -148,8 +149,8 @@ const styles = {
         marginRight: 10,
     },
     video: {
-        width: 600,
-        height: 350,
+        width: '100%',
+        height: '60%',
     }
 };
 
