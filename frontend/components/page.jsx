@@ -47,7 +47,7 @@ let Page = ({ currentUser, history, menu, setMenu }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 0.9,
+        flex: 1,
         backgroundColor: 'black',
         overflow: 'scroll',
     }

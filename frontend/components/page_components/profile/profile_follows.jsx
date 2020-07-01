@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import RegularText from '../../custom/regular_text';
 
 let ProfileFollows = ({ user }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Follows</Text>
+            <RegularText text='Follows' style={styles.text} />
         </View>
     );
 };

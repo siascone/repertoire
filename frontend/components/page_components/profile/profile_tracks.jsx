@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, } from 'react-native';
 import UploadTrack from '../../modular_components/upload_track';
 
 import { getTracksByUserId } from '../../../actions/track_actions';
 import { connect } from 'react-redux';
+import RegularText from '../../custom/regular_text';
 
 let ProfileTracks = ({ user, ownProfile, getTracksByUserId }) => {
     useEffect(() => {
@@ -12,13 +13,13 @@ let ProfileTracks = ({ user, ownProfile, getTracksByUserId }) => {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.text}>Tracks</Text>
+            <RegularText text='Tracks' style={styles.text} />
             {ownProfile ? <UploadTrack user={user} /> : null}
         </View>
     );
 };
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
         padding: 20,
         alignItems: "center",
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30,
     }
-});
+};
 
 const mdp = dispatch => ({
     getTracksByUserId: userId => dispatch(getTracksByUserId(userId))

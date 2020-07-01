@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { TextInput, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import RegularTextInput from '../custom/regular_text_input';
+import RegularButton from '../custom/regular_button';
 
 let SearchBar = ({ history, navigateTo }) => {
     let search = (new URLSearchParams(history.location.search)).get('input');
@@ -24,41 +26,34 @@ let SearchBar = ({ history, navigateTo }) => {
 
     return(
         <View style={styles.container}>
-            <TextInput 
+            <RegularTextInput
                 value={input}
-                style={styles.input}
+                styles={styles}
                 placeholder='search' 
                 onChange={e => handleChange(e)}
                 onSubmitEditing={e => handleSearch(e)} 
-            ></TextInput>
-            <TouchableOpacity 
-                style={styles.button}
+            />
+            <RegularButton 
+                text='Go'
+                styles={styles}
                 onPress={e => handleSearch(e)}
-            >
-                <Text style={styles.text}>Go</Text>
-            </TouchableOpacity>
+            />
         </View>
     );
 };
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
         position: 'relative',
-        width: '50%'
+        width: '50vw'
     },
-    input: {
-        backgroundColor: 'black',
-        border: '1px solid white',
-        paddingLeft: 10,
+    regular_text_input: {
         paddingRight: 45,
-        paddingTop: 7,
-        paddingBottom: 7,
-        color: 'white',
-        borderRadius: 3,
         width: '100%',
     },
-    button: {
+    regular_button_container: {
         position: 'absolute',
+        justifyContent: 'center',
         right: 0,
         padding: 8,
         width: 'fit-content',
@@ -70,6 +65,6 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
     }
-})
+};
 
 export default SearchBar;

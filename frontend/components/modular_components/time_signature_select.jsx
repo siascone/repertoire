@@ -56,18 +56,18 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
                 styles={styles}
                 onChange={handleChange('numerator')}
             />
-            <View >
+            {/* <View > */}
+            <RegularButton
+                text='-'
+                styles={styles}
+                onPress={handleChange('numerator', (numeratorValue - 1).toString())}
+            />
                 <RegularButton
                     text='+'
                     styles={styles}
                     onPress={handleChange('numerator', (numeratorValue + 1).toString())}
                 />
-                <RegularButton
-                    text='-'
-                    styles={styles}
-                    onPress={handleChange('numerator', (numeratorValue - 1).toString())}
-                />
-            </View>
+            {/* </View> */}
         </View>
     );
 
@@ -78,18 +78,18 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
                 styles={styles}
                 onChange={handleChange('denominator')}
             />
-            <View >
+            {/* <View > */}
+            <RegularButton
+                text='-'
+                styles={styles}
+                onPress={e => relativePowerOf2(denominatorValue, -1)}
+            />
                 <RegularButton
                     text='+'
                     styles={styles}
                     onPress={e => relativePowerOf2(denominatorValue, 1)}
                 />
-                <RegularButton
-                    text='-'
-                    styles={styles}
-                    onPress={e => relativePowerOf2(denominatorValue, -1)}
-                />
-            </View>
+            {/* </View> */}
         </View>
     );
 
@@ -101,9 +101,10 @@ let TimeSignatureSelect = ({ addedTimes, setTimes }) => {
             {addedTimesArray.length ?
             <View style={styles.addedTagsContainer}>
                 {addedTimesArray.map(time =>
-                    <Text style={styles.addedTagsText} key={time}>
-                        <Text onPress={e => updateTimes(time, false)}>X </Text> {time}
-                    </Text>
+                <View style={styles.addedTag} key={time}>
+                    <RegularText text='X' styles={styles.removeTag} onPress={e => updateTimes(time, false)} />
+                    <RegularText text={time}  />
+                </View>   
                 )}
             </View> : null}
             <View style={styles.fractionAndButtonContainer}>
@@ -143,9 +144,6 @@ const styles = {
         marginRight: 10,
         width: 220,
     },
-    regular_text: {
-        marginRight: 10,
-    },
     fractionBar: {
         borderBottomWidth: 1,
         borderBottomColor: 'white',
@@ -153,31 +151,39 @@ const styles = {
         marginBottom: 10,
     },
     regular_button_container: {
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 1,
-        paddingBottom: 1,
-        width: '100%'
+        paddingRight: 5,
+        paddingLeft: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
+        width: 50,
+        height: 55,
+        marginRight: 10,
     },
     addedTagsContainer: {
         display: 'block',
         zIndex: -1,
         marginTop: 10,
     },
-    addedTagsText: {
+    addedTag: {
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: 'black',
-        color: 'white',
         border: '1px solid white',
-        borderRadius: 20,
+        borderRadius: 30,
         paddingTop: 7,
         paddingBottom: 7,
-        paddingRight: 10,
-        paddingLeft: 10,
+        paddingRight: 15,
+        paddingLeft: 15,
         margin: 2,
         alignItems: 'center',
         width: 'fit-content',
         float: 'left',
     },
+    removeTag: {
+        regular_text: {
+            marginRight: 10,
+        }
+    }
 };
 
 export default TimeSignatureSelect;

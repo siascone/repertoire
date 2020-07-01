@@ -80,7 +80,6 @@ let Filters = ({ history }) => {
                 </View>
                 {show &&
                 <View style={styles.filtersContainer}>
-                    <Text style={styles.text}>Filters:</Text> 
                     {checkboxes()}
                     {(enitityTypes.tracks || enitityTypes.projects) && 
                     <TagSuggest setTags={setTags} addedTags={addedTags} allowTagCreation={false} />}
@@ -118,13 +117,10 @@ const styles = StyleSheet.create({
     buttonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        maxWidth: 300,
+        maxWidth: 500,
     },
     filtersContainer: {
         marginTop: 10,
-    },
-    text: {
-        color: 'white'
     },
 });
 
@@ -133,6 +129,10 @@ const checkboxStyles = {
         width: 30,
         height: 30,
         marginRight: 10,
+        paddingRight: 0,
+        paddingLeft: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
     }
 };
 

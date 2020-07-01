@@ -4,6 +4,7 @@ import SessionForm from './session_form';
 import { useState } from 'react';
 import { clearSessionErrors, login, signup } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
+import RegularButton from '../../custom/regular_button';
 
 let Splash = ({errors, clearSessionErrors, login, signup}) => {
     const [type, setType] = useState('Login')
@@ -30,41 +31,40 @@ let Splash = ({errors, clearSessionErrors, login, signup}) => {
                 clearSessionErrors={clearSessionErrors}
             />
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity 
-                    style={styles.button}
+                <RegularButton 
+                    text={otherType}
+                    styles={styles}
                     onPress={e => switchForm()} 
-                ><Text style={styles.text}>{otherType}</Text></TouchableOpacity>
-                <TouchableOpacity 
-                    style={styles.button}
-                    title='Demo'
+                />
+                <RegularButton
+                    text='Demo' 
+                    styles={styles}
                     onPress={e => login(demoUser)}
-                ><Text style={styles.text}>Demo</Text></TouchableOpacity>
+                />
             </View>
         </View>
     );
 }
 
-const styles = StyleSheet.create({
+const styles = {
     splashContainer: {
         flex: 1,
         alignItems: 'center',
     },
     buttonsContainer: {
         marginTop: 20,
-        width: 100,
+        width: 200,
         justifyContent: "space-between",
         height: 100,
     },
-    button: {
-        border: '1px solid white',
-        borderRadius: 3,
-        padding: 10,
-        textAlign: 'center',
+    regular_button_container: {
+        width: '100%',
+        marginBottom: 10,
     },
     text: {
         color: 'white',
     }
-});
+};
 
 const msp = state => ({
     errors: state.errors.session,

@@ -1,6 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
+import RegularTextInput from '../../custom/regular_text_input';
+import RegularButton from '../../custom/regular_button';
+import RegularText from '../../custom/regular_text';
 
 let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
     const [username, setUsername] = useState('');
@@ -20,32 +23,33 @@ let SessionForm = ({ type, login, signup, errors, clearSessionErrors }) => {
         <View style={styles.container}>
             <View>
             {errors.map(error => 
-                <Text style={styles.text}>{error}</Text>
+                <RegularText text={error} />
             )}
             </View>
-            <TextInput
+            <RegularTextInput
                 placeholder='email'
-                style={styles.input}
+                styles={styles}
                 onChange={e => setUsername(e.currentTarget.value)}
                 onSubmitEditing={e => handleSubmit()}
             />
-            <TextInput
+            <RegularTextInput
                 placeholder='password'
-                style={styles.input}
+                styles={styles}
                 secureTextEntry='true'
                 onChange={e => setPassword(e.currentTarget.value)}
                 onSubmitEditing={e => handleSubmit()}
             />
             <br/>
-            <TouchableOpacity
-                style={styles.button}
+            <RegularButton
+                text={type}
+                style={styles}
                 onPress={e => handleSubmit()}
-            ><Text style={styles.text}>{type}</Text></TouchableOpacity>
+            />
         </View>
     );
 }
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
         alignItems: 'center',
         padding: 20,
@@ -54,23 +58,11 @@ const styles = StyleSheet.create({
         border: '1px solid white',
         borderRadius: 3
     },
-    input: {
-        height: 30,
-        width: 300,
-        backgroundColor: 'white',
-        borderColor: 'black',
-        padding: 10,
-        borderRadius: 3,
+    regular_text_input: {
+        width: 600,
         margin: 5,
     },
-    text: {
-        color: 'white'
-    },
-    button: {
-        border: '1px solid white',
-        borderRadius: 3,
-        padding: 10,
-    }
-});
+
+};
 
 export default SessionForm;

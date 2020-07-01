@@ -26,7 +26,7 @@ let ProfilePhoto = ({ ownProfile, user, updateUser }) => {
 
     return (
         <View style={styles.container}>
-            <Avitar url={user.profilePhotoURL || `/assets/${photo}`} size={100} />
+            <Avitar url={user.profilePhotoURL || `/assets/${photo}`} size={200} />
             {ownProfile?
             <TouchableOpacity style={styles.touch}>
                 <Text style={styles.pencil}>✎</Text>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     pencil: {
         color: 'black',
-        fontSize: 20,
+        fontSize: 40,
     },
     touch: {
         cursor: 'pointer',
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
         borderRadius: '100%',
         border: '1px solid black',
         padding: 10,
-        height: 30,
-        width: 30,
+        height: 60,
+        width: 60,
         alignItems: 'center',
         justifyContent: 'center',
         position: 'absolute',

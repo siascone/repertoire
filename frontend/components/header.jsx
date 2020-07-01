@@ -12,21 +12,23 @@ const Header = ({history, setMenu, menu}) => {
 
     return(
         <View style={styles.container}>
-            <TouchableOpacity>
-                <Text 
-                    style={styles.text} 
-                    onPress={e => navigateTo('/')} 
-                >Repertoire</Text>
-            </TouchableOpacity>
-            <SearchBar history={history} navigateTo={navigateTo} />
+            <View style={styles.leftNav}>
+                <TouchableOpacity>
+                    <Text 
+                        style={styles.text} 
+                        onPress={e => navigateTo('/')} 
+                    >Repertoire</Text>
+                </TouchableOpacity>
+                <SearchBar history={history} navigateTo={navigateTo} />
+            </View>
             <TouchableOpacity
                 style={styles.menuButtonContainer}
                 onPress={e => setMenu(!menu)}
             >
                 {menu ?
-                <Text style={styles.menuText}>X</Text>
+                <Text style={styles.buttonTextContainer}>X</Text>
                 :
-                <View>
+                <View style={styles.buttonTextContainer}>
                     <View style={styles.menuLine}/>
                     <View style={styles.menuLine}/>
                     <View style={styles.menuLine}/>
@@ -38,39 +40,50 @@ const Header = ({history, setMenu, menu}) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 0.1,
+        // flex: 0.1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         backgroundColor: 'black',
         borderBottomColor: 'white',
         borderBottomWidth: 1,
+        padding: 10,
+    },
+    leftNav: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '75%',
+        marginRight: 10
     },
     text: {
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 20,
-        padding: 10,
+        fontSize: 40,
+        marginRight: 20,
     },
     menuButtonContainer: {
         padding: 10,
-        width: 50,
+        width: 70,
+        height: 70,
         alignItems: 'center'
     },
     menuLine: {
-        width: 30,
-        padding: 1,
+        width: '100%',
+        padding: 2,
         backgroundColor: 'white',
-        margin: 2,
+        margin: 3,
         borderRadius: 2,
     },
-    menuText: {
-        alignItems: 'center',
+    buttonTextContainer: {
+        width: '100%', 
+        height: '100%', 
+        alignItems: 'center', 
         justifyContent: 'center',
+        fontSize: 40,
+        fontWeight: 400,
         color: 'white',
-        fontSize: 30,
-        padding: 10,
-        fontWeight: 300
+        textAlign: 'center'
     }
 });
 

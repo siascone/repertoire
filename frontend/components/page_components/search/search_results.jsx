@@ -1,24 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import RegularText from '../../custom/regular_text';
 
 let SearchResults = ({ history, input }) => {
-
     return(
         <View style={styles.container}>
-            <Text style={styles.text}>
-                Showing results for '{input}'
-            </Text>
+            <RegularText text={`Showing results for '${input}'`} />
         </View>
     );
 };
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
         padding: 20,
     },
     text: {
         color: 'white',
     }
-});
+};
 
 export default SearchResults;

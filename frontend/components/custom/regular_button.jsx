@@ -19,11 +19,13 @@ let RegularButton = ({
             paddingBottom: 7,
             width: 'fit-content',
             textAlign: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
             zIndex: -2,
             ...styles.regular_button_container
         }} 
     >
-        <RegularText text={text} />
+        <RegularText styles={styles} text={text} />
     </TouchableOpacity>
 );
 

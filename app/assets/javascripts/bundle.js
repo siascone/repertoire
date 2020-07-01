@@ -533,9 +533,12 @@ var RegularButton = function RegularButton(_ref) {
       paddingBottom: 7,
       width: 'fit-content',
       textAlign: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
       zIndex: -2
     }, styles.regular_button_container)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    styles: styles,
     text: text
   }));
 };
@@ -569,11 +572,17 @@ var RegularText = function RegularText(_ref) {
   var _ref$text = _ref.text,
       text = _ref$text === void 0 ? {} : _ref$text,
       _ref$styles = _ref.styles,
-      styles = _ref$styles === void 0 ? {} : _ref$styles;
+      styles = _ref$styles === void 0 ? {} : _ref$styles,
+      _ref$onPress = _ref.onPress,
+      onPress = _ref$onPress === void 0 ? function (e) {
+    return null;
+  } : _ref$onPress;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    onPress: onPress,
     style: _objectSpread({
-      color: 'white'
-    }, styles.regular_text)
+      color: 'white',
+      fontSize: 30
+    }, styles.regular_text, {}, styles.regular_button_text)
   }, text);
 };
 
@@ -615,6 +624,10 @@ var RegularTextInput = function RegularTextInput(_ref) {
       onSubmitEditing = _ref$onSubmitEditing === void 0 ? function (e) {
     return null;
   } : _ref$onSubmitEditing,
+      _ref$onPress = _ref.onPress,
+      onPress = _ref$onPress === void 0 ? function (e) {
+    return null;
+  } : _ref$onPress,
       _ref$styles = _ref.styles,
       styles = _ref$styles === void 0 ? {} : _ref$styles;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
@@ -623,12 +636,14 @@ var RegularTextInput = function RegularTextInput(_ref) {
     ref: reff,
     onSubmitEditing: onSubmitEditing,
     onChange: onChange,
+    onPress: onPress,
     style: _objectSpread({
       backgroundColor: 'black',
       border: '1px solid white',
       borderRadius: 3,
       color: 'white',
-      padding: 10
+      padding: 10,
+      fontSize: 30
     }, styles.regular_text_input)
   });
 };
@@ -667,6 +682,8 @@ var Header = function Header(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.leftNav
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     style: styles.text,
     onPress: function onPress(e) {
@@ -675,14 +692,16 @@ var Header = function Header(_ref) {
   }, "Repertoire")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_search_bar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     history: history,
     navigateTo: navigateTo
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.menuButtonContainer,
     onPress: function onPress(e) {
       return setMenu(!menu);
     }
   }, menu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.menuText
-  }, "X") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.buttonTextContainer
+  }, "X") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.buttonTextContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuLine
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuLine
@@ -693,39 +712,50 @@ var Header = function Header(_ref) {
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
-    flex: 0.1,
+    // flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     backgroundColor: 'black',
     borderBottomColor: 'white',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    padding: 10
+  },
+  leftNav: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '75%',
+    marginRight: 10
   },
   text: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20,
-    padding: 10
+    fontSize: 40,
+    marginRight: 20
   },
   menuButtonContainer: {
     padding: 10,
-    width: 50,
+    width: 70,
+    height: 70,
     alignItems: 'center'
   },
   menuLine: {
-    width: 30,
-    padding: 1,
+    width: '100%',
+    padding: 2,
     backgroundColor: 'white',
-    margin: 2,
+    margin: 3,
     borderRadius: 2
   },
-  menuText: {
+  buttonTextContainer: {
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    fontSize: 40,
+    fontWeight: 400,
     color: 'white',
-    fontSize: 30,
-    padding: 10,
-    fontWeight: 300
+    textAlign: 'center'
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (Header);
@@ -912,6 +942,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
 /* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/tag_actions */ "./frontend/actions/tag_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var _addedTag;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1009,9 +1041,9 @@ var TagSuggest = function TagSuggest(_ref) {
   };
 
   var getSuggestionItem = function getSuggestionItem(tag) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.suggestionText
-    }, tag.name);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: tag.name
+    });
   };
 
   var addTag = function addTag(tag) {
@@ -1033,14 +1065,18 @@ var TagSuggest = function TagSuggest(_ref) {
   }), addedTagsArray.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.addedTagsContainer
   }, addedTagsArray.reverse().map(function (tag) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.addedTagsText,
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.addedTag,
       key: tag.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "X",
+      styles: styles.removeTag,
       onPress: function onPress(e) {
         return removeTag(tag);
       }
-    }, "X "), " ", tag.name);
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: tag.name
+    }));
   })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     wholeBank: Object.values(tags).map(function (tag) {
       return tag.name;
@@ -1065,30 +1101,30 @@ var styles = {
   autosuggest_input: {
     marginTop: 10
   },
-  suggestionText: {
-    color: 'white'
-  },
   addedTagsContainer: {
     display: 'block',
     zIndex: -1,
     marginTop: 10
   },
-  addedTagsText: {
+  addedTag: (_addedTag = {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: 'black',
-    color: 'white',
     border: '1px solid white',
-    borderRadius: 20,
+    borderRadius: 30,
     paddingTop: 7,
     paddingBottom: 7,
-    paddingRight: 10,
-    paddingLeft: 10,
-    margin: 2,
-    alignItems: 'center',
-    width: 'fit-content',
-    float: 'left'
+    paddingRight: 15,
+    paddingLeft: 15,
+    margin: 2
+  }, _defineProperty(_addedTag, "alignItems", 'center'), _defineProperty(_addedTag, "width", 'fit-content'), _defineProperty(_addedTag, "float", 'left'), _addedTag),
+  removeTag: {
+    regular_text: {
+      marginRight: 10
+    }
   },
   suggestions_container: {
-    top: 48,
+    top: 65,
     zIndex: 2,
     width: '100%',
     border: '1px solid white',
@@ -1179,6 +1215,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1190,6 +1228,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -1222,9 +1262,9 @@ var SearchBar = function SearchBar(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     value: input,
-    style: styles.input,
+    styles: styles,
     placeholder: "search",
     onChange: function onChange(e) {
       return handleChange(e);
@@ -1232,34 +1272,27 @@ var SearchBar = function SearchBar(_ref) {
     onSubmitEditing: function onSubmitEditing(e) {
       return handleSearch(e);
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.button,
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "Go",
+    styles: styles,
     onPress: function onPress(e) {
       return handleSearch(e);
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Go")));
+  }));
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   container: {
     position: 'relative',
-    width: '50%'
+    width: '50vw'
   },
-  input: {
-    backgroundColor: 'black',
-    border: '1px solid white',
-    paddingLeft: 10,
+  regular_text_input: {
     paddingRight: 45,
-    paddingTop: 7,
-    paddingBottom: 7,
-    color: 'white',
-    borderRadius: 3,
     width: '100%'
   },
-  button: {
+  regular_button_container: {
     position: 'absolute',
+    justifyContent: 'center',
     right: 0,
     padding: 8,
     width: 'fit-content',
@@ -1271,7 +1304,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   text: {
     color: 'white'
   }
-});
+};
 /* harmony default export */ __webpack_exports__["default"] = (SearchBar);
 
 /***/ }),
@@ -1291,6 +1324,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
 /* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
 /* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
+var _addedTag;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1380,15 +1415,15 @@ var TimeSignatureSelect = function TimeSignatureSelect(_ref) {
       value: numeratorValue,
       styles: styles,
       onChange: handleChange('numerator')
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      text: "+",
-      styles: styles,
-      onPress: handleChange('numerator', (numeratorValue + 1).toString())
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
       text: "-",
       styles: styles,
       onPress: handleChange('numerator', (numeratorValue - 1).toString())
-    })));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "+",
+      styles: styles,
+      onPress: handleChange('numerator', (numeratorValue + 1).toString())
+    }));
   };
 
   var denominator = function denominator() {
@@ -1398,19 +1433,19 @@ var TimeSignatureSelect = function TimeSignatureSelect(_ref) {
       value: denominatorValue,
       styles: styles,
       onChange: handleChange('denominator')
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      text: "+",
-      styles: styles,
-      onPress: function onPress(e) {
-        return relativePowerOf2(denominatorValue, 1);
-      }
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
       text: "-",
       styles: styles,
       onPress: function onPress(e) {
         return relativePowerOf2(denominatorValue, -1);
       }
-    })));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "+",
+      styles: styles,
+      onPress: function onPress(e) {
+        return relativePowerOf2(denominatorValue, 1);
+      }
+    }));
   };
 
   var addedTimesArray = Object.values(addedTimes);
@@ -1422,14 +1457,18 @@ var TimeSignatureSelect = function TimeSignatureSelect(_ref) {
   }), addedTimesArray.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.addedTagsContainer
   }, addedTimesArray.map(function (time) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.addedTagsText,
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.addedTag,
       key: time
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "X",
+      styles: styles.removeTag,
       onPress: function onPress(e) {
         return updateTimes(time, false);
       }
-    }, "X "), " ", time);
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: time
+    }));
   })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.fractionAndButtonContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
@@ -1466,9 +1505,6 @@ var styles = {
     marginRight: 10,
     width: 220
   },
-  regular_text: {
-    marginRight: 10
-  },
   fractionBar: {
     borderBottomWidth: 1,
     borderBottomColor: 'white',
@@ -1476,30 +1512,35 @@ var styles = {
     marginBottom: 10
   },
   regular_button_container: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 1,
-    paddingBottom: 1,
-    width: '100%'
+    paddingRight: 5,
+    paddingLeft: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    width: 50,
+    height: 55,
+    marginRight: 10
   },
   addedTagsContainer: {
     display: 'block',
     zIndex: -1,
     marginTop: 10
   },
-  addedTagsText: {
+  addedTag: (_addedTag = {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: 'black',
-    color: 'white',
     border: '1px solid white',
-    borderRadius: 20,
+    borderRadius: 30,
     paddingTop: 7,
     paddingBottom: 7,
-    paddingRight: 10,
-    paddingLeft: 10,
-    margin: 2,
-    alignItems: 'center',
-    width: 'fit-content',
-    float: 'left'
+    paddingRight: 15,
+    paddingLeft: 15,
+    margin: 2
+  }, _defineProperty(_addedTag, "alignItems", 'center'), _defineProperty(_addedTag, "width", 'fit-content'), _defineProperty(_addedTag, "float", 'left'), _addedTag),
+  removeTag: {
+    regular_text: {
+      marginRight: 10
+    }
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (TimeSignatureSelect);
@@ -1586,6 +1627,7 @@ var UploadTrack = function UploadTrack(_ref) {
     setModal(false);
     setTags({});
     setTimes({});
+    setFileState(null);
   };
 
   var handleFile = function handleFile(e) {
@@ -1612,15 +1654,10 @@ var UploadTrack = function UploadTrack(_ref) {
 
   return modal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.modalContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Upload Track"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: {
-      position: 'relative',
-      marginBottom: 10,
-      overflow: 'hidden',
-      cursor: 'pointer'
-    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.floatContainer1
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    style: styles.chooseFileContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: 'Choose file',
     styles: chooseFileStyles
@@ -1629,27 +1666,21 @@ var UploadTrack = function UploadTrack(_ref) {
       return handleFile(e);
     },
     type: "file",
-    style: {
-      position: 'absolute',
-      opacity: 0,
-      width: '100%',
-      height: '100%'
-    }
-  }), fileState ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    style: styles.fileInput
+  })), fileState ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_6__["default"], {
     text: "".concat(fileState.name, "  |  Upload progress: ").concat(progress),
-    styles: chooseFileStyles
-  }) : null), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
-    width: "600",
-    height: "350",
-    style: {
-      backgroundColor: 'white',
-      borderRadius: 3
-    },
+    styles: uploadStatusStyles
+  }) : null, url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    style: styles.video,
     controls: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
     src: url,
     type: "video/mp4"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  })) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.floatContainer2
+  }, url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.otherInputs
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__["default"], {
     placeholder: "title",
     styles: styles
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1659,71 +1690,100 @@ var UploadTrack = function UploadTrack(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
     addedTimes: addedTimes,
     setTimes: setTimes
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+  })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.buttonsContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "Cancel",
+    styles: styles,
     onPress: cancel
   }), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "Save",
     onPress: handleSave
-  }) : null)) : null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.addContainer,
+  }) : null))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "+",
+    styles: styles.addContainer,
     onPress: function onPress(e) {
       return setModal(true);
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.add
-  }, "+"));
+  });
 };
 
 var styles = {
   modalContainer: {
+    display: 'block',
     marginTop: 10,
-    padding: 10,
+    padding: 20,
     border: '1px solid white',
     borderRadius: 3,
     marginBottom: 20
+  },
+  floatContainer1: {
+    float: 'left',
+    margin: 5,
+    maxWidth: 640
+  },
+  floatContainer2: {
+    float: 'left',
+    margin: 5,
+    maxWidth: 450
+  },
+  chooseFileContainer: {
+    position: 'relative',
+    marginBottom: 10,
+    overflow: 'hidden'
+  },
+  fileInput: {
+    position: 'absolute',
+    opacity: 0,
+    cursor: 'pointer',
+    width: '200%',
+    height: '200%',
+    left: -100
+  },
+  otherInputs: {
+    marginBottom: 30
   },
   text: {
     padding: 10,
     color: 'white'
   },
   addContainer: {
-    marginTop: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 50,
-    height: 50,
-    border: '1px solid white',
-    borderRadius: '100%',
-    overflow: 'hidden'
-  },
-  add: {
-    color: 'white',
-    fontSize: 30,
-    flex: 1,
-    paddingTop: 4,
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center'
+    regular_button_container: {
+      justifyContent: 'center',
+      marginTop: 10,
+      height: 100,
+      width: 100,
+      borderRadius: '100%',
+      overflow: 'hidden'
+    },
+    regular_button_text: {
+      fontSize: 100,
+      marginTop: -20
+    }
   },
   regular_text_input: {
-    marginTop: 10,
     marginBottom: 10
   },
   buttonsContainer: {
     flexDirection: 'row',
     zIndex: -1,
-    paddingTop: 10,
-    width: 130,
-    justifyContent: 'space-between'
+    width: '100%',
+    justifyContent: 'flex-end'
+  },
+  regular_button_container: {
+    marginRight: 10
+  },
+  video: {
+    width: 600,
+    height: 350
   }
 };
 var chooseFileStyles = {
   regular_button_container: {
     width: '100%'
-  },
+  }
+};
+var uploadStatusStyles = {
   regular_text: {
     marginTop: 10
   }
@@ -1813,7 +1873,7 @@ var Page = function Page(_ref) {
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
-    flex: 0.9,
+    flex: 1,
     backgroundColor: 'black',
     overflow: 'scroll'
   }
@@ -1834,29 +1894,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
 
 
 
 var Error404 = function Error404() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "404 ERROR", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "THIS PAGE DOESN'T EXIST"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "404 ERROR",
+    styles: styles
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "THIS PAGE DOESN'T EXIST",
+    styles: styles
+  }));
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   container: {
     flex: 1,
     alignItems: 'center',
     paddingTop: 100
   },
-  text: {
-    color: 'white',
-    fontSize: 24,
+  regular_text: {
     fontWeight: 'bold'
   }
-});
+};
 /* harmony default export */ __webpack_exports__["default"] = (Error404);
 
 /***/ }),
@@ -1874,6 +1938,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/upload_track */ "./frontend/components/modular_components/upload_track.jsx");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
 
 
 
@@ -1885,10 +1951,10 @@ var Feed = function Feed(_ref) {
   // })
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "FEED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__["default"], {
     currentUser: currentUser
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "FEED"
   }));
 };
 
@@ -1921,6 +1987,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../modular_components/avitar */ "./frontend/components/modular_components/avitar.jsx");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
 
 
 
@@ -1948,40 +2016,42 @@ var MainMenu = function MainMenu(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.view
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], null, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.menuItem
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    url: currentUser.profilePhotoURL || "assets/".concat(photo),
-    size: 30
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text,
+  }, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     onPress: function onPress(e) {
       return navigateTo("/users/".concat(currentUser.id));
     }
-  }, currentUser.username)) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], null, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.menuItem
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    url: currentUser.profilePhotoURL || "assets/".concat(photo),
+    size: 75
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    text: currentUser.username,
+    styles: styles
+  }))) : null, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     onPress: function onPress(e) {
       return leave();
     }
-  }, "Logout") : null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    text: "Logout",
+    styles: styles
+  })) : null);
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   view: {
     flex: 1,
     padding: 50,
     alignItems: 'center'
   },
-  text: {
-    fontSize: 20,
-    color: 'white',
+  regular_text: {
     padding: 10
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center'
   }
-});
+};
 
 var mdp = function mdp(dispatch) {
   return {
@@ -2018,6 +2088,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_follows__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./profile_follows */ "./frontend/components/page_components/profile/profile_follows.jsx");
 /* harmony import */ var _profile_tracks__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./profile_tracks */ "./frontend/components/page_components/profile/profile_tracks.jsx");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2029,6 +2101,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -2062,7 +2136,9 @@ var Profile = function Profile(_ref) {
       setTab = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    getUserById(userId).fail(function (res) {
+    getUserById(userId).then(function (res) {
+      return setFound(true);
+    }).fail(function (res) {
       return setFound(false);
     });
   }, [userId]);
@@ -2075,17 +2151,18 @@ var Profile = function Profile(_ref) {
     user: user,
     ownProfile: ownProfile,
     updateUser: updateUser
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    text: user.username,
     style: styles.usernameText
-  }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.followContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    text: "210 Followers",
     style: styles.subText
-  }, "420", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Followers"), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    text: "Follow",
     style: styles.button
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.subText
-  }, "Follow"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
     tab: tab,
     setTab: setTab
   }), tab === "Info" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_info__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -2116,12 +2193,13 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   },
   followContainer: {
     position: "absolute",
-    width: 300,
+    width: 600,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     zIndex: -1,
-    top: 50
+    top: 50,
+    marginLeft: -40
   },
   subText: {
     color: 'white',
@@ -2180,6 +2258,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
 
 
 
@@ -2187,9 +2267,10 @@ var ProfileFollows = function ProfileFollows(_ref) {
   var user = _ref.user;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "Follows",
     style: styles.text
-  }, "Follows"));
+  }));
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -2216,6 +2297,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2227,6 +2311,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -2276,80 +2363,82 @@ var ProfileInfo = function ProfileInfo(_ref) {
         flexDirection: 'row',
         alignItems: 'center'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: {
-        color: 'white'
-      }
-    }, "Info"), ownProfile && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "Info"
+    }), ownProfile && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
       style: styles.touch,
       onPress: function onPress(e) {
         return setEdit(true);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
       style: styles.pencil
-    }, "\u270E"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text
-    }, "Username: ", user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text
-    }, "First Name: ", user.f_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text
-    }, "Last Name: ", user.l_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text
-    }, "Bio: ", user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text
-    }, "Headline: ", user.headline));
+    }, "\u270E"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "Username: ".concat(user.username),
+      styles: styles.text
+    }), user.f_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "First Name: ".concat(user.f_name),
+      styles: styles.text
+    }) : null, user.l_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "Last Name: ".concat(user.l_name),
+      styles: styles.text
+    }) : null, user.bio ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "Bio: ".concat(user.bio),
+      styles: styles.text
+    }) : null, user.headline ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "Headline: ".concat(user.headline),
+      styles: styles.text
+    }) : null);
   };
 
   var editInfo = function editInfo() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
       style: styles.container
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text
-    }, "Username: ", user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-      style: styles.input,
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      text: "Username: ".concat(user.username),
+      styles: styles.text
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      styles: styles,
       placeholder: "first name",
       onChange: handleChange('f_name')
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-      style: styles.input,
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      styles: styles,
       placeholder: "last name",
       onChange: handleChange('l_name')
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-      style: styles.input,
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      styles: styles,
       placeholder: "bio",
       onChange: handleChange('bio')
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
-      style: styles.input,
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      styles: styles,
       placeholder: "headline",
       onChange: handleChange('headline')
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
       style: styles.buttonContainer
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "Save",
+      styles: styles.button,
       onPress: function onPress(e) {
         return handleSave(e);
-      },
-      style: styles.button
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.buttonText
-    }, "Save")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "Cancel",
+      styles: styles.button,
       onPress: function onPress(e) {
         return setEdit(false);
-      },
-      style: styles.button
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.buttonText
-    }, "Cancel"))));
+      }
+    })));
   };
 
   return edit ? editInfo() : dispayInfo();
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   container: {
     padding: 10
   },
   pencil: {
     color: 'black',
-    fontSize: 20
+    fontSize: 40
   },
   touch: {
     cursor: 'pointer',
@@ -2357,44 +2446,33 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     borderRadius: '100%',
     border: '1px solid black',
     padding: 10,
-    height: 30,
-    width: 30,
+    height: 60,
+    width: 60,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 10
   },
   text: {
-    color: 'white',
-    marginTop: 10
+    regular_text: {
+      marginTop: 10
+    }
   },
   buttonText: {
     color: 'white'
   },
-  input: {
-    paddingTop: 7,
-    paddingBottom: 7,
-    paddingLeft: 10,
-    paddingRight: 10,
-    border: '1px solid white',
-    borderRadius: 3,
-    marginTop: 10,
-    color: 'white'
+  regular_text_input: {
+    marginTop: 10
   },
   buttonContainer: {
     flexDirection: 'row',
     marginTop: 10
   },
   button: {
-    paddingTop: 7,
-    paddingBottom: 7,
-    paddingLeft: 10,
-    paddingRight: 10,
-    border: '1px solid white',
-    borderRadius: 3,
-    width: 'fit-content',
-    marginRight: 10
+    regular_button_container: {
+      marginRight: 10
+    }
   }
-});
+};
 /* harmony default export */ __webpack_exports__["default"] = (ProfileInfo);
 
 /***/ }),
@@ -2470,7 +2548,7 @@ var ProfilePhoto = function ProfilePhoto(_ref) {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     url: user.profilePhotoURL || "/assets/".concat(photo),
-    size: 100
+    size: 200
   }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.touch
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
@@ -2499,7 +2577,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   },
   pencil: {
     color: 'black',
-    fontSize: 20
+    fontSize: 40
   },
   touch: {
     cursor: 'pointer',
@@ -2507,8 +2585,8 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     borderRadius: '100%',
     border: '1px solid black',
     padding: 10,
-    height: 30,
-    width: 30,
+    height: 60,
+    width: 60,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -2533,6 +2611,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
 
 
 
@@ -2540,9 +2620,9 @@ var ProfileRepertoire = function ProfileRepertoire(_ref) {
   var user = _ref.user;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Repertoire"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "Repertoire"
+  }));
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -2569,6 +2649,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
 
 
 
@@ -2582,30 +2664,30 @@ var ProfileTabs = function ProfileTabs(_ref) {
       return setTab('Info');
     },
     style: tab === 'Info' ? styles.selectedTab : styles.tab
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Info")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "Info"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     onPress: function onPress(e) {
       return setTab('Repertoire');
     },
     style: tab === 'Repertoire' ? styles.selectedTab : styles.tab
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Repertoire")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "Repertoire"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     onPress: function onPress(e) {
       return setTab('Follows');
     },
     style: tab === 'Follows' ? styles.selectedTab : styles.tab
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Follows")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "Follows"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     onPress: function onPress(e) {
       return setTab('Tracks');
     },
     style: tab === 'Tracks' ? styles.selectedTab : styles.tab
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Tracks")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "Tracks"
+  })));
 };
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
@@ -2619,18 +2701,18 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     borderBottomColor: 'white',
     marginTop: 10
   },
-  text: {
-    color: 'white',
-    fontSize: 20,
-    padding: 10
-  },
   tab: {
-    borderBottomColor: 'none',
-    borderBottomWidth: 5
+    // border: '5px solid none',
+    borderTopWidth: 5,
+    borderTopColor: 'none',
+    borderBottomWidth: 5,
+    borderBottomColor: 'none'
   },
   selectedTab: {
     borderBottomColor: 'skyblue',
-    borderBottomWidth: 5
+    borderBottomWidth: 5,
+    borderTopColor: 'skyblue',
+    borderTopWidth: 5
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (ProfileTabs);
@@ -2652,6 +2734,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modular_components/upload_track */ "./frontend/components/modular_components/upload_track.jsx");
 /* harmony import */ var _actions_track_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/track_actions */ "./frontend/actions/track_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
 
 
 
@@ -2667,14 +2751,15 @@ var ProfileTracks = function ProfileTracks(_ref) {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    text: "Tracks",
     style: styles.text
-  }, "Tracks"), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_upload_track__WEBPACK_IMPORTED_MODULE_2__["default"], {
     user: user
   }) : null);
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   container: {
     padding: 20,
     alignItems: "center"
@@ -2698,7 +2783,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     color: 'white',
     fontSize: 30
   }
-});
+};
 
 var mdp = function mdp(dispatch) {
   return {
@@ -2847,9 +2932,7 @@ var Filters = function Filters(_ref) {
     text: "Clear All"
   })), show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.filtersContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Filters:"), checkboxes(), (enitityTypes.tracks || enitityTypes.projects) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, checkboxes(), (enitityTypes.tracks || enitityTypes.projects) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__["default"], {
     setTags: setTags,
     addedTags: addedTags,
     allowTagCreation: false
@@ -2885,20 +2968,21 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    maxWidth: 300
+    maxWidth: 500
   },
   filtersContainer: {
     marginTop: 10
-  },
-  text: {
-    color: 'white'
   }
 });
 var checkboxStyles = {
   regular_button_container: {
     width: 30,
     height: 30,
-    marginRight: 10
+    marginRight: 10,
+    paddingRight: 0,
+    paddingLeft: 0,
+    paddingTop: 0,
+    paddingBottom: 0
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (Filters);
@@ -2979,6 +3063,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
 
 
 
@@ -2987,19 +3073,19 @@ var SearchResults = function SearchResults(_ref) {
       input = _ref.input;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Showing results for '", input, "'"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "Showing results for '".concat(input, "'")
+  }));
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   container: {
     padding: 20
   },
   text: {
     color: 'white'
   }
-});
+};
 /* harmony default export */ __webpack_exports__["default"] = (SearchResults);
 
 /***/ }),
@@ -3016,6 +3102,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
+/* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3027,6 +3116,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -3066,21 +3158,21 @@ var SessionForm = function SessionForm(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null, errors.map(function (error) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-      style: styles.text
-    }, error);
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: error
+    });
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     placeholder: "email",
-    style: styles.input,
+    styles: styles,
     onChange: function onChange(e) {
       return setUsername(e.currentTarget.value);
     },
     onSubmitEditing: function onSubmitEditing(e) {
       return handleSubmit();
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TextInput"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     placeholder: "password",
-    style: styles.input,
+    styles: styles,
     secureTextEntry: "true",
     onChange: function onChange(e) {
       return setPassword(e.currentTarget.value);
@@ -3088,17 +3180,16 @@ var SessionForm = function SessionForm(_ref) {
     onSubmitEditing: function onSubmitEditing(e) {
       return handleSubmit();
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.button,
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: type,
+    style: styles,
     onPress: function onPress(e) {
       return handleSubmit();
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, type)));
+  }));
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   container: {
     alignItems: 'center',
     padding: 20,
@@ -3107,24 +3198,11 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     border: '1px solid white',
     borderRadius: 3
   },
-  input: {
-    height: 30,
-    width: 300,
-    backgroundColor: 'white',
-    borderColor: 'black',
-    padding: 10,
-    borderRadius: 3,
+  regular_text_input: {
+    width: 600,
     margin: 5
-  },
-  text: {
-    color: 'white'
-  },
-  button: {
-    border: '1px solid white',
-    borderRadius: 3,
-    padding: 10
   }
-});
+};
 /* harmony default export */ __webpack_exports__["default"] = (SessionForm);
 
 /***/ }),
@@ -3144,6 +3222,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session_form */ "./frontend/components/page_components/splash/session_form.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3155,6 +3234,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -3195,45 +3275,40 @@ var Splash = function Splash(_ref) {
     clearSessionErrors: clearSessionErrors
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.buttonsContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.button,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    text: otherType,
+    styles: styles,
     onPress: function onPress(e) {
       return switchForm();
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, otherType)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    style: styles.button,
-    title: "Demo",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    text: "Demo",
+    styles: styles,
     onPress: function onPress(e) {
       return login(demoUser);
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text
-  }, "Demo"))));
+  })));
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   splashContainer: {
     flex: 1,
     alignItems: 'center'
   },
   buttonsContainer: {
     marginTop: 20,
-    width: 100,
+    width: 200,
     justifyContent: "space-between",
     height: 100
   },
-  button: {
-    border: '1px solid white',
-    borderRadius: 3,
-    padding: 10,
-    textAlign: 'center'
+  regular_button_container: {
+    width: '100%',
+    marginBottom: 10
   },
   text: {
     color: 'white'
   }
-});
+};
 
 var msp = function msp(state) {
   return {

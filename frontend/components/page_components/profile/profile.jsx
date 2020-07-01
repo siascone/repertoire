@@ -14,13 +14,17 @@ import ProfileFollows from './profile_follows';
 import ProfileTracks from './profile_tracks';
 
 import { getUserById, updateUser } from '../../../actions/user_actions';
+import RegularText from '../../custom/regular_text';
+import RegularButton from '../../custom/regular_button';
 
 let Profile = ({ currentUser, user, userId, getUserById, updateUser }) => {
     const [found, setFound] = useState(true)
     const [tab, setTab] = useState('Tracks');
 
     useEffect(() => { 
-        getUserById(userId).fail(res => setFound(false));
+        getUserById(userId)
+        .then(res => setFound(true))
+        .fail(res => setFound(false));
     }, [userId]);
 
     if (!found) return <Error404 />;
@@ -29,15 +33,13 @@ let Profile = ({ currentUser, user, userId, getUserById, updateUser }) => {
     return(
         <View style={styles.container}>
             <ProfilePhoto user={user} ownProfile={ownProfile} updateUser={updateUser}/>
-            <Text style={styles.usernameText}>{user.username}</Text>
+            <RegularText text={user.username} style={styles.usernameText} />
             <View style={styles.followContainer}>
-                <Text style={styles.subText}>420<br/>Followers</Text>
+                <RegularText text='210 Followers' style={styles.subText} />
                 {ownProfile ? 
                 <View></View>
                 :
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.subText}>Follow</Text>
-                </TouchableOpacity>}       
+                <RegularButton text='Follow' style={styles.button} />}   
             </View>
             <ProfileTabs tab={tab} setTab={setTab}/>
             {tab === "Info" && <ProfileInfo user={user} ownProfile={ownProfile} updateUser={updateUser}/>}
@@ -62,12 +64,13 @@ const styles = StyleSheet.create({
     },
     followContainer: {
         position: "absolute",
-        width: 300,
+        width: 600,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         zIndex: -1,
         top: 50,
+        marginLeft: -40
     },
     subText: {
         color: 'white',

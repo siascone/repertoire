@@ -70,7 +70,7 @@ let TagSuggest = ({
         createTag({ name })
     };
     const getSuggestionText = tag => tag.name;
-    const getSuggestionItem = tag => <Text style={styles.suggestionText}>{tag.name}</Text>
+    const getSuggestionItem = tag => <RegularText text={tag.name} />
     const addTag = tag => { 
         updateTags(tag, true);
         const smartBankCopy = Object.assign({}, smartBank);
@@ -89,9 +89,10 @@ let TagSuggest = ({
             {addedTagsArray.length ?
             <View style={styles.addedTagsContainer}>
                 {addedTagsArray.reverse().map(tag =>
-                    <Text style={styles.addedTagsText} key={tag.id}>
-                        <Text onPress={e => removeTag(tag)}>X </Text> {tag.name}
-                    </Text>
+                    <View style={styles.addedTag} key={tag.id}>
+                        <RegularText text='X' styles={styles.removeTag} onPress={e => removeTag(tag)} />
+                        <RegularText text={tag.name} />
+                    </View> 
                 )}
             </View> : null}
             <Autosuggest 
@@ -118,30 +119,33 @@ const styles = {
     autosuggest_input: {
         marginTop: 10,
     }, 
-    suggestionText: {
-        color: 'white',
-    },
     addedTagsContainer: {
         display: 'block',
         zIndex: -1,
         marginTop: 10,
     },
-    addedTagsText: {
+    addedTag: {
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: 'black',
-        color: 'white',
         border: '1px solid white',
-        borderRadius: 20,
+        borderRadius: 30,
         paddingTop: 7,
         paddingBottom: 7,
-        paddingRight: 10,
-        paddingLeft: 10,
+        paddingRight: 15,
+        paddingLeft: 15,
         margin: 2,
         alignItems: 'center',
         width: 'fit-content',
         float: 'left',
     },
+    removeTag: {
+        regular_text: {
+            marginRight: 10,
+        }
+    },
     suggestions_container: {
-        top: 48,
+        top: 65,
         zIndex: 2,
         width: '100%',
         border: '1px solid white',

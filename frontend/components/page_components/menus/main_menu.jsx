@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native
 import { logout } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
 import Avitar from '../../modular_components/avitar';
+import RegularText from '../../custom/regular_text';
 
 const photo = require('../../../../app/assets/images/photo.png')
 
@@ -19,47 +20,45 @@ let MainMenu = ({currentUser, logout, history, setMenu}) => {
 
     return (
         <View style={styles.view}>
-            <TouchableOpacity>
-                {currentUser ?
+            {currentUser ?
+            <TouchableOpacity onPress={e => navigateTo(`/users/${currentUser.id}`)}>
                 <View style={styles.menuItem}>
-                    <Avitar url={currentUser.profilePhotoURL || `assets/${photo}`} size={30} />
-                    <Text
-                        style={styles.text}
-                        onPress={e => navigateTo(`/users/${currentUser.id}`)}
-                    >{currentUser.username}</Text>
-                </View> : null}
-            </TouchableOpacity>
-            <TouchableOpacity >
-                {currentUser ?
-                <Text 
-                    style={styles.text}
-                    onPress={e => leave()}
-                >Logout</Text> : null}
-            </TouchableOpacity>
+                    <Avitar url={currentUser.profilePhotoURL || `assets/${photo}`} size={75} />
+                    <RegularText
+                        text={currentUser.username}
+                        styles={styles}
+                    />
+                </View>
+            </TouchableOpacity> : null}
+            {currentUser ?
+            <TouchableOpacity onPress={e => leave()}>
+                <RegularText 
+                    text='Logout'
+                    styles={styles}
+                />
+            </TouchableOpacity> : null}
         </View>
     );
 };
 
-const styles = StyleSheet.create({
+const styles = {
     view: {
         flex: 1,
         padding: 50,
         alignItems: 'center',
     },
-    text: {
-        fontSize: 20,
-        color: 'white',
+    regular_text: {
         padding: 10,
     },
     menuItem: {
         flexDirection: 'row',
         alignItems: 'center',
     }
-});
+};
 
 const mdp = dispatch => ({
     logout: () => dispatch(logout()),
-})
+});
 
 MainMenu = connect(null, mdp)(MainMenu);
 

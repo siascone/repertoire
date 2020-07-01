@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import UploadTrack from '../../modular_components/upload_track';
+import RegularText from '../../custom/regular_text';
 
 let Feed = ({ currentUser }) => {
 
@@ -10,8 +11,8 @@ let Feed = ({ currentUser }) => {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.text}>FEED</Text>
             <UploadTrack currentUser={currentUser} />
+            <RegularText text='FEED' />
         </View>
     );
 };

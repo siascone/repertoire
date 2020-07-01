@@ -11,13 +11,13 @@ let UploadTrack = ({ currentUser }) => {
     const [modal, setModal] = useState(false);
     const [progress, setProgress] = useState('');
     const [url, setUrl] = useState('');
-    const [fileState, setFileState] = useState(null)
+    const [fileState, setFileState] = useState(null);
     const [addedTags, setTags] = useState({});
     const [addedTimes, setTimes] = useState({});
 
     const handleSave = e => {
         cancel();
-    }
+    };
 
     const cancel = e => {
         setUrl('');
@@ -25,7 +25,8 @@ let UploadTrack = ({ currentUser }) => {
         setModal(false);
         setTags({});
         setTimes({});
-    }
+        setFileState(null);
+    };
 
     const handleFile = e => {
         const file = e.currentTarget.files[0];
@@ -44,82 +45,111 @@ let UploadTrack = ({ currentUser }) => {
 
     return(modal ?
         <View style={styles.modalContainer}>
-            <Text style={styles.text}>Upload Track</Text>
-            <TouchableOpacity style={{ position: 'relative', marginBottom: 10, overflow: 'hidden', cursor: 'pointer' }} >
-                <RegularButton text={'Choose file'} styles={chooseFileStyles}/>
-                <input 
-                    onChange={e => handleFile(e)}
-                    type="file"
-                    style={{position: 'absolute', opacity: 0, width: '100%', height: '100%'}}
-                />
+            <View style={styles.floatContainer1}>
+                <TouchableOpacity style={styles.chooseFileContainer} >
+                    <RegularButton text={'Choose file'} styles={chooseFileStyles} />
+                    <input 
+                        onChange={e => handleFile(e)}
+                        type="file"
+                        style={styles.fileInput}
+                    />
+                </TouchableOpacity>
                 {fileState ? 
                 <RegularText 
                     text={`${fileState.name}  |  Upload progress: ${progress}`} 
-                    styles={chooseFileStyles}
+                    styles={uploadStatusStyles}
                 /> : null}
-            </TouchableOpacity>
-            {url ?
-            <View>
-                <video width="600" height="350" style={{backgroundColor: 'white', borderRadius: 3}} controls>
+                {url ?
+                <video style={styles.video} controls>
                     <source src={url} type="video/mp4"/>
-                </video>
-                <RegularTextInput placeholder='title' styles={styles}/>
-                <TagSuggest addedTags={addedTags} setTags={setTags} allowTagCreation={true}/>
-                <TimeSignatureSelect addedTimes={addedTimes} setTimes={setTimes}/>
+                </video> : null}
+            </View>
+            <View style={styles.floatContainer2}>
+                {url ? 
+                <View style={styles.otherInputs}>
+                    <RegularTextInput placeholder='title' styles={styles}/>
+                    <TagSuggest addedTags={addedTags} setTags={setTags} allowTagCreation={true}/>
+                    <TimeSignatureSelect addedTimes={addedTimes} setTimes={setTimes}/>
+                </View> : null}
                 <View style={styles.buttonsContainer}>
-                    <RegularButton text='Cancel' onPress={cancel} />
+                    <RegularButton text='Cancel' styles={styles} onPress={cancel} />
                     {url ? <RegularButton text='Save' onPress={handleSave}/> : null}
                 </View>
-            </View> : null}
+            </View>
         </View>
         :
-        <TouchableOpacity style={styles.addContainer} onPress={e => setModal(true)}>
-            <Text style={styles.add}>+</Text>
-        </TouchableOpacity>
+        <RegularButton text='+' styles={styles.addContainer} onPress={e => setModal(true)} />
     );
 };
 
 const styles = {
     modalContainer: {
+        display: 'block',
         marginTop: 10,
-        padding: 10,
+        padding: 20,
         border: '1px solid white',
         borderRadius: 3,
         marginBottom: 20,
+    },
+    floatContainer1: { 
+        float: 'left', 
+        margin: 5,
+        maxWidth: 640,
+    },
+    floatContainer2: { 
+        float: 'left', 
+        margin: 5,
+        maxWidth: 450,
+    },
+    chooseFileContainer: { 
+        position: 'relative',
+        marginBottom: 10,
+        overflow: 'hidden' 
+    },
+    fileInput: { 
+        position: 'absolute',
+        opacity: 0,
+        cursor: 'pointer',
+        width: '200%',
+        height: '200%',
+        left: -100
+    },
+    otherInputs: {
+        marginBottom: 30,
     },
     text: {
         padding: 10,
         color: 'white',
     },
     addContainer: {
-        marginTop: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 50,
-        height: 50,
-        border: '1px solid white',
-        borderRadius: '100%',
-        overflow: 'hidden',
-    },
-    add: {
-        color: 'white',
-        fontSize: 30,
-        flex: 1,
-        paddingTop: 4,
-        textAlign: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
+        regular_button_container:{
+            justifyContent: 'center',
+            marginTop: 10,
+            height: 100,
+            width: 100,
+            borderRadius: '100%',
+            overflow: 'hidden',
+        },
+        regular_button_text: {
+            fontSize: 100,
+            marginTop: -20
+        }
     },
     regular_text_input: {
-        marginTop: 10,
         marginBottom: 10,
     },
     buttonsContainer: {
         flexDirection: 'row',
         zIndex: -1,
-        paddingTop: 10,
-        width: 130,
-        justifyContent: 'space-between',
+        width: '100%',
+        justifyContent: 'flex-end',
+    },
+    regular_button_container: {
+        marginRight: 10,
+    },
+    video: {
+        width: 600,
+        height: 350,
     }
 };
 
@@ -127,6 +157,9 @@ const chooseFileStyles = {
     regular_button_container: {
         width: '100%',
     },
+}
+
+const uploadStatusStyles = {
     regular_text: {
         marginTop: 10,
     }

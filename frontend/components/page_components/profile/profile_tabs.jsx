@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import RegularText from '../../custom/regular_text';
 
 let ProfileTabs = ({ tab, setTab }) => {
     return (
@@ -8,25 +9,25 @@ let ProfileTabs = ({ tab, setTab }) => {
                 onPress={e => setTab('Info')} 
                 style={tab === 'Info' ? styles.selectedTab : styles.tab}
             >
-                <Text style={styles.text}>Info</Text>
+                <RegularText text='Info' />
             </TouchableOpacity>
             <TouchableOpacity 
                 onPress={e => setTab('Repertoire')} 
                 style={tab === 'Repertoire' ? styles.selectedTab : styles.tab}
             >
-                <Text style={styles.text}>Repertoire</Text>
+                <RegularText text='Repertoire' />
             </TouchableOpacity>
             <TouchableOpacity 
                 onPress={e => setTab('Follows')} 
                 style={tab === 'Follows' ? styles.selectedTab : styles.tab}
             >
-                <Text style={styles.text}>Follows</Text>
+                <RegularText text='Follows' />
             </TouchableOpacity>
             <TouchableOpacity 
                 onPress={e => setTab('Tracks')} 
                 style={tab === 'Tracks' ? styles.selectedTab : styles.tab}
             >
-                <Text style={styles.text}>Tracks</Text>
+                <RegularText text='Tracks' />
             </TouchableOpacity>
         </View>
     );
@@ -43,18 +44,18 @@ const styles = StyleSheet.create({
         borderBottomColor: 'white',
         marginTop: 10,
     },
-    text: {
-        color: 'white',
-        fontSize: 20,
-        padding: 10,
-    },
     tab: {
-        borderBottomColor: 'none',
+        // border: '5px solid none',
+        borderTopWidth: 5,
+        borderTopColor: 'none',
         borderBottomWidth: 5,
+        borderBottomColor: 'none',
     },
     selectedTab: {
         borderBottomColor: 'skyblue',
         borderBottomWidth: 5,
+        borderTopColor: 'skyblue',
+        borderTopWidth: 5,
     }
 })
 
