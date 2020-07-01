@@ -1665,13 +1665,16 @@ var UploadTrack = function UploadTrack(_ref) {
     ;
   };
 
-  var small = Object(_util_media_query_util__WEBPACK_IMPORTED_MODULE_7__["default"])("(min-width: 1300px)");
+  var large = Object(_util_media_query_util__WEBPACK_IMPORTED_MODULE_7__["default"])("(min-width: 1000px)");
   return modal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: _objectSpread({
-      flexDirection: small ? 'row' : 'column'
+      flexDirection: large ? 'row' : 'column'
     }, styles.modalContainer)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.floatContainer1
+    style: {
+      width: large ? '49%' : '100%',
+      margin: 5
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.chooseFileContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1693,7 +1696,10 @@ var UploadTrack = function UploadTrack(_ref) {
     src: url,
     type: "video/mp4"
   })) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.floatContainer2
+    style: {
+      width: large ? '49%' : '100%',
+      margin: 5
+    }
   }, url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.otherInputs
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -1731,15 +1737,9 @@ var styles = {
     padding: 20,
     border: '1px solid white',
     borderRadius: 3,
-    marginBottom: 20
-  },
-  floatContainer1: {
-    margin: 5,
-    maxWidth: 640
-  },
-  floatContainer2: {
-    margin: 5,
-    maxWidth: 640
+    marginBottom: 20,
+    minWidth: 500,
+    maxWidth: 1200
   },
   chooseFileContainer: {
     position: 'relative',
@@ -1789,7 +1789,7 @@ var styles = {
   },
   video: {
     width: '100%',
-    height: '60%'
+    height: '70%'
   }
 };
 var chooseFileStyles = {

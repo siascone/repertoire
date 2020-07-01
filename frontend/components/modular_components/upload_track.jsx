@@ -44,11 +44,11 @@ let UploadTrack = ({ currentUser }) => {
         };
     };
 
-    const small = useMediaQuery("(min-width: 1300px)");
+    const large = useMediaQuery("(min-width: 1000px)");
 
     return(modal ?
-        <View style={{ flexDirection: small ? 'row' : 'column', ...styles.modalContainer}}>
-            <View style={styles.floatContainer1}>
+        <View style={{ flexDirection: large ? 'row' : 'column', ...styles.modalContainer}}>
+            <View style={{ width: large ? '49%' : '100%', margin: 5 }}> 
                 <TouchableOpacity style={styles.chooseFileContainer} >
                     <RegularButton text={'Choose file'} styles={chooseFileStyles} />
                     <input 
@@ -67,7 +67,7 @@ let UploadTrack = ({ currentUser }) => {
                     <source src={url} type="video/mp4"/>
                 </video> : null}
             </View>
-            <View style={styles.floatContainer2}>
+            <View style={{ width: large ? '49%' : '100%', margin: 5 }}>
                 {url ? 
                 <View style={styles.otherInputs}>
                     <RegularTextInput placeholder='title' styles={styles}/>
@@ -93,14 +93,8 @@ const styles = {
         border: '1px solid white',
         borderRadius: 3,
         marginBottom: 20,
-    },
-    floatContainer1: { 
-        margin: 5,
-        maxWidth: 640,
-    },
-    floatContainer2: { 
-        margin: 5,
-        maxWidth: 640,
+        minWidth: 500,
+        maxWidth: 1200,
     },
     chooseFileContainer: { 
         position: 'relative',
@@ -150,7 +144,7 @@ const styles = {
     },
     video: {
         width: '100%',
-        height: '60%',
+        height: '70%',
     }
 };
 
