@@ -2023,7 +2023,7 @@ var MainMenu = function MainMenu(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuItem
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    url: currentUser.profilePhotoURL || "assets/".concat(photo),
+    url: currentUser.profilePhotoUrl || "assets/".concat(photo),
     size: 75
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
     text: currentUser.username,
@@ -2547,7 +2547,7 @@ var ProfilePhoto = function ProfilePhoto(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    url: user.profilePhotoURL || "/assets/".concat(photo),
+    url: user.profilePhotoUrl || "/assets/".concat(photo),
     size: 200
   }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.touch
