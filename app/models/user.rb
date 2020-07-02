@@ -47,4 +47,6 @@ class User < ApplicationRecord
     end
 
     # add associations later
+
+    has_one_attached :profile_photo
 end

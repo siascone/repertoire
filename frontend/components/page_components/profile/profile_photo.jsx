@@ -18,6 +18,7 @@ let ProfilePhoto = ({ ownProfile, user, updateUser }) => {
         if (file) {
             fileReader.readAsDataURL(file);
         };
+        
         const formData = new FormData();
         formData.append('user[profile_photo]', file);
         formData.append('user[id]', user.id);
@@ -26,7 +27,7 @@ let ProfilePhoto = ({ ownProfile, user, updateUser }) => {
 
     return (
         <View style={styles.container}>
-            <Avitar url={user.profilePhotoURL || `/assets/${photo}`} size={130} />
+            <Avitar url={user.profilePhotoUrl || `/assets/${photo}`} size={200} />
             {ownProfile?
             <TouchableOpacity style={styles.touch}>
                 <Text style={styles.pencil}>✎</Text>

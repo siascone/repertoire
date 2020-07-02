@@ -10,6 +10,15 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def update 
+        @user = selected_user
+        if @user.update(user_params)
+            render :show
+        else
+            render json: user.errors.full_messages, status: 401
+        end
+    end
+
     def show
         @user = selected_user
         render :show
@@ -18,11 +27,11 @@ class Api::UsersController < ApplicationController
     private
 
     def selected_user
-        User.find(params[:id])
+        User.find_by(id: params[:id])
     end
 
     def user_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:username, :password, :profile_photo)
     end
 end
 

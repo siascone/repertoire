@@ -12,3 +12,6 @@ require 'open-uri'
 User.destroy_all
 
 demo = User.create!(username: 'demo', password: 'password')
+
+# hayden = open("https://repertoire-development.s3-us-west-1.amazonaws.com/hayden-user-photo.jpeg")
+# demo.profile_photo.attach(io: hayden, filename: "hayden-user-photo.jpeg")
