@@ -27,7 +27,7 @@ let ProfilePhoto = ({ ownProfile, user, updateUser }) => {
 
     return (
         <View style={styles.container}>
-            <Avitar url={user.profilePhotoUrl || `/assets/${photo}`} size={200} />
+            <Avitar url={user.profilePhotoUrl || `/assets/${photo}`} size={130} />
             {ownProfile?
             <TouchableOpacity style={styles.touch}>
                 <Text style={styles.pencil}>✎</Text>
