@@ -59,7 +59,7 @@ const styles = {
         borderRadius: 3
     },
     regular_text_input: {
-        width: 600,
+        // width: 600,
         margin: 5,
     },
 

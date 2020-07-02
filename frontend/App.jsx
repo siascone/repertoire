@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
 import Header from './components/header';
 import Page from './components/page';
@@ -7,12 +7,13 @@ import Page from './components/page';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { useState } from 'react';
+import Filters from './components/page_components/search/filters';
 
 let App = (props) => {
     const [menu, setMenu] = useState(false);
 
     return(
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, position: 'relative', overflow: 'none', backgroundColor: 'black', alignItems: 'center' }}>
             <Header 
                 menu={menu}
                 setMenu={setMenu}

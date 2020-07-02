@@ -54,8 +54,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        padding: 20,
         position: 'relative',
+        padding: 20,
+        width: '100%',
+        maxWidth: 1200,
     },
     usernameText: {
         color: 'white',

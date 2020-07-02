@@ -87,13 +87,12 @@ let UploadTrack = ({ currentUser }) => {
 
 const styles = {
     modalContainer: {
-        // flexWrap: 'wrap',
         marginTop: 10,
         padding: 20,
         border: '1px solid white',
         borderRadius: 3,
         marginBottom: 20,
-        minWidth: 500,
+        minWidth: 300,
         maxWidth: 1200,
     },
     chooseFileContainer: { 
@@ -120,14 +119,14 @@ const styles = {
         regular_button_container:{
             justifyContent: 'center',
             marginTop: 10,
-            height: 100,
-            width: 100,
+            height: 60,
+            width: 60,
             borderRadius: '100%',
             overflow: 'hidden',
         },
         regular_button_text: {
-            fontSize: 100,
-            marginTop: -20
+            fontSize: 60,
+            marginTop: -10
         }
     },
     regular_text_input: {

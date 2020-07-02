@@ -23,7 +23,7 @@ let RegularTextInput = ({
             borderRadius: 3,
             color: 'white',
             padding: 10,
-            fontSize: 30,
+            fontSize: 20,
             ...styles.regular_text_input
         }}
     />

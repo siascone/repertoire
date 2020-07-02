@@ -93,13 +93,13 @@ let Filters = ({ history }) => {
 
 const styles = StyleSheet.create({
     container: {
+        alignItems: 'center',
         borderBottomColor: 'white',
         borderBottomWidth: 1,
-        padding: 10,
-        paddingRight: 20,
-        paddingLeft: 20,
+        paddingTop: 10,
+        paddingBottom: 10,
         zIndex: 2,
-        backgroundColor: '#222222'
+        backgroundColor: '#222222',
     },
     checkboxes: {
         flexDirection: 'row',
@@ -112,7 +112,10 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
     content: {
-        maxWidth: 500,
+        width: '100%',
+        maxWidth: 1200,
+        paddingRight: 20,
+        paddingLeft: 20,
     },
     buttonsContainer: {
         flexDirection: 'row',
@@ -121,6 +124,7 @@ const styles = StyleSheet.create({
     },
     filtersContainer: {
         marginTop: 10,
+        maxWidth: 500
     },
 });
 

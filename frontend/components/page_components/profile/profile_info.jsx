@@ -80,8 +80,8 @@ const styles = {
         borderRadius: '100%',
         border: '1px solid black',
         padding: 10,
-        height: 60,
-        width: 60,
+        height: 45,
+        width: 45,
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 10

@@ -145,7 +145,7 @@ const styles = {
         }
     },
     suggestions_container: {
-        top: 65,
+        top: 67,
         zIndex: 2,
         width: '100%',
         border: '1px solid white',

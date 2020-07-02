@@ -47,9 +47,11 @@ let Page = ({ currentUser, history, menu, setMenu }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: 'black',
+        flex: 0.9,
         overflow: 'scroll',
+        overflowX: 'hidden',
+        width: '100%',
+        alignItems: 'center'
     }
 });
 

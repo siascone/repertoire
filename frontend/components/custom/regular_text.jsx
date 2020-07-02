@@ -6,7 +6,7 @@ let RegularText = ({
     styles = {}, // regular_text
     onPress = e => null,
 }) => (
-    <Text onPress={onPress} style={{ color: 'white', fontSize: 30, ...styles.regular_text, ...styles.regular_button_text}} >
+    <Text onPress={onPress} style={{ color: 'white', fontSize: 20, ...styles.regular_text, ...styles.regular_button_text}} >
         {text}
     </Text>
 );

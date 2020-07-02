@@ -71,6 +71,7 @@ const Autosuggest = ({
                 value={input}
                 styles={{regular_text_input: styles.autosuggest_input}} 
                 placeholder={placeholder} 
+                onPress={e => e.preventDefault()}
                 onChange={e => handleChange(e)}
             />
             
@@ -101,6 +102,7 @@ const buttonStyles = {
         top: 13,
         right: 5,
         zIndex: 3,
+        width: 60,
     },
 };
 

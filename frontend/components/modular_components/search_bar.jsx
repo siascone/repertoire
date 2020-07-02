@@ -29,15 +29,15 @@ let SearchBar = ({ history, navigateTo }) => {
             <RegularTextInput
                 value={input}
                 styles={styles}
-                placeholder='search' 
+                placeholder='Search Repertoire' 
                 onChange={e => handleChange(e)}
                 onSubmitEditing={e => handleSearch(e)} 
             />
-            <RegularButton 
+            {/* <RegularButton 
                 text='Go'
                 styles={styles}
                 onPress={e => handleSearch(e)}
-            />
+            /> */}
         </View>
     );
 };
@@ -45,10 +45,10 @@ let SearchBar = ({ history, navigateTo }) => {
 const styles = {
     container: {
         position: 'relative',
-        width: '50vw'
+        width: '100%'
     },
     regular_text_input: {
-        paddingRight: 65,
+        // paddingRight: 65,
         width: '100%',
     },
     regular_button_container: {

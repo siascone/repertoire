@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import SearchBar from './modular_components/search_bar';
+import useMediaQuery from '../util/media_query_util';
+import RegularText from './custom/regular_text';
 
 const Header = ({history, setMenu, menu}) => {
 
@@ -9,58 +11,76 @@ const Header = ({history, setMenu, menu}) => {
         history.push(path);
         setMenu(false);
     };
+    const large = useMediaQuery("(min-width: 1000px)");
 
     return(
         <View style={styles.container}>
-            <View style={styles.leftNav}>
-                <TouchableOpacity>
-                    <Text 
-                        style={styles.text} 
-                        onPress={e => navigateTo('/')} 
-                    >Repertoire</Text>
+            <View style={styles.nav}>
+                <View style={styles.leftNav}>
+                    <TouchableOpacity>
+                        <RegularText 
+                            text={large ? 'Repertoire' : 'R'}
+                            styles={styles.text} 
+                            onPress={e => navigateTo('/')} 
+                        />
+                    </TouchableOpacity>
+                    <SearchBar history={history} navigateTo={navigateTo} />
+                </View>
+                <TouchableOpacity
+                    style={styles.menuButtonContainer}
+                    onPress={e => setMenu(!menu)}
+                >
+                    {menu ?
+                    <Text style={styles.buttonTextContainer}>X</Text>
+                    :
+                    <View style={styles.buttonTextContainer}>
+                        <View style={styles.menuLine}/>
+                        <View style={styles.menuLine}/>
+                        <View style={styles.menuLine}/>
+                    </View>}
                 </TouchableOpacity>
-                <SearchBar history={history} navigateTo={navigateTo} />
             </View>
-            <TouchableOpacity
-                style={styles.menuButtonContainer}
-                onPress={e => setMenu(!menu)}
-            >
-                {menu ?
-                <Text style={styles.buttonTextContainer}>X</Text>
-                :
-                <View style={styles.buttonTextContainer}>
-                    <View style={styles.menuLine}/>
-                    <View style={styles.menuLine}/>
-                    <View style={styles.menuLine}/>
-                </View>}
-            </TouchableOpacity>
         </View>
     );
 };
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
-        // flex: 0.1,
+        flex: 0.1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         backgroundColor: 'black',
         borderBottomColor: 'white',
         borderBottomWidth: 1,
-        padding: 10,
+        position: 'sticky',
+        zIndex: 2,
+        top: 0,
+        width: '100%'
+        // padding: 20,
+    },
+    nav: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: 20,
+        width: '100%',
+        maxWidth: 1200,
     },
     leftNav: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '75%',
+        width: '66%',
         marginRight: 10
     },
     text: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 40,
-        marginRight: 20,
+        regular_text: {
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: 40,
+            marginRight: 20,
+        }
     },
     menuButtonContainer: {
         padding: 10,
@@ -85,6 +105,6 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center'
     }
-});
+};
 
 export default Header;

@@ -113,6 +113,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/page */ "./frontend/components/page.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_page_components_search_filters__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/page_components/search/filters */ "./frontend/components/page_components/search/filters.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -133,6 +134,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var App = function App(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -141,7 +143,11 @@ var App = function App(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["SafeAreaView"], {
     style: {
-      flex: 1
+      flex: 1,
+      position: 'relative',
+      overflow: 'none',
+      backgroundColor: 'black',
+      alignItems: 'center'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
     menu: menu,
@@ -581,7 +587,7 @@ var RegularText = function RegularText(_ref) {
     onPress: onPress,
     style: _objectSpread({
       color: 'white',
-      fontSize: 30
+      fontSize: 20
     }, styles.regular_text, {}, styles.regular_button_text)
   }, text);
 };
@@ -643,7 +649,7 @@ var RegularTextInput = function RegularTextInput(_ref) {
       borderRadius: 3,
       color: 'white',
       padding: 10,
-      fontSize: 30
+      fontSize: 20
     }, styles.regular_text_input)
   });
 };
@@ -665,6 +671,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
 /* harmony import */ var _modular_components_search_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modular_components/search_bar */ "./frontend/components/modular_components/search_bar.jsx");
+/* harmony import */ var _util_media_query_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/media_query_util */ "./frontend/util/media_query_util.js");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+
+
 
 
 
@@ -680,16 +690,20 @@ var Header = function Header(_ref) {
     setMenu(false);
   };
 
+  var large = Object(_util_media_query_util__WEBPACK_IMPORTED_MODULE_3__["default"])("(min-width: 1000px)");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.nav
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.leftNav
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    style: styles.text,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    text: large ? 'Repertoire' : 'R',
+    styles: styles.text,
     onPress: function onPress(e) {
       return navigateTo('/');
     }
-  }, "Repertoire")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_search_bar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_search_bar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     history: history,
     navigateTo: navigateTo
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
@@ -707,32 +721,46 @@ var Header = function Header(_ref) {
     style: styles.menuLine
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.menuLine
-  }))));
+  })))));
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   container: {
-    // flex: 0.1,
+    flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     backgroundColor: 'black',
     borderBottomColor: 'white',
     borderBottomWidth: 1,
-    padding: 10
+    position: 'sticky',
+    zIndex: 2,
+    top: 0,
+    width: '100%' // padding: 20,
+
+  },
+  nav: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 20,
+    width: '100%',
+    maxWidth: 1200
   },
   leftNav: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '75%',
+    width: '66%',
     marginRight: 10
   },
   text: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 40,
-    marginRight: 20
+    regular_text: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: 40,
+      marginRight: 20
+    }
   },
   menuButtonContainer: {
     padding: 10,
@@ -757,7 +785,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     color: 'white',
     textAlign: 'center'
   }
-});
+};
 /* harmony default export */ __webpack_exports__["default"] = (Header);
 
 /***/ }),
@@ -893,6 +921,9 @@ var Autosuggest = function Autosuggest(_ref) {
       regular_text_input: styles.autosuggest_input
     },
     placeholder: placeholder,
+    onPress: function onPress(e) {
+      return e.preventDefault();
+    },
     onChange: function onChange(e) {
       return handleChange(e);
     }
@@ -919,7 +950,8 @@ var buttonStyles = {
     position: 'absolute',
     top: 13,
     right: 5,
-    zIndex: 3
+    zIndex: 3,
+    width: 60
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (Autosuggest);
@@ -1124,7 +1156,7 @@ var styles = {
     }
   },
   suggestions_container: {
-    top: 65,
+    top: 67,
     zIndex: 2,
     width: '100%',
     border: '1px solid white',
@@ -1269,17 +1301,11 @@ var SearchBar = function SearchBar(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     value: input,
     styles: styles,
-    placeholder: "search",
+    placeholder: "Search Repertoire",
     onChange: function onChange(e) {
       return handleChange(e);
     },
     onSubmitEditing: function onSubmitEditing(e) {
-      return handleSearch(e);
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    text: "Go",
-    styles: styles,
-    onPress: function onPress(e) {
       return handleSearch(e);
     }
   }));
@@ -1288,10 +1314,10 @@ var SearchBar = function SearchBar(_ref) {
 var styles = {
   container: {
     position: 'relative',
-    width: '50vw'
+    width: '100%'
   },
   regular_text_input: {
-    paddingRight: 65,
+    // paddingRight: 65,
     width: '100%'
   },
   regular_button_container: (_regular_button_conta = {
@@ -1732,13 +1758,12 @@ var UploadTrack = function UploadTrack(_ref) {
 
 var styles = {
   modalContainer: {
-    // flexWrap: 'wrap',
     marginTop: 10,
     padding: 20,
     border: '1px solid white',
     borderRadius: 3,
     marginBottom: 20,
-    minWidth: 500,
+    minWidth: 300,
     maxWidth: 1200
   },
   chooseFileContainer: {
@@ -1765,14 +1790,14 @@ var styles = {
     regular_button_container: {
       justifyContent: 'center',
       marginTop: 10,
-      height: 100,
-      width: 100,
+      height: 60,
+      width: 60,
       borderRadius: '100%',
       overflow: 'hidden'
     },
     regular_button_text: {
-      fontSize: 100,
-      marginTop: -20
+      fontSize: 60,
+      marginTop: -10
     }
   },
   regular_text_input: {
@@ -1887,9 +1912,11 @@ var Page = function Page(_ref) {
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
-    flex: 1,
-    backgroundColor: 'black',
-    overflow: 'scroll'
+    flex: 0.9,
+    overflow: 'scroll',
+    overflowX: 'hidden',
+    width: '100%',
+    alignItems: 'center'
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (Page);
@@ -2055,8 +2082,8 @@ var MainMenu = function MainMenu(_ref) {
 var styles = {
   view: {
     flex: 1,
-    padding: 50,
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 20
   },
   regular_text: {
     padding: 10
@@ -2197,8 +2224,10 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
     flex: 1,
     alignItems: 'center',
+    position: 'relative',
     padding: 20,
-    position: 'relative'
+    width: '100%',
+    maxWidth: 1200
   },
   usernameText: {
     color: 'white',
@@ -2460,8 +2489,8 @@ var styles = {
     borderRadius: '100%',
     border: '1px solid black',
     padding: 10,
-    height: 60,
-    width: 60,
+    height: 45,
+    width: 45,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 10
@@ -2562,7 +2591,7 @@ var ProfilePhoto = function ProfilePhoto(_ref) {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     url: user.profilePhotoURL || "/assets/".concat(photo),
-    size: 200
+    size: 130
   }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.touch
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["Text"], {
@@ -2599,8 +2628,8 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     borderRadius: '100%',
     border: '1px solid black',
     padding: 10,
-    height: 60,
-    width: 60,
+    height: 45,
+    width: 45,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -2958,11 +2987,11 @@ var Filters = function Filters(_ref) {
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
+    alignItems: 'center',
     borderBottomColor: 'white',
     borderBottomWidth: 1,
-    padding: 10,
-    paddingRight: 20,
-    paddingLeft: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     zIndex: 2,
     backgroundColor: '#222222'
   },
@@ -2977,7 +3006,10 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     marginRight: 20
   },
   content: {
-    maxWidth: 500
+    width: '100%',
+    maxWidth: 1200,
+    paddingRight: 20,
+    paddingLeft: 20
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -2985,7 +3017,8 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     maxWidth: 500
   },
   filtersContainer: {
-    marginTop: 10
+    marginTop: 10,
+    maxWidth: 500
   }
 });
 var checkboxStyles = {
@@ -3058,7 +3091,8 @@ var Search = function Search(_ref) {
 
 var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   container: {
-    flex: 1
+    flex: 1,
+    width: '100%'
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (Search);
@@ -3087,13 +3121,20 @@ var SearchResults = function SearchResults(_ref) {
       input = _ref.input;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.content
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_2__["default"], {
     text: "Showing results for '".concat(input, "'")
-  }));
+  })));
 };
 
 var styles = {
   container: {
+    alignItems: 'center'
+  },
+  content: {
+    width: '100%',
+    maxWidth: 1200,
     padding: 20
   },
   text: {
@@ -3213,7 +3254,7 @@ var styles = {
     borderRadius: 3
   },
   regular_text_input: {
-    width: 600,
+    // width: 600,
     margin: 5
   }
 };

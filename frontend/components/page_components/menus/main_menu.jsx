@@ -44,8 +44,8 @@ let MainMenu = ({currentUser, logout, history, setMenu}) => {
 const styles = {
     view: {
         flex: 1,
-        padding: 50,
         alignItems: 'center',
+        padding: 20
     },
     regular_text: {
         padding: 10,
