@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, } from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, } from 'react-native';
+import { connect } from 'react-redux';
 
 import TagSuggest from './autosuggest/tag_suggest';
 import RegularButton from '../custom/regular_button';
@@ -7,26 +8,39 @@ import TimeSignatureSelect from './time_signature_select';
 import RegularTextInput from '../custom/regular_text_input';
 import RegularText from '../custom/regular_text';
 import useMediaQuery from '../../util/media_query_util';
+import { createTrack } from '../../actions/track_actions';
 
-let UploadTrack = ({ currentUser }) => {
+let UploadTrack = ({ currentUser, createTrack }) => {
     const [modal, setModal] = useState(false);
+    const [fileState, setFileState] = useState(null);
     const [progress, setProgress] = useState('');
     const [url, setUrl] = useState('');
-    const [fileState, setFileState] = useState(null);
+    const [title, setTitle] = useState('');
     const [addedTags, setTags] = useState({});
     const [addedTimes, setTimes] = useState({});
 
-    const handleSave = e => {
-        cancel();
-    };
-
     const cancel = e => {
-        setUrl('');
-        setProgress('')
         setModal(false);
+        setFileState(null);
+        setProgress('');
+        setUrl('');
+        setTitle('');
         setTags({});
         setTimes({});
-        setFileState(null);
+    };
+
+    const handleSave = e => {
+        const formData = new FormData();
+        const track = {
+            file: fileState,
+            title: title,
+            tags_ids: Object.keys(addedTags),
+            time_signatures: Object.keys(addedTimes)
+        };
+        Object.keys(track).forEach(key => {
+            formData.append(`track[${key}]`, track[key])
+        });
+        createTrack(formData);
     };
 
     const handleFile = e => {
@@ -34,7 +48,7 @@ let UploadTrack = ({ currentUser }) => {
         const fileReader = new FileReader();
         fileReader.onprogress = ev => setProgress(`${(ev.loaded*100/ev.total).toFixed(2)}%`);
         fileReader.onloadend = (event) => {
-            setUrl('')
+            setUrl('');
             let result = event.target.result;
             setUrl(result);
         };
@@ -52,14 +66,20 @@ let UploadTrack = ({ currentUser }) => {
                 <TouchableOpacity style={styles.chooseFileContainer} >
                     <RegularButton text={'Choose file'} styles={chooseFileStyles} />
                     <input 
-                        onChange={e => handleFile(e)}
-                        type="file"
                         style={styles.fileInput}
+                        type="file"
+                        onChange={e => handleFile(e)}
+                        accept="audio/*, video/*"
                     />
                 </TouchableOpacity>
                 {fileState ? 
                 <RegularText 
-                    text={`${fileState.name}  |  Upload progress: ${progress}`} 
+                    text={fileState.name} 
+                    styles={uploadStatusStyles}
+                /> : null}
+                {fileState ? 
+                <RegularText 
+                    text={`Upload progress: ${progress}`} 
                     styles={uploadStatusStyles}
                 /> : null}
                 {url ?
@@ -70,7 +90,7 @@ let UploadTrack = ({ currentUser }) => {
             <View style={{ width: large ? '49%' : '100%', margin: 5 }}>
                 {url ? 
                 <View style={styles.otherInputs}>
-                    <RegularTextInput placeholder='title' styles={styles}/>
+                    <RegularTextInput placeholder='title' styles={styles} onChange={e => setTitle(e.currentTarget.value)}/>
                     <TagSuggest addedTags={addedTags} setTags={setTags} allowTagCreation={true}/>
                     <TimeSignatureSelect addedTimes={addedTimes} setTimes={setTimes}/>
                 </View> : null}
@@ -151,12 +171,18 @@ const chooseFileStyles = {
     regular_button_container: {
         width: '100%',
     },
-}
+};
 
 const uploadStatusStyles = {
     regular_text: {
         marginTop: 10,
+        overflowWrap: 'anywhere'
     }
-}
+};
 
+const mdp = dispatch => ({
+    createTrack: track => dispatch(createTrack(track)),
+});
+
+UploadTrack = connect(null, mdp)(UploadTrack);
 export default UploadTrack;

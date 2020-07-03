@@ -21,7 +21,7 @@ let ProfileTracks = ({ user, ownProfile, getTracksByUserId }) => {
 
 const styles = {
     container: {
-        padding: 20,
+        paddingTop: 20,
         alignItems: "center",
     },
     touch: {

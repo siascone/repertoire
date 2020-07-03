@@ -154,7 +154,7 @@ const styles = {
         paddingTop: 5,
         paddingBottom: 5,
         width: 50,
-        height: 55,
+        height: 45,
         marginRight: 10,
     },
     addedTagsContainer: {

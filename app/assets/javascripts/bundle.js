@@ -587,7 +587,8 @@ var RegularText = function RegularText(_ref) {
     onPress: onPress,
     style: _objectSpread({
       color: 'white',
-      fontSize: 20
+      fontSize: 20,
+      overflowWrap: 'anywhere'
     }, styles.regular_text, {}, styles.regular_button_text)
   }, text);
 };
@@ -1156,7 +1157,7 @@ var styles = {
     }
   },
   suggestions_container: {
-    top: 67,
+    top: 60,
     zIndex: 2,
     width: '100%',
     border: '1px solid white',
@@ -1548,7 +1549,7 @@ var styles = {
     paddingTop: 5,
     paddingBottom: 5,
     width: 50,
-    height: 55,
+    height: 45,
     marginRight: 10
   },
   addedTagsContainer: {
@@ -1590,12 +1591,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_native__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-native */ "./node_modules/react-native-web/dist/index.js");
-/* harmony import */ var _autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./autosuggest/tag_suggest */ "./frontend/components/modular_components/autosuggest/tag_suggest.jsx");
-/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
-/* harmony import */ var _time_signature_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./time_signature_select */ "./frontend/components/modular_components/time_signature_select.jsx");
-/* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
-/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
-/* harmony import */ var _util_media_query_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/media_query_util */ "./frontend/util/media_query_util.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./autosuggest/tag_suggest */ "./frontend/components/modular_components/autosuggest/tag_suggest.jsx");
+/* harmony import */ var _custom_regular_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../custom/regular_button */ "./frontend/components/custom/regular_button.jsx");
+/* harmony import */ var _time_signature_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./time_signature_select */ "./frontend/components/modular_components/time_signature_select.jsx");
+/* harmony import */ var _custom_regular_text_input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../custom/regular_text_input */ "./frontend/components/custom/regular_text_input.jsx");
+/* harmony import */ var _custom_regular_text__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../custom/regular_text */ "./frontend/components/custom/regular_text.jsx");
+/* harmony import */ var _util_media_query_util__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/media_query_util */ "./frontend/util/media_query_util.js");
+/* harmony import */ var _actions_track_actions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../actions/track_actions */ "./frontend/actions/track_actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1623,50 +1626,69 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var UploadTrack = function UploadTrack(_ref) {
-  var currentUser = _ref.currentUser;
+  var currentUser = _ref.currentUser,
+      createTrack = _ref.createTrack;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       modal = _useState2[0],
       setModal = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      progress = _useState4[0],
-      setProgress = _useState4[1];
+      fileState = _useState4[0],
+      setFileState = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      url = _useState6[0],
-      setUrl = _useState6[1];
+      progress = _useState6[0],
+      setProgress = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState8 = _slicedToArray(_useState7, 2),
-      fileState = _useState8[0],
-      setFileState = _useState8[1];
+      url = _useState8[0],
+      setUrl = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      addedTags = _useState10[0],
-      setTags = _useState10[1];
+      title = _useState10[0],
+      setTitle = _useState10[1];
 
   var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState12 = _slicedToArray(_useState11, 2),
-      addedTimes = _useState12[0],
-      setTimes = _useState12[1];
+      addedTags = _useState12[0],
+      setTags = _useState12[1];
 
-  var handleSave = function handleSave(e) {
-    cancel();
-  };
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState14 = _slicedToArray(_useState13, 2),
+      addedTimes = _useState14[0],
+      setTimes = _useState14[1];
 
   var cancel = function cancel(e) {
-    setUrl('');
-    setProgress('');
     setModal(false);
+    setFileState(null);
+    setProgress('');
+    setUrl('');
+    setTitle('');
     setTags({});
     setTimes({});
-    setFileState(null);
+  };
+
+  var handleSave = function handleSave(e) {
+    var formData = new FormData();
+    var track = {
+      file: fileState,
+      title: title,
+      tags_ids: Object.keys(addedTags),
+      time_signatures: Object.keys(addedTimes)
+    };
+    Object.keys(track).forEach(function (key) {
+      formData.append("track[".concat(key, "]"), track[key]);
+    });
+    createTrack(formData);
   };
 
   var handleFile = function handleFile(e) {
@@ -1691,7 +1713,7 @@ var UploadTrack = function UploadTrack(_ref) {
     ;
   };
 
-  var large = Object(_util_media_query_util__WEBPACK_IMPORTED_MODULE_7__["default"])("(min-width: 1000px)");
+  var large = Object(_util_media_query_util__WEBPACK_IMPORTED_MODULE_8__["default"])("(min-width: 1000px)");
   return modal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: _objectSpread({
       flexDirection: large ? 'row' : 'column'
@@ -1703,17 +1725,21 @@ var UploadTrack = function UploadTrack(_ref) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
     style: styles.chooseFileContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     text: 'Choose file',
     styles: chooseFileStyles
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    style: styles.fileInput,
+    type: "file",
     onChange: function onChange(e) {
       return handleFile(e);
     },
-    type: "file",
-    style: styles.fileInput
-  })), fileState ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    text: "".concat(fileState.name, "  |  Upload progress: ").concat(progress),
+    accept: "audio/*, video/*"
+  })), fileState ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    text: fileState.name,
+    styles: uploadStatusStyles
+  }) : null, fileState ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    text: "Upload progress: ".concat(progress),
     styles: uploadStatusStyles
   }) : null, url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
     style: styles.video,
@@ -1728,26 +1754,29 @@ var UploadTrack = function UploadTrack(_ref) {
     }
   }, url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.otherInputs
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_6__["default"], {
     placeholder: "title",
-    styles: styles
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    styles: styles,
+    onChange: function onChange(e) {
+      return setTitle(e.currentTarget.value);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_autosuggest_tag_suggest__WEBPACK_IMPORTED_MODULE_3__["default"], {
     addedTags: addedTags,
     setTags: setTags,
     allowTagCreation: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_time_signature_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_time_signature_select__WEBPACK_IMPORTED_MODULE_5__["default"], {
     addedTimes: addedTimes,
     setTimes: setTimes
   })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.buttonsContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     text: "Cancel",
     styles: styles,
     onPress: cancel
-  }), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     text: "Save",
     onPress: handleSave
-  }) : null))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }) : null))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     text: "+",
     styles: styles.addContainer,
     onPress: function onPress(e) {
@@ -1824,9 +1853,20 @@ var chooseFileStyles = {
 };
 var uploadStatusStyles = {
   regular_text: {
-    marginTop: 10
+    marginTop: 10,
+    overflowWrap: 'anywhere'
   }
 };
+
+var mdp = function mdp(dispatch) {
+  return {
+    createTrack: function createTrack(track) {
+      return dispatch(Object(_actions_track_actions__WEBPACK_IMPORTED_MODULE_9__["createTrack"])(track));
+    }
+  };
+};
+
+UploadTrack = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, mdp)(UploadTrack);
 /* harmony default export */ __webpack_exports__["default"] = (UploadTrack);
 
 /***/ }),
@@ -2804,7 +2844,7 @@ var ProfileTracks = function ProfileTracks(_ref) {
 
 var styles = {
   container: {
-    padding: 20,
+    paddingTop: 20,
     alignItems: "center"
   },
   touch: {
