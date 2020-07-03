@@ -37,7 +37,7 @@ export const getUsersByQueryString = queryString => dispatch => (
 
 export const updateUser = user => dispatch => (
     $updateUser(user)
-    .then(res => dispatch(receiveUsers(res.user)))
+    .then(res => dispatch(receiveUser(res.user)))
     .fail(err => dispatch(receiveUserErrors(err)))
 );
 

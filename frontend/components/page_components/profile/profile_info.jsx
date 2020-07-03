@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-nativ
 import RegularTextInput from '../../custom/regular_text_input';
 import RegularText from '../../custom/regular_text';
 import RegularButton from '../../custom/regular_button';
+import { useEffect } from 'react';
 
 
 
@@ -12,9 +13,24 @@ let ProfileInfo = ({ user, ownProfile, updateUser }) => {
         id: user.id,
         f_name: user.f_name,
         l_name: user.l_name,
-        bio: user.bio,
-        headline: user.headline,
+        bio: user.bio ? user.bio : '',
+        headline: user.headline ? user.headline : '',
     });
+
+    const exit = () => {
+        setInputs({
+            id: user.id,
+            f_name: user.f_name,
+            l_name: user.l_name,
+            bio: user.bio ? user.bio : '',
+            headline: user.headline ? user.headline : '',
+        });
+        setEdit(false);
+    };
+
+    useEffect(() => {
+        exit();
+    }, [user])
 
     const handleSave = e => {
         const formData = new FormData();
@@ -52,13 +68,13 @@ let ProfileInfo = ({ user, ownProfile, updateUser }) => {
     const editInfo = () => (
         <View style={styles.container}>
             <RegularText text={`Username: ${user.username}`} styles={styles.text} />
-            <RegularTextInput styles={styles} placeholder='first name' onChange={handleChange('f_name')} />
-            <RegularTextInput styles={styles} placeholder='last name' onChange={handleChange('l_name')} />
-            <RegularTextInput styles={styles} placeholder='bio' onChange={handleChange('bio')} />
-            <RegularTextInput styles={styles} placeholder='headline' onChange={handleChange('headline')} />
+            <RegularTextInput value={inputs.f_name} placeholder='first name' styles={styles}  onChange={handleChange('f_name')} />
+            <RegularTextInput value={inputs.l_name} placeholder='last name' styles={styles}  onChange={handleChange('l_name')} />
+            <RegularTextInput value={inputs.bio} placeholder='bio' styles={styles} onChange={handleChange('bio')} />
+            <RegularTextInput value={inputs.headline} placeholder='headline' styles={styles} onChange={handleChange('headline')} />
             <View style={styles.buttonContainer}>
                 <RegularButton text='Save' styles={styles.button} onPress={e => handleSave(e)} />
-                <RegularButton text='Cancel' styles={styles.button} onPress={e => setEdit(false)} />
+                <RegularButton text='Cancel' styles={styles.button} onPress={e => exit()} />
             </View>
         </View>
     );
@@ -68,7 +84,7 @@ let ProfileInfo = ({ user, ownProfile, updateUser }) => {
 
 const styles = {
     container: {
-        padding: 10
+        padding: 20
     },
     pencil: {
         color: 'black',

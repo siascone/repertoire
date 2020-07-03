@@ -485,7 +485,7 @@ var getUsersByQueryString = function getUsersByQueryString(queryString) {
 var updateUser = function updateUser(user) {
   return function (dispatch) {
     return Object(_util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["$updateUser"])(user).then(function (res) {
-      return dispatch(receiveUsers(res.user));
+      return dispatch(receiveUser(res.user));
     }).fail(function (err) {
       return dispatch(receiveUserErrors(err));
     });
@@ -2255,27 +2255,38 @@ var Profile = function Profile(_ref) {
       return setFound(false);
     });
   }, [userId]);
+
+  var profileHeader = function profileHeader() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.header
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.photoContainer
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_photo__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      user: user,
+      ownProfile: ownProfile,
+      updateUser: updateUser
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.followContainer
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      text: "".concat(user.username, " ").concat(user.f_name || user.l_name ? "(".concat(user.f_name ? user.f_name : '').concat(user.l_name ? ' ' + user.l_name : '', ")") : ''),
+      styles: styles.usernameText
+    }), user.headline ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      text: user.headline,
+      styles: styles.headlineText
+    }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      text: "210 Followers"
+    }), ownProfile ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      text: "Follow",
+      styles: styles.button
+    })));
+  };
+
   if (!found) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_errors_error404__WEBPACK_IMPORTED_MODULE_4__["default"], null);
   if (!user) return null;
   var ownProfile = currentUser.username === user.username;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
     style: styles.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_photo__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    user: user,
-    ownProfile: ownProfile,
-    updateUser: updateUser
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    text: user.username,
-    style: styles.usernameText
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.followContainer
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    text: "210 Followers",
-    style: styles.subText
-  }), ownProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    text: "Follow",
-    style: styles.button
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, profileHeader(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_tabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
     tab: tab,
     setTab: setTab
   }), tab === "Info" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_info__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -2294,38 +2305,44 @@ var Profile = function Profile(_ref) {
 
 var styles = {
   container: {
-    flex: 1,
-    alignItems: 'center',
+    height: 'fit-content',
+    minHeight: '100%',
     position: 'relative',
     padding: 20,
     width: '100%',
     minWidth: 300,
     maxWidth: 1200
   },
+  header: {
+    flexDirection: 'row',
+    width: '100%',
+    paddingBottom: 20
+  },
+  photoContainer: {
+    marginLeft: 20,
+    justifyContent: 'center'
+  },
   usernameText: {
-    color: 'white',
-    fontSize: 20,
-    padding: 10
+    regular_text: {
+      marginLeft: -10,
+      marginBottom: 10,
+      fontWeight: 'bold'
+    }
   },
   followContainer: {
-    position: "absolute",
-    width: 600,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    zIndex: -1,
-    top: 50,
-    marginLeft: -40
+    marginLeft: 20,
+    marginRight: 20,
+    maxWidth: '50%'
   },
-  subText: {
-    color: 'white',
-    fontSize: 12,
-    padding: 10,
-    textAlign: 'center'
+  headlineText: {
+    regular_text: {
+      marginBottom: 10
+    }
   },
   button: {
-    border: '1px solid white',
-    borderRadius: 3
+    regular_button_container: {
+      marginTop: 10
+    }
   },
   tabsContainer: {
     flexDirection: "row",
@@ -2434,6 +2451,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var ProfileInfo = function ProfileInfo(_ref) {
   var user = _ref.user,
       ownProfile = _ref.ownProfile,
@@ -2448,12 +2466,27 @@ var ProfileInfo = function ProfileInfo(_ref) {
     id: user.id,
     f_name: user.f_name,
     l_name: user.l_name,
-    bio: user.bio,
-    headline: user.headline
+    bio: user.bio ? user.bio : '',
+    headline: user.headline ? user.headline : ''
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       inputs = _useState4[0],
       setInputs = _useState4[1];
+
+  var exit = function exit() {
+    setInputs({
+      id: user.id,
+      f_name: user.f_name,
+      l_name: user.l_name,
+      bio: user.bio ? user.bio : '',
+      headline: user.headline ? user.headline : ''
+    });
+    setEdit(false);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    exit();
+  }, [user]);
 
   var handleSave = function handleSave(e) {
     var formData = new FormData();
@@ -2513,20 +2546,24 @@ var ProfileInfo = function ProfileInfo(_ref) {
       text: "Username: ".concat(user.username),
       styles: styles.text
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      styles: styles,
+      value: inputs.f_name,
       placeholder: "first name",
+      styles: styles,
       onChange: handleChange('f_name')
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      styles: styles,
+      value: inputs.l_name,
       placeholder: "last name",
+      styles: styles,
       onChange: handleChange('l_name')
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      styles: styles,
+      value: inputs.bio,
       placeholder: "bio",
+      styles: styles,
       onChange: handleChange('bio')
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text_input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      styles: styles,
+      value: inputs.headline,
       placeholder: "headline",
+      styles: styles,
       onChange: handleChange('headline')
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
       style: styles.buttonContainer
@@ -2540,7 +2577,7 @@ var ProfileInfo = function ProfileInfo(_ref) {
       text: "Cancel",
       styles: styles.button,
       onPress: function onPress(e) {
-        return setEdit(false);
+        return exit();
       }
     })));
   };
@@ -2550,7 +2587,7 @@ var ProfileInfo = function ProfileInfo(_ref) {
 
 var styles = {
   container: {
-    padding: 10
+    padding: 20
   },
   pencil: {
     color: 'black',
