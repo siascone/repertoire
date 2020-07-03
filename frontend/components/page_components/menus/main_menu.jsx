@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { logout } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
 import Avitar from '../../modular_components/avitar';
@@ -18,31 +18,60 @@ let MainMenu = ({currentUser, logout, history, setMenu}) => {
         setMenu(false);
     };
 
-    return (
-        <View style={styles.view}>
-            {currentUser ?
-            <TouchableOpacity onPress={e => navigateTo(`/users/${currentUser.id}`)}>
-                <View style={styles.menuItem}>
-                    <Avitar url={currentUser.profilePhotoUrl || `assets/${photo}`} size={75} />
-                    <RegularText
-                        text={currentUser.username}
-                        styles={styles}
-                    />
-                </View>
-            </TouchableOpacity> : null}
-            {currentUser ?
-            <TouchableOpacity onPress={e => leave()}>
-                <RegularText 
-                    text='Logout'
+    const viewProfileButton = () => (
+        <TouchableOpacity onPress={e => navigateTo(`/users/${currentUser.id}`)}>
+            <View style={styles.menuItem}>
+                <Avitar url={currentUser.profilePhotoUrl || `assets/${photo}`} size={50} />
+                <RegularText
+                    text='Your profile'
                     styles={styles}
                 />
-            </TouchableOpacity> : null}
+            </View>
+        </TouchableOpacity>
+    );
+
+    const logoutButton = () => (
+        <TouchableOpacity onPress={e => leave()}>
+            <RegularText
+                text='Logout'
+                styles={styles}
+            />
+        </TouchableOpacity> 
+    );
+
+    const loginSignupButton = () => (
+        <TouchableOpacity onPress={e => navigateTo('/')}>
+            <RegularText
+                text='Login / Signup'
+                styles={styles}
+            />
+        </TouchableOpacity> 
+    );
+
+    const aboutButton = () => (
+        <TouchableOpacity onPress={e => navigateTo('/about')}>
+            <RegularText
+                text='About'
+                styles={styles}
+            />
+        </TouchableOpacity> 
+    );
+
+    return (currentUser ?
+        <View style={styles.container}>
+            {viewProfileButton()}
+            {logoutButton()}
+        </View>
+        : 
+        <View style={styles.container}>
+            {loginSignupButton()}
+            {aboutButton()}
         </View>
     );
 };
 
 const styles = {
-    view: {
+    container: {
         flex: 1,
         alignItems: 'center',
         padding: 20

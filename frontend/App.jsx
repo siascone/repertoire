@@ -13,7 +13,7 @@ let App = (props) => {
     const [menu, setMenu] = useState(false);
 
     return(
-        <SafeAreaView style={{ flex: 1, position: 'relative', overflow: 'none', backgroundColor: 'black', alignItems: 'center' }}>
+        <SafeAreaView style={{ flex: 1, position: 'relative', backgroundColor: 'black', alignItems: 'center' }}>
             <Header 
                 menu={menu}
                 setMenu={setMenu}

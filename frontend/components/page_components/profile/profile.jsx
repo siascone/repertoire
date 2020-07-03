@@ -50,13 +50,14 @@ let Profile = ({ currentUser, user, userId, getUserById, updateUser }) => {
     );
 };
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
         flex: 1,
         alignItems: 'center',
         position: 'relative',
         padding: 20,
         width: '100%',
+        minWidth: 300,
         maxWidth: 1200,
     },
     usernameText: {
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'none',
         borderBottomWidth: 5,
     }
-});
+};
 
 const msp = (state, ownProps) => {
     const userId = ownProps.match.params.userId

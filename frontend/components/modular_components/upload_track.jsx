@@ -8,6 +8,7 @@ import TimeSignatureSelect from './time_signature_select';
 import RegularTextInput from '../custom/regular_text_input';
 import RegularText from '../custom/regular_text';
 import useMediaQuery from '../../util/media_query_util';
+
 import { createTrack } from '../../actions/track_actions';
 
 let UploadTrack = ({ currentUser, createTrack }) => {
@@ -164,6 +165,7 @@ const styles = {
     video: {
         width: '100%',
         height: '70%',
+        marginTop: 5
     }
 };
 
@@ -175,8 +177,8 @@ const chooseFileStyles = {
 
 const uploadStatusStyles = {
     regular_text: {
-        marginTop: 10,
-        overflowWrap: 'anywhere'
+        marginTop: 5,
+        marginBottom: 5
     }
 };
 

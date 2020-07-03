@@ -145,7 +145,6 @@ var App = function App(props) {
     style: {
       flex: 1,
       position: 'relative',
-      overflow: 'none',
       backgroundColor: 'black',
       alignItems: 'center'
     }
@@ -1843,7 +1842,8 @@ var styles = {
   },
   video: {
     width: '100%',
-    height: '70%'
+    height: '70%',
+    marginTop: 5
   }
 };
 var chooseFileStyles = {
@@ -1853,8 +1853,8 @@ var chooseFileStyles = {
 };
 var uploadStatusStyles = {
   regular_text: {
-    marginTop: 10,
-    overflowWrap: 'anywhere'
+    marginTop: 5,
+    marginBottom: 5
   }
 };
 
@@ -2095,32 +2095,64 @@ var MainMenu = function MainMenu(_ref) {
     setMenu(false);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.view
-  }, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    onPress: function onPress(e) {
-      return navigateTo("/users/".concat(currentUser.id));
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
-    style: styles.menuItem
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    url: currentUser.profilePhotoUrl || "assets/".concat(photo),
-    size: 75
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    text: currentUser.username,
-    styles: styles
-  }))) : null, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
-    onPress: function onPress(e) {
-      return leave();
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    text: "Logout",
-    styles: styles
-  })) : null);
+  var viewProfileButton = function viewProfileButton() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      onPress: function onPress(e) {
+        return navigateTo("/users/".concat(currentUser.id));
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+      style: styles.menuItem
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modular_components_avitar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      url: currentUser.profilePhotoUrl || "assets/".concat(photo),
+      size: 50
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      text: "Your profile",
+      styles: styles
+    })));
+  };
+
+  var logoutButton = function logoutButton() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      onPress: function onPress(e) {
+        return leave();
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      text: "Logout",
+      styles: styles
+    }));
+  };
+
+  var loginSignupButton = function loginSignupButton() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      onPress: function onPress(e) {
+        return navigateTo('/');
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      text: "Login / Signup",
+      styles: styles
+    }));
+  };
+
+  var aboutButton = function aboutButton() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["TouchableOpacity"], {
+      onPress: function onPress(e) {
+        return navigateTo('/about');
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_custom_regular_text__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      text: "About",
+      styles: styles
+    }));
+  };
+
+  return currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, viewProfileButton(), logoutButton()) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_native__WEBPACK_IMPORTED_MODULE_1__["View"], {
+    style: styles.container
+  }, loginSignupButton(), aboutButton());
 };
 
 var styles = {
-  view: {
+  container: {
     flex: 1,
     alignItems: 'center',
     padding: 20
@@ -2260,13 +2292,14 @@ var Profile = function Profile(_ref) {
   }) : null);
 };
 
-var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
+var styles = {
   container: {
     flex: 1,
     alignItems: 'center',
     position: 'relative',
     padding: 20,
     width: '100%',
+    minWidth: 300,
     maxWidth: 1200
   },
   usernameText: {
@@ -2303,7 +2336,7 @@ var styles = react_native__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     borderBottomColor: 'none',
     borderBottomWidth: 5
   }
-});
+};
 
 var msp = function msp(state, ownProps) {
   var userId = ownProps.match.params.userId;
