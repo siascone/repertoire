@@ -7,7 +7,7 @@ import Page from './components/page';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { useState } from 'react';
-import Filters from './components/page_components/search/filters';
+
 
 let App = (props) => {
     const [menu, setMenu] = useState(false);
